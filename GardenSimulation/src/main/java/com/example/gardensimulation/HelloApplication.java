@@ -35,25 +35,25 @@ public class HelloApplication extends Application {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 // Create a rectangle to represent each grid cell
-                Rectangle cell = new Rectangle(100, 100); // Cell size: 50px by 50px
-                cell.setFill(Color.TRANSPARENT); // Transparent inside
-                cell.setStroke(Color.BROWN); // Brown border color
-                grid.add(cell, col, row); // Add cell to the grid
+                Rectangle cell = new Rectangle(100, 100); 
+                cell.setFill(Color.TRANSPARENT);
+                cell.setStroke(Color.BROWN);
+                grid.add(cell, col, row);
             }
         }
 
-        // 5. Overlay the grid on top of the background
+        // Overlay the grid on top of the background
         stackPane.getChildren().add(grid);
         StackPane.setAlignment(grid, javafx.geometry.Pos.BOTTOM_CENTER);
 
-        // 6. Set up the scene and show the stage
-        Scene scene = new Scene(stackPane, 800, 700); // Size of the window
+        // Set up the scene and show the stage
+        Scene scene = new Scene(stackPane, 800, 700);
         primaryStage.setTitle("Automated Gardening System");
         primaryStage.setScene(scene);
         primaryStage.show();
 
         scene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            double gridHeight = newValue.doubleValue() / 2; // Grid takes up lower half
+            double gridHeight = newValue.doubleValue() / 2;
             grid.setPrefHeight(gridHeight);
         });
     }
