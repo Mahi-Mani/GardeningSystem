@@ -1,4 +1,4 @@
-package com.example.gardensimulation;
+package com.gardensimulation;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

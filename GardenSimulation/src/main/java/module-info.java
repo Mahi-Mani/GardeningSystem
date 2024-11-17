@@ -11,6 +11,6 @@ module com.example.gardensimulation {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.gardensimulation to javafx.fxml;
-    exports com.example.gardensimulation;
+    opens com.gardensimulation to javafx.fxml;
+    exports com.gardensimulation;
 }

@@ -1,4 +1,4 @@
-package com.example.gardensimulation;
+package com.gardensimulation;
 
 import com.almasb.fxgl.core.View;
 import javafx.application.Application;
