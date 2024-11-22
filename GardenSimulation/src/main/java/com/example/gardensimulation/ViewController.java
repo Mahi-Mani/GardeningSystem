@@ -3,6 +3,7 @@ package com.example.gardensimulation;
 import com.example.gardensimulation.Plant.Lily;
 import com.example.gardensimulation.Plant.Rose;
 import com.example.gardensimulation.Plant.Sunflower;
+import com.example.gardensimulation.Plant.Tomato;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
@@ -48,6 +49,9 @@ public class ViewController {
         RadioButton lilyRadio = new RadioButton("Lily");
         lilyRadio.setToggleGroup(plantGroup);
 
+        RadioButton tomatoRadio = new RadioButton("Tomato");
+        tomatoRadio.setToggleGroup(plantGroup);
+
         // Update selectedPlant when radio button selection changes
         plantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (plantGroup.getSelectedToggle() != null) {
@@ -70,6 +74,7 @@ public class ViewController {
                 roseRadio,
                 sunflowerRadio,
                 lilyRadio,
+                tomatoRadio,
                 grid);
         layout.setAlignment(Pos.TOP_CENTER);
         stackPane.getChildren().add(layout);
@@ -128,6 +133,9 @@ public class ViewController {
                 Lily lily = new Lily("Lily",25, 30, 60, 60, 40, 8, 0, 3, 0);
                 grid.add(lily.getPlantView(), col, row);
                 break;
+            case "tomato":
+                Tomato tomato = new Tomato("Tomato",35, 35, 40, 70, 70, 14, 0, 7, 0);
+                grid.add(tomato.getPlantView(), col, row);
         }
 
 //        if (plantView != null) {
