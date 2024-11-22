@@ -10,6 +10,7 @@ module com.example.gardensimulation {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.logging;
 
     opens com.example.gardensimulation to javafx.fxml;
     exports com.example.gardensimulation;

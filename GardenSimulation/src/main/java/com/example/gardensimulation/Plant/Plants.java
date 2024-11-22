@@ -3,21 +3,25 @@ package com.example.gardensimulation.Plant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 public class Plants {
-    String name;
-    int age;
-    double current_age;
-    int MaxTemp_level;
-    int MinTemp_level;
-    int water_level;
-    int fertilizer_level;
-    int time_for_watering;
-    int last_watering_time;
-    int days_for_fertilizer;
-    int last_fertilizer_day;
+    private String name;
+    private int age;
+    private double current_age;
+    private int MaxTemp_level;
+    private int MinTemp_level;
+    private int water_level;
+    private int water_requirement;
+    private int fertilizer_level;
+    private int time_for_watering;
+    private int last_watering_time;
+    private int days_for_fertilizer;
+    private int last_fertilizer_day;
+    public static ArrayList<Plants> plantsList = new ArrayList<>();
 
 //    Parameterized constructor
-    public Plants(String name,int age, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering,int last_watering_time,int days_for_fertilizer, int last_fertilizer_day) {
+    public Plants(String name,int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering,int last_watering_time,int days_for_fertilizer, int last_fertilizer_day) {
         super();
         this.days_for_fertilizer = days_for_fertilizer;
         this.name = name;
@@ -29,6 +33,7 @@ public class Plants {
         this.time_for_watering = time_for_watering;
         this.last_watering_time = last_watering_time;
         this.last_fertilizer_day = last_fertilizer_day;
+        this.water_requirement = water_requirement;
         this.current_age = 0;
     }
 
