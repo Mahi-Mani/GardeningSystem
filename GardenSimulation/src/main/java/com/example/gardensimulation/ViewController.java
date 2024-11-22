@@ -1,5 +1,6 @@
 package com.example.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.example.gardensimulation.Plant.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,15 +14,21 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import java.util.logging.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewController {
+    private SprinklerController sprinklerController;
     private GridPane grid;
     private List<Rectangle> cells;
     private String selectedPlant = "rose"; // Default plant type
+    private static final Logger log = Logger.getLogger(ViewController.class.getName());
 
+    public ViewController() {
+        sprinklerController = new SprinklerController();
+    }
 
     public StackPane createContent() {
         // Create the root layout
@@ -159,41 +166,49 @@ public class ViewController {
                 Rose rose = new Rose("Rose", 10, 15, 25, 45, 80, 70, 10, 0, 2, 0, true);
                 grid.add(rose.getPlantView(), col, row);
                 Plants.plantsList.add(rose);
+                log.info("Planting Rose at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
                 Sunflower sunflower = new Sunflower("Sunflower", 20, 30, 25, 40, 80, 70, 10, 0, 2, 0, true);
                 grid.add(sunflower.getPlantView(), col, row);
                 Plants.plantsList.add(sunflower);
+                log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
                 Lily lily = new Lily("Lily", 25, 30, 20, 60, 60, 40, 8, 0, 3, 0, true);
                 grid.add(lily.getPlantView(), col, row);
                 Plants.plantsList.add(lily);
+                log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
                 Tomato tomato = new Tomato("Tomato", 35, 12, 35, 40, 70, 70, 14, 0, 7, 0, true);
                 grid.add(tomato.getPlantView(), col, row);
                 Plants.plantsList.add(tomato);
+                log.info("Planting a Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
                 Tulip tulip = new Tulip("Tulip", 25, 18, 30, 60, 60, 40, 8, 0, 3, 0, true);
                 grid.add(tulip.getPlantView(), col, row);
                 Plants.plantsList.add(tulip);
+                log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
                 Lemon lemon = new Lemon("Lemon", 5, 25, 40, 50, 90, 80, 18, 0, 4, 0, true);
                 grid.add(lemon.getPlantView(), col, row);
                 Plants.plantsList.add(lemon);
+                log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
                 Orange orange = new Orange("Orange", 55, 15, 35, 50, 40, 30, 5, 0, 5, 0, true);
                 grid.add(orange.getPlantView(), col, row);
                 Plants.plantsList.add(orange);
+                log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
                 Apple apple = new Apple("Apple", 20, 15, 30, 60, 50, 40, 20, 0, 6, 0, true);
                 grid.add(apple.getPlantView(), col, row);
                 Plants.plantsList.add(apple);
+                log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }
 //        System.out.println(Plants.plantsList);
