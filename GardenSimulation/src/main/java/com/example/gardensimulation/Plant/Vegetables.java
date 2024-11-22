@@ -11,7 +11,8 @@ public abstract class Vegetables extends Plants{
         plantView = new ImageView();
         plantView.setFitWidth(80);
         plantView.setFitHeight(80);
-        plantView.setImage(getPlantImage());}
+        plantView.setImage(getPlantImage());
+    }
 
     // Abstract method to get the specific plant image
     protected abstract Image getPlantImage();
