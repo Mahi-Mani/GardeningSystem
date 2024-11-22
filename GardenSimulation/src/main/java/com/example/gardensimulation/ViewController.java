@@ -1,5 +1,6 @@
 package com.example.gardensimulation;
 
+import com.example.gardensimulation.Plant.Rose;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
@@ -16,7 +17,7 @@ import javafx.scene.control.ToggleGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewController{
+public class ViewController {
     private GridPane grid;
     private List<Rectangle> cells;
     private String selectedPlant = "rose"; // Default plant type
@@ -114,7 +115,8 @@ public class ViewController{
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-                plantImage = new Image("https://cdn.sanity.io/images/pn4rwssl/production/349d734442fdbcc734bd8060f126330fdf19e825-500x750.jpg?w=2880&q=75&auto=format");
+                Rose rose = new Rose("Rose", 10, 25, 45, 80, 70, 10, 0, 2, 0);
+                grid.add(rose.getPlantView(), col, row);
                 break;
             case "sunflower":
                 plantImage = new Image("https://media.istockphoto.com/id/927047528/vector/sunflower-flower-isolated.jpg?s=2048x2048&w=is&k=20&c=ARVqqtW_PFKOrVmLYpzR24RByFaAfpcflTeb0IKj6aM=");
@@ -124,15 +126,15 @@ public class ViewController{
                 break;
         }
 
-        if (plantImage != null) {
-            ImageView plantView = new ImageView(plantImage);
-            plantView.setFitHeight(80);
-            plantView.setFitWidth(80);
-
-            // Add the plant image to the clicked cell
-            grid.add(plantView, col, row);
-        } else {
-            System.out.println("Image not found for " + selectedPlant);
-        }
+//        if (plantView != null) {
+//            ImageView plantView = new ImageView(plantImage);
+//            plantView.setFitHeight(80);
+//            plantView.setFitWidth(80);
+//
+        // Add the plant image to the clicked cell
+//            grid.add(plantView, col, row);
+//        } else {
+//            System.out.println("Image not found for " + selectedPlant);
+//        }
     }
 }

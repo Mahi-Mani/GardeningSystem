@@ -1,5 +1,8 @@
 package com.example.gardensimulation.Plant;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Plants {
     String name;
     int age;
