@@ -1,6 +1,8 @@
 package com.example.gardensimulation;
 
+import com.example.gardensimulation.Plant.Lily;
 import com.example.gardensimulation.Plant.Rose;
+import com.example.gardensimulation.Plant.Sunflower;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
@@ -119,10 +121,12 @@ public class ViewController {
                 grid.add(rose.getPlantView(), col, row);
                 break;
             case "sunflower":
-                plantImage = new Image("https://media.istockphoto.com/id/927047528/vector/sunflower-flower-isolated.jpg?s=2048x2048&w=is&k=20&c=ARVqqtW_PFKOrVmLYpzR24RByFaAfpcflTeb0IKj6aM=");
+                Sunflower sunflower = new Sunflower("Sunflower", 20, 25, 40, 80, 70, 10, 0, 2, 0);
+                grid.add(sunflower.getPlantView(), col, row);
                 break;
             case "lily":
-                plantImage = new Image("https://media.istockphoto.com/id/183384405/photo/lily-isolated.jpg?s=1024x1024&w=is&k=20&c=a2ivn26nEzIla2icgb52uX2bMdGr7MUDkABkcaakEW4=");
+                Lily lily = new Lily("Lily",25, 30, 60, 60, 40, 8, 0, 3, 0);
+                grid.add(lily.getPlantView(), col, row);
                 break;
         }
 
