@@ -18,10 +18,11 @@ public class Plants {
     private int last_watering_time;
     private int days_for_fertilizer;
     private int last_fertilizer_day;
+    private boolean isAlive;
     public static ArrayList<Plants> plantsList = new ArrayList<>();
 
-//    Parameterized constructor
-    public Plants(String name,int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering,int last_watering_time,int days_for_fertilizer, int last_fertilizer_day) {
+    //    Parameterized constructor
+    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, boolean isAlive) {
         super();
         this.days_for_fertilizer = days_for_fertilizer;
         this.name = name;
@@ -35,11 +36,16 @@ public class Plants {
         this.last_fertilizer_day = last_fertilizer_day;
         this.water_requirement = water_requirement;
         this.current_age = 0;
+        this.isAlive = true;
     }
 
-//    Getters
+    //    Getters
     public int getLast_fertilizer_day() {
         return last_fertilizer_day;
+    }
+
+    public int getWater_requirement() {
+        return this.water_requirement;
     }
 
     public void setLast_fertilizer_day(int last_fertilizer_day) {
@@ -62,6 +68,14 @@ public class Plants {
         return name;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
     public void setPlant_type(String plant_type) {
         this.name = plant_type;
     }
@@ -78,12 +92,12 @@ public class Plants {
         return current_age;
     }
 
-//    Setters
+    //    Setters
     public void setCurrent_age(double current_age) {
-        if(this.getCurrent_age() <= 100){
+        if (this.getCurrent_age() <= 100) {
 
 //            myLogger.log(Level.FINE,"Age of " + this.name + " increased to " + (current_age < 100 ? (Math.round(current_age*100.0)/100.0) : 100 ));
-            if(this.getCurrent_age() >= 100){
+            if (this.getCurrent_age() >= 100) {
 //                myLogger.log(Level.FINE, this.name + " is fully grown");
             }
         }
@@ -98,6 +112,7 @@ public class Plants {
 //        myLogger.log(Level.FINE, "Max Temp level has been adjusted for " + this.name);
         this.MaxTemp_level = MaxTemp_level;
     }
+
     public int getMinTemp_level() {
         return MinTemp_level;
     }
@@ -105,6 +120,10 @@ public class Plants {
     public void setMinTemp_level(int MinTemp_level) {
 //        myLogger.log(Level.FINE, "Min Temp level has been adjusted for " + this.name);
         this.MinTemp_level = MinTemp_level;
+    }
+
+    public void setWater_requirement(int water_requirement) {
+        this.water_requirement = water_requirement;
     }
 
     public int getFertilizer_level() {
@@ -139,5 +158,21 @@ public class Plants {
 
     public void setLast_watering_time(int last_watering_time) {
         this.last_watering_time = last_watering_time;
+    }
+
+    public void waterThePlant(int amount) {
+        water_level = water_level + amount;
+        if (water_level > water_requirement * 2) {
+            if (age > 0) {
+                age = age - 10;
+            }
+        } else if (water_level > water_requirement) {
+            if (age > 0) {
+                age = age - 3;
+            }
+        }
+        if(age <=0 ) {
+            isAlive = false;
+        }
     }
 }

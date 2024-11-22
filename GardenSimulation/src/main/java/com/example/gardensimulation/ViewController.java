@@ -156,42 +156,42 @@ public class ViewController {
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-                Rose rose = new Rose("Rose", 10, 15, 25, 45, 80, 70, 10, 0, 2, 0);
+                Rose rose = new Rose("Rose", 10, 15, 25, 45, 80, 70, 10, 0, 2, 0, true);
                 grid.add(rose.getPlantView(), col, row);
                 Plants.plantsList.add(rose);
                 break;
             case "sunflower":
-                Sunflower sunflower = new Sunflower("Sunflower", 20, 30, 25, 40, 80, 70, 10, 0, 2, 0);
+                Sunflower sunflower = new Sunflower("Sunflower", 20, 30, 25, 40, 80, 70, 10, 0, 2, 0, true);
                 grid.add(sunflower.getPlantView(), col, row);
                 Plants.plantsList.add(sunflower);
                 break;
             case "lily":
-                Lily lily = new Lily("Lily", 25, 30, 20, 60, 60, 40, 8, 0, 3, 0);
+                Lily lily = new Lily("Lily", 25, 30, 20, 60, 60, 40, 8, 0, 3, 0, true);
                 grid.add(lily.getPlantView(), col, row);
                 Plants.plantsList.add(lily);
                 break;
             case "tomato":
-                Tomato tomato = new Tomato("Tomato", 35, 12, 35, 40, 70, 70, 14, 0, 7, 0);
+                Tomato tomato = new Tomato("Tomato", 35, 12, 35, 40, 70, 70, 14, 0, 7, 0, true);
                 grid.add(tomato.getPlantView(), col, row);
                 Plants.plantsList.add(tomato);
                 break;
             case "tulip":
-                Tulip tulip = new Tulip("Tulip", 25, 18, 30, 60, 60, 40, 8, 0, 3, 0);
+                Tulip tulip = new Tulip("Tulip", 25, 18, 30, 60, 60, 40, 8, 0, 3, 0, true);
                 grid.add(tulip.getPlantView(), col, row);
                 Plants.plantsList.add(tulip);
                 break;
             case "lemon":
-                Lemon lemon = new Lemon("Lemon", 5, 25, 40, 50, 90, 80, 18, 0, 4, 0);
+                Lemon lemon = new Lemon("Lemon", 5, 25, 40, 50, 90, 80, 18, 0, 4, 0, true);
                 grid.add(lemon.getPlantView(), col, row);
                 Plants.plantsList.add(lemon);
                 break;
             case "orange":
-                Orange orange = new Orange("Orange", 55, 15, 35, 50, 40, 30, 5, 0, 5, 0);
+                Orange orange = new Orange("Orange", 55, 15, 35, 50, 40, 30, 5, 0, 5, 0, true);
                 grid.add(orange.getPlantView(), col, row);
                 Plants.plantsList.add(orange);
                 break;
             case "apple":
-                Apple apple = new Apple("Apple", 20, 15, 30, 60, 50, 40, 20, 0, 6, 0);
+                Apple apple = new Apple("Apple", 20, 15, 30, 60, 50, 40, 20, 0, 6, 0, true);
                 grid.add(apple.getPlantView(), col, row);
                 Plants.plantsList.add(apple);
                 break;
