@@ -93,19 +93,24 @@ public class ViewController {
 //            double gridHeight = newValue.doubleValue() / 2;
 //            grid.setPrefHeight(gridHeight);
 //        });
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(20); // Horizontal gap between columns
+        gridPane.setVgap(15);
+        gridPane.add(roseRadio, 0, 0); // Column 0, Row 0
+        gridPane.add(sunflowerRadio, 1, 0); // Column 1, Row 0
+        gridPane.add(lilyRadio, 2, 0); // Column 2, Row 0
+        gridPane.add(tomatoRadio, 3, 0); // Column 3, Row 0
 
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(roseRadio,
-                sunflowerRadio,
-                lilyRadio,
-                tomatoRadio,
-                tulipRadio,
-                lemonRadio,
-                orangeRadio,
-                appleRadio,
+        gridPane.add(tulipRadio, 0, 1); // Column 0, Row 1
+        gridPane.add(lemonRadio, 1, 1); // Column 1, Row 1
+        gridPane.add(orangeRadio, 2, 1); // Column 2, Row 1
+        gridPane.add(appleRadio, 3, 1);
+
+        VBox layout = new VBox(20);
+        layout.getChildren().addAll(gridPane,
                 grid);
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
-        layout.setAlignment(Pos.TOP_CENTER);
+//        layout.setAlignment(Pos.TOP_CENTER);
         stackPane.getChildren().add(layout);
 
         return stackPane;
