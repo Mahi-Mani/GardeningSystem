@@ -3,10 +3,25 @@ package com.gardensimulation.modules;
 import com.gardensimulation.models.Garden;
 import com.gardensimulation.models.Plant;
 
-public class WateringModule {
+public class WateringModule extends GardenModule {
 
-    public void run(Garden garden) {
+    public WateringModule(Garden garden){
+        super(garden);
+    }
+
+    public void addRain(int rain) {
         for(Plant plant: garden.getPlants().values()) {
+            if(plant.isAlive()) {
+                plant.adjustWaterLevel(rain);
+            }
+        }
+    }
+
+    public void run() {
+        for(Plant plant: garden.getPlants().values()) {
+            // Water drunk by plant today.
+            plant.adjustWaterLevel(-1);
+            
             int currentWaterLevel = plant.getCurrentWaterLevel();
             int requiredWater = plant.getWaterRequirement();
             int waterDifference = currentWaterLevel - requiredWater;
