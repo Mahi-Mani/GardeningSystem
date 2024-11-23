@@ -1,4 +1,4 @@
-package com.example.gardensimulation;
+package com.gardensimulation;
 
 import com.almasb.fxgl.core.View;
 import javafx.application.Application;
@@ -17,6 +17,8 @@ public class MainApplication extends Application {
         primaryStage.setTitle("Automated Gardening System");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        
     }
 
     public static void main(String[] args) {
