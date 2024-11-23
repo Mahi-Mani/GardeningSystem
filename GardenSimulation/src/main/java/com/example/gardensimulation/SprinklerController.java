@@ -14,7 +14,7 @@ public class SprinklerController {
         log.info("Water requirement: " + avgWaterReq);
         log.info("Current water level: " + avgWaterLevel);
 
-        if(avgWaterLevel < avgWaterReq/2) {
+        if(avgWaterLevel < (avgWaterReq)) {
             for(Plants plant: plants) {
                 plant.waterThePlant(avgWaterReq);
             }
