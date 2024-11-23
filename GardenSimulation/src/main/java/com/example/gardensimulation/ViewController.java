@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 
 import java.util.logging.*;
 
@@ -22,14 +23,19 @@ import java.util.List;
 
 public class ViewController {
     private SprinklerController sprinklerController;
+    private DaySimulator daySimulator;
     private GridPane grid;
     private List<Rectangle> cells;
     private String selectedPlant = "rose"; // Default plant type
     private static final Logger log = Logger.getLogger(ViewController.class.getName());
 
     public ViewController() {
+        daySimulator = new DaySimulator();
         sprinklerController = new SprinklerController();
     }
+
+    // Get the DaySimulator UI
+    BorderPane rootPane = new BorderPane();
 
     public StackPane createContent() {
         // Create the root layout
@@ -141,7 +147,7 @@ public class ViewController {
         btnPane.add(sprinkerBtn, 0, 0);
 
         VBox layout = new VBox(20);
-        layout.getChildren().addAll(gridPane,
+        layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
                 grid, btnPane);
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
