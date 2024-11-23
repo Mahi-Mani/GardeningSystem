@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+
 import java.util.logging.*;
 
 import java.util.ArrayList;
@@ -113,9 +114,35 @@ public class ViewController {
         gridPane.add(orangeRadio, 2, 1); // Column 2, Row 1
         gridPane.add(appleRadio, 3, 1);
 
+        Button sprinkerBtn = new Button();
+        sprinkerBtn.setOnAction(e -> {
+            sprinklerController.activateSprinklers(Plants.plantsList);
+        });
+        Image sprinklerImage = new Image("https://www.bankrate.com/2022/04/07090806/sprinkler-system-cost-667767602.jpg?auto=webp&optimize=high&crop=16:9"); // Replace with a real image URL or file path
+        ImageView imageView = new ImageView(sprinklerImage);
+        imageView.setFitWidth(150);
+        imageView.setFitHeight(150);
+        sprinkerBtn.setGraphic(imageView);
+
+        // Button styling
+        sprinkerBtn.setStyle(
+                "-fx-background-color: transparent; -fx-border-color: transparent;"
+        );
+        sprinkerBtn.setOnMouseEntered(e -> sprinkerBtn.setStyle(
+                "-fx-background-color: #003300; -fx-border-color: transparent; -fx-border-radius: 5;"
+        ));
+        sprinkerBtn.setOnMouseExited(e -> sprinkerBtn.setStyle(
+                "-fx-background-color: transparent; -fx-border-color: transparent;"
+        ));
+
+        GridPane btnPane = new GridPane();
+        btnPane.setHgap(20); // Horizontal gap between columns
+        btnPane.setVgap(15);
+        btnPane.add(sprinkerBtn, 0, 0);
+
         VBox layout = new VBox(20);
         layout.getChildren().addAll(gridPane,
-                grid);
+                grid, btnPane);
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
         stackPane.getChildren().add(layout);
@@ -211,17 +238,5 @@ public class ViewController {
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }
-        sprinklerController.activateSprinklers(Plants.plantsList);
-//        System.out.println(Plants.plantsList);
-//        if (plantView != null) {
-//            ImageView plantView = new ImageView(plantImage);
-//            plantView.setFitHeight(80);
-//            plantView.setFitWidth(80);
-//
-        // Add the plant image to the clicked cell
-//            grid.add(plantView, col, row);
-//        } else {
-//            System.out.println("Image not found for " + selectedPlant);
-//        }
     }
 }
