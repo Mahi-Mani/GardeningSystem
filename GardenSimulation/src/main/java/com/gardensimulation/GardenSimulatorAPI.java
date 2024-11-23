@@ -21,6 +21,8 @@ import com.gardensimulation.models.Plant;
 import com.gardensimulation.modules.PestModule;
 import com.gardensimulation.modules.TemperatureModule;
 import com.gardensimulation.modules.WateringModule;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GardenSimulatorAPI {
     Garden garden;
@@ -32,6 +34,9 @@ public class GardenSimulatorAPI {
     // Automated modules task;
     ScheduledFuture<?> scheduledTask;
     Map<String, Plant> plantTypes = new HashMap<>();
+    private static final Logger logger = LogManager.getLogger();
+    int day = 0;
+    public static final int DAY_SIMULATION_SECONDS = 60 * 1;
 
     GardenSimulatorAPI() {
         isInitialized = false;
@@ -55,6 +60,7 @@ public class GardenSimulatorAPI {
     }
 
     void initializeGarden() {
+        logger.info("Initializing Garden");
         // Load from Config
         Properties properties = loadConfig("config.properties");
         int rows = Integer.valueOf(properties.getProperty("garden.rows"));
@@ -68,6 +74,7 @@ public class GardenSimulatorAPI {
         for (int gridNumber: initialPlants.keySet()) {
             garden.addPlant(initialPlants.get(gridNumber), gridNumber);
         }
+        logger.info("Loading initial plants");
 
         temperatureModule =  new TemperatureModule(garden);
         pestModule = new PestModule(garden);
@@ -77,21 +84,28 @@ public class GardenSimulatorAPI {
         isInitialized = true;
     }
 
-    void rain(int water) {
+    public void rain(int water) {
         wateringModule.addRain(water);
     }
 
-    void temperature(int temperature) {
+    public void parasite(String pest) {
+        pestModule.addPests(List.of(pest));
+    }
+
+    public void temperature(int temperature) {
         temperatureModule.setCurrentTemperature(temperature);
     }
 
     void startAutomatedModules() {
-            Runnable task = () -> {
-                temperatureModule.run();
-                pestModule.run();
-                wateringModule.run();
-            };
-            scheduledTask = scheduler.scheduleAtFixedRate(task, 1, 60, TimeUnit.MINUTES);
+        logger.info("Initalizing automates Modules");
+        Runnable task = () -> {
+            day = day + 1;
+            logger.info("Good Morning. Its day! {}", day);
+            temperatureModule.run();
+            pestModule.run();
+            wateringModule.run();
+        };
+        scheduledTask = scheduler.scheduleAtFixedRate(task, 5, DAY_SIMULATION_SECONDS, TimeUnit.SECONDS);
     }
 
     void stopSimulation() {
@@ -133,7 +147,7 @@ public class GardenSimulatorAPI {
           // Create Plant objects
           Map<String, Plant> plantMap = new HashMap<>();
           for (int i = 0; i < plants.length; i++) {
-              Plant plant = new Plant(plants[i], waterRequirements[i], parasites.get(i));
+              Plant plant = new Plant(plants[i], waterRequirements[i], parasites.get(i), -1);
               plantMap.put(plant.getName(), plant);
           }
 
@@ -154,17 +168,19 @@ public class GardenSimulatorAPI {
                 if(plantType == null) {
                     System.out.println(plantName + " doesn't exist");
                 }
-                plants.put(gridNumber, new Plant(plantType.getName(), plantType.getWaterRequirement(), plantType.getParasites()));
+                logger.info("Loading plant {} at postion {}", plantName, gridNumber);
+                plants.put(gridNumber, new Plant(plantType.getName(), plantType.getWaterRequirement(), plantType.getParasites(), gridNumber));
             }
         }
         return plants;
     }
 
-    // public static void main(String[] args) throws InterruptedException{
-    //     new GardenSimulatorAPI().initializeGarden();
+    public static void main(String[] args) throws InterruptedException{
+        GardenSimulatorAPI api = new GardenSimulatorAPI();
+        api.initializeGarden();
 
-    //     while(true){
-    //         Thread.sleep(100000);
-    //     }
-    // }
+        while(true){
+            Thread.sleep(10000);
+        }
+    }
 }

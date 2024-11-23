@@ -3,24 +3,28 @@ package com.gardensimulation.models;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Plant {
+    private static Logger logger = LogManager.getLogger();
     private String name;
+    private int position;
     private int waterRequirement;
     private Set<String> parasites; // List of pests the plant is vulnerable to
     private Set<String> currentPests; // Active pests currently affecting the plant
     private float health;
     private int currentWaterLevel; // Tracks how much water the plant has
 
-    public Plant(String name, int waterRequirement, Set<String> parasites) {
+    public Plant(String name, int waterRequirement, Set<String> parasites, int position) {
         this.name = name;
         this.waterRequirement = waterRequirement;
         this.parasites = parasites;
         this.currentPests = new HashSet<String>();
         this.health = 100; // Default to fully healthy
         this.currentWaterLevel = 0;
+        this.position = position;
     }
-
 
     /**
      * @param amount
@@ -36,6 +40,9 @@ public class Plant {
      */
     public synchronized void adjustHealth(int healthChange) {
         this.health = Math.max(0, Math.min(100, this.health+healthChange));
+        if (health == 0) {
+            logger.info("Sad :(! {} plant at positon {} died", getName(), position);
+        }
     }
 
     /**
@@ -89,6 +96,10 @@ public class Plant {
 
     public Set<String> getParasites() {
         return parasites;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
