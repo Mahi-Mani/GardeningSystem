@@ -210,49 +210,49 @@ public class ViewController {
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-                Rose rose = new Rose("Rose", 20, 15, 25, 45, 80, 10, 10, 0, 2, 0, true);
+                Rose rose = new Rose("Rose", 100, 15, 25, 45, 80, 10, 10, 0, 2, 0, true);
                 grid.add(rose.getPlantView(), col, row);
                 Plants.plantsList.add(rose);
                 log.info("Planting Rose at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
-                Sunflower sunflower = new Sunflower("Sunflower", 20, 30, 25, 40, 80, 20, 10, 0, 2, 0, true);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 25, 40, 80, 20, 10, 0, 2, 0, true);
                 grid.add(sunflower.getPlantView(), col, row);
                 Plants.plantsList.add(sunflower);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
-                Lily lily = new Lily("Lily", 25, 30, 20, 60, 60, 25, 8, 0, 3, 0, true);
+                Lily lily = new Lily("Lily", 100, 30, 20, 60, 60, 25, 8, 0, 3, 0, true);
                 grid.add(lily.getPlantView(), col, row);
                 Plants.plantsList.add(lily);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
-                Tomato tomato = new Tomato("Tomato", 35, 12, 35, 40, 70, 8, 14, 0, 7, 0, true);
+                Tomato tomato = new Tomato("Tomato", 100, 12, 35, 40, 70, 8, 14, 0, 7, 0, true);
                 grid.add(tomato.getPlantView(), col, row);
                 Plants.plantsList.add(tomato);
                 log.info("Planting a Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
-                Tulip tulip = new Tulip("Tulip", 25, 18, 30, 60, 60, 14, 8, 0, 3, 0, true);
+                Tulip tulip = new Tulip("Tulip", 100, 18, 30, 60, 60, 14, 8, 0, 3, 0, true);
                 grid.add(tulip.getPlantView(), col, row);
                 Plants.plantsList.add(tulip);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
-                Lemon lemon = new Lemon("Lemon", 15, 25, 40, 50, 90, 18, 18, 0, 4, 0, true);
+                Lemon lemon = new Lemon("Lemon", 100, 25, 40, 50, 90, 18, 18, 0, 4, 0, true);
                 grid.add(lemon.getPlantView(), col, row);
                 Plants.plantsList.add(lemon);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
-                Orange orange = new Orange("Orange", 55, 15, 35, 50, 40, 10, 5, 0, 5, 0, true);
+                Orange orange = new Orange("Orange", 100, 15, 35, 50, 40, 10, 5, 0, 5, 0, true);
                 grid.add(orange.getPlantView(), col, row);
                 Plants.plantsList.add(orange);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
-                Apple apple = new Apple("Apple", 20, 15, 30, 60, 50, 15, 20, 0, 6, 0, true);
+                Apple apple = new Apple("Apple", 100, 15, 30, 60, 50, 15, 20, 0, 6, 0, true);
                 grid.add(apple.getPlantView(), col, row);
                 Plants.plantsList.add(apple);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);

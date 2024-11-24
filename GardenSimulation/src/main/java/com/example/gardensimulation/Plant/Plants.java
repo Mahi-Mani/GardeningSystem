@@ -164,11 +164,11 @@ public class Plants {
         water_level = water_level + amount;
         if (water_level > water_requirement * 2) {
             if (age > 0) {
-                age = age - 10;
+                age = age - 20;
             }
         } else if (water_level > water_requirement) {
             if (age > 0) {
-                age = age - 3;
+                age = age - 10;
             }
         }
         if(age <=0 ) {
