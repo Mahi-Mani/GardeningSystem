@@ -1,12 +1,15 @@
 package com.example.gardensimulation;
 
 import com.example.gardensimulation.Plant.Plants;
+import com.example.gardensimulation.Plant.TemperatureController;
+
 import java.util.logging.*;
 
 import java.util.ArrayList;
 
 public class SprinklerController {
     private static final Logger log = Logger.getLogger(SprinklerController.class.getName());
+    private TemperatureController temperatureController;
 
     public void activateSprinklers(ArrayList<Plants> plants) {
         int avgWaterReq = calculateWaterForGarden(plants);
@@ -19,6 +22,8 @@ public class SprinklerController {
                 plant.waterThePlant(avgWaterReq);
             }
             log.info("Sprinklers activated! Plants received an average of " + avgWaterReq + " units.");
+            temperatureController.setCurrentTemperature(temperatureController.getCurrentTemperature() - 5);
+            log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
         } else {
             log.info("Sufficient water in the garden already! No need sprinklers!");
         }

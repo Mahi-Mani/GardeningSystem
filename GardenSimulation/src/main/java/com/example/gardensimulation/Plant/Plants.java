@@ -161,18 +161,25 @@ public class Plants {
     }
 
     public void waterThePlant(int amount) {
-        water_level = water_level + amount;
-        if (water_level > water_requirement * 2) {
-            if (age > 0) {
-                age = age - 20;
+        this.water_level = this.water_level + amount;
+        if (this.water_level > this.water_requirement * 2) {
+            if (this.age > 0) {
+                this.age = this.age - 20;
             }
         } else if (water_level > water_requirement) {
-            if (age > 0) {
-                age = age - 10;
+            if (this.age > 0) {
+                this.age = this.age - 10;
             }
         }
-        if(age <=0 ) {
-            isAlive = false;
+        if(this.age <=0 ) {
+            this.isAlive = false;
+        }
+    }
+
+    public void temperatureChange(int temperature) {
+        if((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
+            this.age = 0;
+            this.isAlive = false;
         }
     }
 }
