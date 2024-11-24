@@ -23,6 +23,7 @@ import java.util.List;
 
 public class ViewController {
     private SprinklerController sprinklerController;
+    private RainController rainController;
     private DaySimulator daySimulator;
     private GridPane grid;
     private List<Rectangle> cells;
@@ -32,6 +33,7 @@ public class ViewController {
     public ViewController() {
         daySimulator = new DaySimulator();
         sprinklerController = new SprinklerController();
+        rainController = new RainController();
     }
 
     // Get the DaySimulator UI
@@ -121,14 +123,24 @@ public class ViewController {
         gridPane.add(appleRadio, 3, 1);
 
         Button sprinkerBtn = new Button();
+        Button rainBtn = new Button();
         sprinkerBtn.setOnAction(e -> {
             sprinklerController.activateSprinklers(Plants.plantsList);
         });
+
+        rainBtn.setOnAction(e -> {
+            rainController.generateRainfall(Plants.plantsList);
+        });
         Image sprinklerImage = new Image("https://www.bankrate.com/2022/04/07090806/sprinkler-system-cost-667767602.jpg?auto=webp&optimize=high&crop=16:9"); // Replace with a real image URL or file path
         ImageView imageView = new ImageView(sprinklerImage);
+        Image rainImage = new Image("https://static.vecteezy.com/system/resources/thumbnails/042/146/565/small/ai-generated-beautiful-rain-day-view-photo.jpg");
+        ImageView rainImageView = new ImageView(rainImage);
         imageView.setFitWidth(150);
         imageView.setFitHeight(150);
+        rainImageView.setFitWidth(150);
+        rainImageView.setFitWidth(150);
         sprinkerBtn.setGraphic(imageView);
+        rainBtn.setGraphic(rainImageView);
 
         // Button styling
         sprinkerBtn.setStyle(
@@ -140,11 +152,13 @@ public class ViewController {
         sprinkerBtn.setOnMouseExited(e -> sprinkerBtn.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent;"
         ));
+        rainBtn.setStyle("-fx-background-color: transparent;");
 
         GridPane btnPane = new GridPane();
         btnPane.setHgap(20); // Horizontal gap between columns
         btnPane.setVgap(15);
         btnPane.add(sprinkerBtn, 0, 0);
+        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
         layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
