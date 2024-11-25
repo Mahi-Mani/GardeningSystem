@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Plants {
     private String name;
@@ -20,6 +21,7 @@ public class Plants {
     private int last_fertilizer_day;
     private boolean isAlive;
     public static ArrayList<Plants> plantsList = new ArrayList<>();
+    private static final Logger log = Logger.getLogger(Plants.class.getName());
 
     //    Parameterized constructor
     public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, boolean isAlive) {
@@ -178,6 +180,8 @@ public class Plants {
 
     public void temperatureChange(int temperature) {
         if((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
+            log.severe("Untollerable temperature!");
+            log.severe(this.name + "is dead!");
             this.age = 0;
             this.isAlive = false;
         }

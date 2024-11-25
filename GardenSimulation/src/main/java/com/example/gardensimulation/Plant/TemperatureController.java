@@ -28,11 +28,18 @@ public class TemperatureController implements Runnable {
     }
 
     public void adjustTemperature() {
+
         if (currentTemperature < MIN_SAFE_TEMPERATURE) {
+            for (Plants plant : Plants.plantsList) {
+                plant.temperatureChange(currentTemperature);
+            }
 //            Activate heating controller
             log.warning("Current Temperature is below MINIMUM safe temperature!");
             regulator.activate();
         } else if (currentTemperature > MAX_SAFE_TEMPERATURE) {
+            for (Plants plant : Plants.plantsList) {
+                plant.temperatureChange(currentTemperature);
+            }
 //            Activate cooling controller
             log.warning("Current Temperature is above MAXIMUM safe temperature!");
             regulator.activate();

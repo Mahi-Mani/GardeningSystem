@@ -33,15 +33,18 @@ public class ViewController {
     private String selectedPlant = "rose"; // Default plant type
     private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private TemperatureController temperatureController;
+    private LifeController life;
 
     public ViewController() {
         daySimulator = new DaySimulator();
         sprinklerController = new SprinklerController();
         rainController = new RainController();
         temperatureController = new TemperatureController(45);
+        life = new LifeController(daySimulator);
         System.out.println("Inside view controller");
-        executor.submit(sprinklerController);
-        executor.submit(temperatureController);
+//        executor.submit(sprinklerController);
+//        executor.submit(temperatureController);
+        executor.submit(life);
     }
 
     // Get the DaySimulator UI
