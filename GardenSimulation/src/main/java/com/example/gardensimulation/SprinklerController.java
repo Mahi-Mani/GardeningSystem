@@ -1,7 +1,6 @@
 package com.example.gardensimulation;
 
 import com.example.gardensimulation.Plant.Plants;
-import com.example.gardensimulation.Plant.TemperatureController;
 
 import java.util.logging.*;
 

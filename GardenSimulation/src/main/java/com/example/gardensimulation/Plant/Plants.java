@@ -20,11 +20,13 @@ public class Plants {
     private int days_for_fertilizer;
     private int last_fertilizer_day;
     private boolean isAlive;
+    private int row;
+    private int col;
     public static ArrayList<Plants> plantsList = new ArrayList<>();
     private static final Logger log = Logger.getLogger(Plants.class.getName());
 
     //    Parameterized constructor
-    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, boolean isAlive) {
+    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, boolean isAlive, int row, int col) {
         super();
         this.days_for_fertilizer = days_for_fertilizer;
         this.name = name;
@@ -39,6 +41,8 @@ public class Plants {
         this.water_requirement = water_requirement;
         this.current_age = 0;
         this.isAlive = true;
+        this.row = row;
+        this.col = col;
     }
 
     //    Getters

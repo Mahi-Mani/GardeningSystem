@@ -1,9 +1,7 @@
-package com.example.gardensimulation.Plant;
+package com.example.gardensimulation;
 
-import com.example.gardensimulation.TemperatureRegulator;
-import com.example.gardensimulation.LoggerColorFormat.ColorFormatter;
+import com.example.gardensimulation.Plant.Plants;
 
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 public class TemperatureController implements Runnable {

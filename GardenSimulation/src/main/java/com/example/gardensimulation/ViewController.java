@@ -1,16 +1,11 @@
 package com.example.gardensimulation;
 
-import com.almasb.fxgl.core.View;
 import com.example.gardensimulation.Plant.*;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -221,49 +216,49 @@ public class ViewController {
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, true);
+                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, true, row, col);
                 grid.add(rose.getPlantView(), col, row);
                 Plants.plantsList.add(rose);
                 log.info("Planting Rose at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, true);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, true, row, col);
                 grid.add(sunflower.getPlantView(), col, row);
                 Plants.plantsList.add(sunflower);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
-                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, true);
+                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, true, row, col);
                 grid.add(lily.getPlantView(), col, row);
                 Plants.plantsList.add(lily);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
-                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, true);
+                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, true, row, col);
                 grid.add(tomato.getPlantView(), col, row);
                 Plants.plantsList.add(tomato);
                 log.info("Planting a Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
-                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, true);
+                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, true, row, col);
                 grid.add(tulip.getPlantView(), col, row);
                 Plants.plantsList.add(tulip);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
-                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, true);
+                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 Plants.plantsList.add(lemon);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
-                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, true);
+                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, true, row, col);
                 grid.add(orange.getPlantView(), col, row);
                 Plants.plantsList.add(orange);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
-                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, true);
+                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 Plants.plantsList.add(apple);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
