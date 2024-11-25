@@ -16,12 +16,15 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewController {
+    private ExecutorService executor = Executors.newFixedThreadPool(4);
     private SprinklerController sprinklerController;
     private RainController rainController;
     private DaySimulator daySimulator;
@@ -36,6 +39,9 @@ public class ViewController {
         sprinklerController = new SprinklerController();
         rainController = new RainController();
         temperatureController = new TemperatureController(45);
+        System.out.println("Inside view controller");
+        executor.submit(sprinklerController);
+        executor.submit(temperatureController);
     }
 
     // Get the DaySimulator UI

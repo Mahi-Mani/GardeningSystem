@@ -20,7 +20,7 @@ public class DaySimulator {
 
         // Create a timeline to update the day every 10 seconds
         timeline = new Timeline(
-                new KeyFrame(Duration.seconds(10), event -> {
+                new KeyFrame(Duration.seconds(20), event -> {
                     dayCounter++; // Increment the day
                     dayDisplay.setText("Day: " + dayCounter); // Update the display
                 })
