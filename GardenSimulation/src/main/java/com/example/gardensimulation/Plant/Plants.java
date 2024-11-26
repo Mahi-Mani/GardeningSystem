@@ -166,6 +166,14 @@ public class Plants {
         this.last_watering_time = last_watering_time;
     }
 
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
+
     public void waterThePlant(int amount) {
         this.water_level = this.water_level + amount;
         if (this.water_level > this.water_requirement * 2) {
