@@ -20,6 +20,10 @@ public class LifeController implements Runnable {
     private GridPane grid;
     private Map<String, Node> gridNodeMap;
 
+    public LifeController() {
+
+    }
+
     public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap) {
         this.gridNodeMap = gridNodeMap;
 
@@ -33,6 +37,7 @@ public class LifeController implements Runnable {
                     plant.setAge(plant.getAge() - 1);
                 }
                 if (plant.getAge() <= 0) {
+//                    plant.die();
                     plant.setAlive(false);
                     log.severe(plant.getName() + " is Dead!");
                     removePlantFromGrid(plant.getRow(), plant.getCol());
@@ -58,8 +63,9 @@ public class LifeController implements Runnable {
     }
 
     public void removePlantFromGrid(int row, int col) {
+
         // Iterate over all children in the GridPane
-        for (Node node : grid.getChildren()) {
+        for (Node node : this.grid.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node); // Get row index
             Integer nodeCol = GridPane.getColumnIndex(node); // Get column index
 

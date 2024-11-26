@@ -1,5 +1,6 @@
 package com.example.gardensimulation.Plant;
 
+import com.example.gardensimulation.LifeController;
 import com.example.gardensimulation.Pests.Pest;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,7 @@ public class Plants {
     private int col;
     public static ArrayList<Plants> plantsList = new ArrayList<>();
     private static final Logger log = Logger.getLogger(Plants.class.getName());
+    private LifeController life = new LifeController();
 
     //    Parameterized constructor
     public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, ArrayList<Pest> parasites, boolean isAlive, int row, int col) {
@@ -177,6 +179,18 @@ public class Plants {
         return this.col;
     }
 
+    public ArrayList<Pest> getParasites() {
+        return this.parasites;
+    }
+
+    public void die() {
+        this.setAlive(false);
+        this.age = 0;
+        log.severe(this.getName() + " is Dead!");
+        life.removePlantFromGrid(this.getRow(), this.getCol());
+        plantsList.removeIf(plant -> plant.equals(this));
+    }
+
     public void waterThePlant(int amount) {
         this.water_level = this.water_level + amount;
         if (this.water_level > this.water_requirement * 2) {
@@ -196,9 +210,7 @@ public class Plants {
     public void temperatureChange(int temperature) {
         if((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
             log.severe("Untollerable temperature!");
-            log.severe(this.name + "is dead!");
-            this.age = 0;
-            this.isAlive = false;
+            this.die();
         }
     }
 }

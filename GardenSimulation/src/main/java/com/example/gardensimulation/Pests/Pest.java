@@ -4,9 +4,9 @@ public class Pest {
     private String name;
     private int row;
     private int col;
-    private String severity;
+    private int severity;
 
-    public Pest(String name, String severity) {
+    public Pest(String name, int severity) {
         this.name = name;
         this.severity = severity;
     }
@@ -29,5 +29,22 @@ public class Pest {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public int getSeverity() {
+        return this.severity;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Same reference
+        if (obj == null || getClass() != obj.getClass()) return false; // Null or different class
+        Pest pest = (Pest) obj;
+        return name.equals(pest.name); // Compare pests based on their name
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode(); // Use name's hash code
     }
 }
