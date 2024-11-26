@@ -6,11 +6,9 @@ public class Pest {
     private int col;
     private String severity;
 
-    public Pest(String name, String severity, int row, int col) {
+    public Pest(String name, String severity) {
         this.name = name;
         this.severity = severity;
-        this.row = row;
-        this.col = col;
     }
 
     public String getName() {
@@ -23,5 +21,13 @@ public class Pest {
 
     public int getCol() {
         return col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 }

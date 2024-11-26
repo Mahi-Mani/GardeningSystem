@@ -1,5 +1,6 @@
 package com.example.gardensimulation.Plant;
 
+import com.example.gardensimulation.Pests.Pest;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -19,6 +20,7 @@ public class Plants {
     private int last_watering_time;
     private int days_for_fertilizer;
     private int last_fertilizer_day;
+    private ArrayList<Pest> parasites;
     private boolean isAlive;
     private int row;
     private int col;
@@ -26,7 +28,7 @@ public class Plants {
     private static final Logger log = Logger.getLogger(Plants.class.getName());
 
     //    Parameterized constructor
-    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, boolean isAlive, int row, int col) {
+    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, ArrayList<Pest> parasites, boolean isAlive, int row, int col) {
         super();
         this.days_for_fertilizer = days_for_fertilizer;
         this.name = name;
@@ -43,6 +45,7 @@ public class Plants {
         this.isAlive = true;
         this.row = row;
         this.col = col;
+        this.parasites = parasites;
     }
 
     //    Getters

@@ -1,5 +1,6 @@
 package com.example.gardensimulation;
 
+import com.example.gardensimulation.Pests.*;
 import com.example.gardensimulation.Plant.*;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -220,7 +221,10 @@ public class ViewController {
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, true, row, col);
+                ArrayList<Pest> rosePests = new ArrayList<Pest>();
+                rosePests.add(new Aphids("Aphids", "Moderate"));
+                rosePests.add(new Beetles("Beetles", "Severe"));
+                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
                 grid.add(rose.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, rose.getPlantView());
                 life.setGrid(grid);
@@ -228,7 +232,11 @@ public class ViewController {
                 log.info("Planting Rose at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, true, row, col);
+                ArrayList<Pest> sunflowerPests = new ArrayList<Pest>();
+                sunflowerPests.add(new Aphids("Aphids", "Moderate"));
+                sunflowerPests.add(new Beetles("Beetles", "Severe"));
+                sunflowerPests.add(new Cutworms("Cutworms", "Severe"));
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
                 grid.add(sunflower.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, sunflower.getPlantView());
                 life.setGrid(grid);
@@ -236,7 +244,11 @@ public class ViewController {
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
-                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, true, row, col);
+                ArrayList<Pest> lilyPests = new ArrayList<Pest>();
+                lilyPests.add(new Aphids("Aphids", "Moderate"));
+                lilyPests.add(new SpiderMites("SpiderMites", "Moderate"));
+                lilyPests.add(new Beetles("Beetles", "Severe"));
+                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
                 grid.add(lily.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lily.getPlantView());
                 life.setGrid(grid);
@@ -244,7 +256,11 @@ public class ViewController {
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
-                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, true, row, col);
+                ArrayList<Pest> tomatoPests = new ArrayList<Pest>();
+                tomatoPests.add(new Aphids("Aphids", "Moderate"));
+                tomatoPests.add(new Whiteflies("Whiteflies", "Moderate"));
+                tomatoPests.add(new HornWorms("Beetles", "Severe"));
+                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
                 grid.add(tomato.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, tomato.getPlantView());
                 life.setGrid(grid);
@@ -252,7 +268,11 @@ public class ViewController {
                 log.info("Planting a Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
-                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, true, row, col);
+                ArrayList<Pest> tulipPests = new ArrayList<Pest>();
+                tulipPests.add(new Aphids("Aphids", "Moderate"));
+                tulipPests.add(new SpiderMites("SpiderMites", "Moderate"));
+                tulipPests.add(new BulbFly("Beetles", "Severe"));
+                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
                 grid.add(tulip.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, tulip.getPlantView());
                 life.setGrid(grid);
@@ -260,7 +280,10 @@ public class ViewController {
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
-                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, true, row, col);
+                ArrayList<Pest> lemonPests = new ArrayList<Pest>();
+                lemonPests.add(new Aphids("Aphids", "Moderate"));
+                lemonPests.add(new LeafMiner("LeafMiner", "Severe"));
+                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lemon.getPlantView());
                 life.setGrid(grid);
@@ -268,7 +291,10 @@ public class ViewController {
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
-                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, true, row, col);
+                ArrayList<Pest> orangePests = new ArrayList<Pest>();
+                orangePests.add(new Aphids("Aphids", "Moderate"));
+                orangePests.add(new Whiteflies("LeafMiner", "Moderate"));
+                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
                 grid.add(orange.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, orange.getPlantView());
                 life.setGrid(grid);
@@ -276,7 +302,11 @@ public class ViewController {
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
-                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, true, row, col);
+                ArrayList<Pest> applePests = new ArrayList<Pest>();
+                applePests.add(new Aphids("Aphids", "Moderate"));
+                applePests.add(new Caterpillars("Caterpillars", "Moderate"));
+                applePests.add(new CodlingMoth("CodlingMoth", "Severe"));
+                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, apple.getPlantView());
                 life.setGrid(grid);
