@@ -31,7 +31,7 @@ public class PestController implements Runnable {
         for (Pest pest : selectedPests) {
             for (Plants plant : Plants.plantsList) {
                 if (plant.getParasites().contains(pest)) {
-                    plant.setAge(plant.getAge() - pest.getSeverity() * 5);  // Reduce health based on pest severity
+                    plant.setAge(plant.getAge() - pest.getSeverity() * 7);  // Reduce health based on pest severity
                     System.out.println(pest.getName() + " are attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
                     viewController.overlayPest(plant.getRow(), plant.getCol());
                     if (plant.getAge() <= 0) {

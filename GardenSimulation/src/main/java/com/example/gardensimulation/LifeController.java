@@ -34,7 +34,7 @@ public class LifeController implements Runnable {
             while (iterator.hasNext()) {
                 Plants plant = iterator.next();
                 if (plant.isAlive()) {
-                    plant.setAge(plant.getAge() - 1);
+                    plant.setAge(plant.getAge() - 5);
                 }
                 if (plant.getAge() <= 0) {
 //                    plant.die();
@@ -129,7 +129,7 @@ public class LifeController implements Runnable {
         while (isRunning) {
 //            this.adjustPlantHealth();
             try {
-//                Periodically check every 10 seconds
+//                Periodically check every 1 seconds
                 Thread.sleep(1000);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
