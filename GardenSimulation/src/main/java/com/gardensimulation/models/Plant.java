@@ -3,11 +3,11 @@ package com.gardensimulation.models;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public class Plant {
-    private static Logger logger = LogManager.getLogger();
+//    private static Logger logger = LogManager.getLogger();
     private String name;
     private int position;
     private int waterRequirement;
@@ -41,7 +41,7 @@ public class Plant {
     public synchronized void adjustHealth(int healthChange) {
         this.health = Math.max(0, Math.min(100, this.health+healthChange));
         if (health == 0) {
-            logger.info("Sad :(! {} plant at positon {} died", getName(), position);
+//            logger.info("Sad :(! {} plant at positon {} died", getName(), position);
         }
     }
 

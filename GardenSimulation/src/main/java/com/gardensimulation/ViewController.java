@@ -60,19 +60,6 @@ public class ViewController {
     // Get the DaySimulator UI
     BorderPane rootPane = new BorderPane();
 
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class ViewController{
-    private GridPane grid;
-    private List<Rectangle> cells;
-    private String selectedPlant = "rose"; // Default plant type
-
 
 
     public StackPane createContent() {
@@ -203,14 +190,6 @@ public class ViewController{
                 grid, btnPane);
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
-
-
-        VBox layout = new VBox(10,
-                roseRadio,
-                sunflowerRadio,
-                lilyRadio,
-                grid);
-        layout.setAlignment(Pos.TOP_CENTER);
 
         stackPane.getChildren().add(layout);
 
@@ -420,26 +399,9 @@ public class ViewController{
 //            }
 //        }
 
-                plantImage = new Image("https://cdn.sanity.io/images/pn4rwssl/production/349d734442fdbcc734bd8060f126330fdf19e825-500x750.jpg?w=2880&q=75&auto=format");
-                break;
-            case "sunflower":
-                plantImage = new Image("https://media.istockphoto.com/id/927047528/vector/sunflower-flower-isolated.jpg?s=2048x2048&w=is&k=20&c=ARVqqtW_PFKOrVmLYpzR24RByFaAfpcflTeb0IKj6aM=");
-                break;
-            case "lily":
-                plantImage = new Image("https://media.istockphoto.com/id/183384405/photo/lily-isolated.jpg?s=1024x1024&w=is&k=20&c=a2ivn26nEzIla2icgb52uX2bMdGr7MUDkABkcaakEW4=");
-                break;
-        }
-
-        if (plantImage != null) {
-            ImageView plantView = new ImageView(plantImage);
-            plantView.setFitHeight(80);
-            plantView.setFitWidth(80);
-
-            // Add the plant image to the clicked cell
-            grid.add(plantView, col, row);
-        } else {
-            System.out.println("Image not found for " + selectedPlant);
 
         }
+
+
     }
 }
