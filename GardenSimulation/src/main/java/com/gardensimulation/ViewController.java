@@ -45,9 +45,12 @@ public class ViewController {
     private PesticideController pesticideController;
     //    private WeatherWidget weatherWidget;
     private Map<String, Node> gridNodeMap = new HashMap<>();
+    BorderPane root = new BorderPane();
+//        root.setTop(weatherWidget);
 
     //    Weather grid try
     StackPane weatherPane;
+//    VBox weatherPane;
     WeatherCard weatherCard;
 
     public ViewController() {
@@ -68,8 +71,12 @@ public class ViewController {
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();
 
-        weatherPane = new StackPane();
-        weatherPane.getChildren().add(weatherCard);
+//        weatherPane = new StackPane();
+//        weatherPane = new VBox(20);
+//        weatherPane.setPrefWidth(1);
+//        weatherPane.getChildren().add(weatherCard);
+        root.setTop(weatherCard);
+        root.setMaxWidth(100);
     }
 
     //Weather try
@@ -205,18 +212,24 @@ public class ViewController {
         GridPane btnPane = new GridPane();
         btnPane.setHgap(20); // Horizontal gap between columns
         btnPane.setVgap(15);
-        btnPane.add(sprinkerBtn, 0, 0);
-        btnPane.add(rainBtn, 1, 0);
+//        btnPane.add(sprinkerBtn, 0, 0);
+//        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
+//        VBox weatherLayout = new VBox(1);
+//        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         Platform.runLater(() -> {
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                    grid, btnPane, weatherPane);
+                    grid, btnPane, root);
+//            weatherLayout.getChildren().addAll(weatherPane);
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
+//        weatherLayout.setPrefWidth(1);
+//        weatherLayout.setStyle("-fx-padding: 500; -fx-border-color: #ccc; -fx-border-width: 10; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
 
-        stackPane.getChildren().add(layout);
+        stackPane.getChildren().addAll(layout);
+//        stackPane.getChildren().add(weatherLayout);
 
         return stackPane;
     }

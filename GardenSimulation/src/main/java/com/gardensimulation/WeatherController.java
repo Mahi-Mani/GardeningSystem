@@ -16,6 +16,10 @@ public class WeatherController {
     private SprinklerController sprinklerController;
     private WeatherWidget weatherWidget;
     private PestController pestController;
+    private String sunnyIcon = "https://www.shutterstock.com/image-photo/orange-sky-sun-clouds-during-260nw-2475701091.jpg";
+    private String rainyIcon = "https://centralca.cdn-anvilcms.net/media/images/2019/01/02/images/Rainy_Weather_pix.max-752x423.jpg";
+    private String cloudyIcon = "https://t4.ftcdn.net/jpg/05/13/26/73/360_F_513267391_QEmNGeOFLLqrILTnoq21dReUPp5UsoNr.jpg";
+    private String icon = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLDFES-GXOy3SjZJptoHS-dx8YWG9Psv8EZg&s";
 
     public WeatherController() {
         currentWeather = generateRandomWeather();
@@ -33,6 +37,20 @@ public class WeatherController {
 
     public void setCurrentWeather(String weather) {
         this.currentWeather = weather;
+    }
+
+    public void setWeatherWidget(String weather) {
+        if (weather.equalsIgnoreCase("rainy")) {
+            this.icon = rainyIcon;
+        } else if (weather.equalsIgnoreCase("sunny")) {
+            this.icon = sunnyIcon;
+        } else if (weather.equalsIgnoreCase("cloudy")) {
+            this.icon = cloudyIcon;
+        }
+    }
+
+    public String getWeatherWidget() {
+        return this.icon;
     }
 
     private void updateTemperatureAndHumidity() {
@@ -58,6 +76,7 @@ public class WeatherController {
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
         this.setCurrentWeather(currentWeather);
+        this.setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
         weatherWidget.requestLayout();
 

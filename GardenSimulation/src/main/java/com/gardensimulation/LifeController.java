@@ -31,8 +31,8 @@ public class LifeController implements Runnable {
             log.info("Morning! Day: " + day + " Garden Status Check!");
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
+            viewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
             weatherController.updateWeatherForNextDay();
-            viewController.updateWeather(weatherController.getCurrentWeather(), "https://example.com/rainy_icon.jpg");
 
             synchronized (Plants.plantsList) {
                 Iterator<Plants> iterator = Plants.plantsList.iterator();

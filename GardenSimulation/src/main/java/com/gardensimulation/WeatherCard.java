@@ -16,12 +16,12 @@ public class WeatherCard extends VBox {
     public WeatherCard() {
         // Create the weather icon ImageView
         weatherIcon = new ImageView();
-        weatherIcon.setFitWidth(50);
-        weatherIcon.setFitHeight(50);
+        weatherIcon.setFitWidth(100);
+        weatherIcon.setFitHeight(100);
 
         // Create the weather text Label
         weatherTextLabel = new Label("Weather");
-        weatherTextLabel.setFont(new Font(14));
+        weatherTextLabel.setFont(new Font("Arial", 20));
         weatherTextLabel.setTextFill(Color.BLACK);
 
         // Add the icon and text to the VBox (card style)
@@ -30,7 +30,8 @@ public class WeatherCard extends VBox {
         // Set alignment and spacing within the card
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
-        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
+//        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
+        setStyle("-fx-background-color: lightblue; -fx-padding: 10; -fx-border-color: black; -fx-border-width: 2;");
     }
 
     // Method to update the weather card
