@@ -12,6 +12,6 @@ module com.example.gardensimulation {
     requires com.almasb.fxgl.all;
     requires java.logging;
 
-    opens com.example.gardensimulation to javafx.fxml;
-    exports com.example.gardensimulation;
+    opens com.gardensimulation to javafx.fxml;
+    exports com.gardensimulation;
 }
