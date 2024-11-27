@@ -16,6 +16,10 @@ public class Orange extends Fruits{
 
     protected Image getPlantImage() {
         // Load the tomato image
-        return new Image("https://media.istockphoto.com/id/185284489/photo/orange.jpg?s=612x612&w=0&k=20&c=m4EXknC74i2aYWCbjxbzZ6EtRaJkdSJNtekh4m1PspE="); // Replace with actual path
+        return new Image("https://backyardcitrustrees.com/cdn/shop/products/Page_Orange_Tree-100_500x500.jpg?v=1578543160"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://naads.or.ug/wp-content/uploads/2020/11/orange-diseases.jpg"); // Pest-attacked image
     }
 }

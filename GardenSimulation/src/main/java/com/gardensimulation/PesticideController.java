@@ -1,6 +1,6 @@
 package com.gardensimulation;
 
-import com.gardensimulation.Plant.Plants;
+import com.gardensimulation.Plant.*;
 
 public class PesticideController implements Runnable {
     private boolean isRunning = true;
@@ -19,6 +19,43 @@ public class PesticideController implements Runnable {
         // Clear pests from the plant
         plant.removePests();
         plant.setAge(plant.getAge() + 5);
+        if (plant.getAge() > 0) {
+            if (plant instanceof Apple) {
+                Apple apple = (Apple) plant;
+                apple.setNormalImage(); // Change image to normal apple
+            } else if (plant instanceof Orange) {
+                System.out.println("inside instance f");
+                Orange orange = (Orange) plant;
+                orange.setNormalImage();
+            } else if (plant instanceof Lemon) {
+                System.out.println("inside instance f");
+                Lemon lemon = (Lemon) plant;
+                lemon.setNormalImage();
+            } else if (plant instanceof Lily) {
+                System.out.println("inside instance f");
+                Lily lily = (Lily) plant;
+                lily.setNormalImage();
+            } else if (plant instanceof Tulip) {
+                System.out.println("inside instance f");
+                Tulip tulip = (Tulip) plant;
+                tulip.setNormalImage();
+            } else if (plant instanceof Tomato) {
+                System.out.println("inside instance f");
+                Tomato tomato = (Tomato) plant;
+                tomato.setNormalImage();
+            }else if (plant instanceof Rose) {
+                System.out.println("inside instance f");
+                Rose rose = (Rose) plant;
+                rose.setNormalImage();
+            } else if (plant instanceof Sunflower) {
+                System.out.println("inside instance f");
+                Sunflower sunflower = (Sunflower) plant;
+                sunflower.setNormalImage();
+            }
+        } else {
+            System.out.println("PLANT could not be SAVED even with pesticide!");
+            plant.die();
+        }
 //        Notify pest controller
         pestController.setPesticideApplied(true);
 

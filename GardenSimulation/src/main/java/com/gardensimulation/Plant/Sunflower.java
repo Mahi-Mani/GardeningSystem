@@ -15,7 +15,11 @@ public class Sunflower extends Flowers {
     }
 
     protected Image getPlantImage() {
-        // Load the sunflower image (make sure the path is correct)
-        return new Image("https://media.istockphoto.com/id/927047528/vector/sunflower-flower-isolated.jpg?s=2048x2048&w=is&k=20&c=ARVqqtW_PFKOrVmLYpzR24RByFaAfpcflTeb0IKj6aM="); // Replace with actual path
+        // Load the sunflower image
+        return new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6keL_w2rCEYB7ieb9nRvXYgl2aOmxav3cHw&s"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://cdn.mos.cms.futurecdn.net/qpBhHREn6mUZuub8hfxP7h-415-80.jpg"); // Pest-attacked image
     }
 }

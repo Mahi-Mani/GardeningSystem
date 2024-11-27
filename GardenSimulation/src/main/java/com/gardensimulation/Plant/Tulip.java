@@ -15,7 +15,12 @@ public class Tulip extends Flowers{
     }
 
     protected Image getPlantImage() {
-        // Load the sunflower image (make sure the path is correct)
-        return new Image("https://media.istockphoto.com/id/512048658/photo/flowers.jpg?s=612x612&w=0&k=20&c=iiZ5x9FVyGUx3GG88PptXl-HGFrJZPpagE2CxCOTimw="); // Replace with actual path
+        // Load the tomato image
+        return new Image("https://m.media-amazon.com/images/I/715GniYSmrL._AC_UF1000,1000_QL80_.jpg"); // Replace with actual path
     }
+
+    protected Image getAttackedImage() {
+        return new Image("https://www.epicgardening.com/wp-content/uploads/2023/09/tulip-pests-1600x900.jpeg"); // Pest-attacked image
+    }
+
 }

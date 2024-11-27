@@ -1,7 +1,7 @@
 package com.gardensimulation;
 
 import com.gardensimulation.Pests.*;
-import com.gardensimulation.Plant.Plants;
+import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
 
 import java.util.*;
@@ -89,6 +89,40 @@ public class PestController {
                         System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
                         System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
                         plant.addPest(pest.getName());
+                        System.out.println("!!!APPLE IS ATTACJED");
+                        if (plant instanceof Apple) {
+                            System.out.println("inside instance f");
+                            Apple apple = (Apple) plant;
+                            apple.setAttackedImage();
+                        } else if (plant instanceof Orange) {
+                            System.out.println("inside instance f");
+                            Orange orange = (Orange) plant;
+                            orange.setAttackedImage();
+                        } else if (plant instanceof Lemon) {
+                            System.out.println("inside instance f");
+                            Lemon lemon = (Lemon) plant;
+                            lemon.setAttackedImage();
+                        } else if (plant instanceof Lily) {
+                            System.out.println("inside instance f");
+                            Lily lily = (Lily) plant;
+                            lily.setAttackedImage();
+                        } else if (plant instanceof Tulip) {
+                            System.out.println("inside instance f");
+                            Tulip tulip = (Tulip) plant;
+                            tulip.setAttackedImage();
+                        } else if (plant instanceof Tomato) {
+                            System.out.println("inside instance f");
+                            Tomato tomato = (Tomato) plant;
+                            tomato.setAttackedImage();
+                        } else if (plant instanceof Rose) {
+                            System.out.println("inside instance f");
+                            Rose rose = (Rose) plant;
+                            rose.setAttackedImage();
+                        } else if (plant instanceof Sunflower) {
+                            System.out.println("inside instance f");
+                            Sunflower sunflower = (Sunflower) plant;
+                            sunflower.setAttackedImage();
+                        }
 
                         // If using UI updates
                         // Platform.runLater(() -> viewController.overlayPest(plant.getRow(), plant.getCol()));
@@ -96,7 +130,7 @@ public class PestController {
                         if (plant.getAge() <= 0) {
                             // Handle plant death logic
                             System.out.println("Handing Plant dyig logic in pest..........");
-                             plant.die();
+                            plant.die();
                             plantIterator.remove();
                         }
                         break; // Exit inner loop after attacking one plant
