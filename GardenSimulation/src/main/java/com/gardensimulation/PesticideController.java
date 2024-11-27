@@ -4,15 +4,23 @@ import com.gardensimulation.Plant.Plants;
 
 public class PesticideController implements Runnable {
     private boolean isRunning = true;
+    private WeatherController weatherController;
+    private PestController pestController;
+
+    public PesticideController(WeatherController weatherController) {
+        this.weatherController = weatherController;
+        pestController = new PestController();
+    }
 
     public void treatPlant(Plants plant) {
         // Log the treatment action
-        System.out.println("Applying pesticide to " + plant.getName() + " at Row: " + plant.getRow() + " at Col: " + plant.getCol());
+        System.out.println("Spraying pesticide to garden!");
 
         // Clear pests from the plant
         plant.removePests();
         plant.setAge(plant.getAge() + 5);
-        System.out.println("Pesticide application increased the age of plant: " + plant.getAge());
+//        Notify pest controller
+        pestController.setPesticideApplied(true);
 
         // Update the UI (remove pest overlays)
 //        viewController.updatePlantPestOverlay(plant);
@@ -21,7 +29,8 @@ public class PesticideController implements Runnable {
     public void run() {
         while (isRunning) {
             try {
-                System.out.println("Pesticide thread is running!");
+                System.out.println("PESTICIDE thread is running!");
+//                System.out.println(this.weatherController.getCurrentWeather());
                 // Scan plants for pests
                 for (Plants plant : Plants.plantsList) {
                     System.out.println(plant.getPestAttack());

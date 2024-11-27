@@ -1,14 +1,12 @@
 package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
-import com.gardensimulation.models.Plant;
-import javafx.application.Platform;
 
 import java.util.Random;
 
 public class WeatherController {
     //    private WeatherType currentWeather;
-    private String currentWeather;
+    private String currentWeather = "";
     private int temperature;
     private int humidity;
     private Random random = new Random();
@@ -16,6 +14,7 @@ public class WeatherController {
     private TemperatureController temperatureController;
     private SprinklerController sprinklerController;
     private WeatherWidget weatherWidget;
+    private PestController pestController;
 
     public WeatherController() {
         currentWeather = generateRandomWeather();
@@ -23,11 +22,16 @@ public class WeatherController {
         updateTemperatureAndHumidity();
         temperatureController = new TemperatureController(temperature);
         sprinklerController = new SprinklerController();
+        pestController = new PestController();
     }
 
     public String generateRandomWeather() {
         String[] conditions = {"sunny", "rainy", "cloudy"};
         return conditions[random.nextInt(conditions.length)];
+    }
+
+    public void setCurrentWeather(String weather) {
+        this.currentWeather = weather;
     }
 
     private void updateTemperatureAndHumidity() {
@@ -52,15 +56,19 @@ public class WeatherController {
         System.out.println("Today's weather: " + currentWeather);
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
+        this.setCurrentWeather(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
         weatherWidget.requestLayout();
 
         if ("rainy".equals(currentWeather)) {
             simulateRainyDay();
+            pestController.attackPlan("rainy");
         } else if ("sunny".equals(currentWeather)) {
             simulateSunnyDay();
+            pestController.attackPlan("sunny");
         } else if ("cloudy".equals(currentWeather)) {
             simulateCloudyDay();
+            pestController.attackPlan("cloudy");
         }
     }
 
@@ -100,7 +108,7 @@ public class WeatherController {
     }
 
     public String getCurrentWeather() {
-        return currentWeather;
+        return this.currentWeather;
     }
 
     public int getTemperature() {

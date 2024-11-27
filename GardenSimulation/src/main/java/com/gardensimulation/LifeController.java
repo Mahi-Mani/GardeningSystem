@@ -17,6 +17,7 @@ public class LifeController implements Runnable {
     private GridPane grid;
     private Map<String, Node> gridNodeMap;
     WeatherController weatherController = new WeatherController();
+    PestController pestController = new PestController();
 
     public LifeController() {
 
@@ -31,6 +32,7 @@ public class LifeController implements Runnable {
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             weatherController.updateWeatherForNextDay();
+
             Iterator<Plants> iterator = Plants.plantsList.iterator();
             while (iterator.hasNext()) {
                 Plants plant = iterator.next();

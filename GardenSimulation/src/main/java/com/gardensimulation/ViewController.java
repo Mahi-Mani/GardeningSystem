@@ -30,8 +30,8 @@ import java.util.logging.*;
 
 public class ViewController {
     private ExecutorService executor = Executors.newFixedThreadPool(5);
-    private SprinklerController sprinklerController;
-    private RainController rainController;
+//    private SprinklerController sprinklerController;
+//    private RainController rainController;
     private DaySimulator daySimulator;
     private GridPane grid;
     private List<Rectangle> cells;
@@ -39,27 +39,27 @@ public class ViewController {
     private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private TemperatureController temperatureController;
     private LifeController life;
-    //    private PestController pestController;
-//    private PesticideController pesticideController;
+        private PestController pestController;
+    private PesticideController pesticideController;
     private WeatherWidget weatherWidget;
     private Map<String, Node> gridNodeMap = new HashMap<>();
 
     public ViewController() {
         daySimulator = new DaySimulator();
-        sprinklerController = new SprinklerController();
-        rainController = new RainController();
-        temperatureController = new TemperatureController(45);
+//        sprinklerController = new SprinklerController();
+//        rainController = new RainController();
+//        temperatureController = new TemperatureController(45);
 
-//        pestController = new PestController(this);
+        pestController = new PestController(this);
         life = new LifeController(daySimulator, gridNodeMap);
         weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
-//        pesticideController = new PesticideController();
-        executor.submit(sprinklerController);
-        executor.submit(temperatureController);
+        pesticideController = new PesticideController(new WeatherController());
+//        executor.submit(sprinklerController);
+//        executor.submit(temperatureController);
         executor.submit(life);
 //        executor.submit(life.weatherController);
 //        executor.submit(pestController);
-//        executor.submit(pesticideController);
+        executor.submit(pesticideController);
     }
 
     // Get the DaySimulator UI
@@ -157,11 +157,11 @@ public class ViewController {
         Button sprinkerBtn = new Button();
         Button rainBtn = new Button();
         sprinkerBtn.setOnAction(e -> {
-            sprinklerController.activateSprinklers(Plants.plantsList);
+//            sprinklerController.activateSprinklers(Plants.plantsList);
         });
 
         rainBtn.setOnAction(e -> {
-            rainController.generateRainfall(Plants.plantsList);
+//            rainController.generateRainfall(Plants.plantsList);
         });
         Image sprinklerImage = new Image("https://www.bankrate.com/2022/04/07090806/sprinkler-system-cost-667767602.jpg?auto=webp&optimize=high&crop=16:9"); // Replace with a real image URL or file path
         ImageView imageView = new ImageView(sprinklerImage);
