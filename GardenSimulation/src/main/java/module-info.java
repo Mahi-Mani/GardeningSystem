@@ -13,7 +13,7 @@ module com.example.gardensimulation {
 
     requires java.logging;
 
-    requires org.apache.logging.log4j;
+//    requires org.apache.logging.log4j;
 
 
     opens com.gardensimulation to javafx.fxml;
