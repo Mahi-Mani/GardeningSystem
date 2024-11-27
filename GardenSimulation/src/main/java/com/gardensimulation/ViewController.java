@@ -244,112 +244,116 @@ public class ViewController {
 //        Load image
         Image plantImage = null;
         switch (selectedPlant) {
-            case "rose":
-
-                ArrayList<Pest> rosePests = new ArrayList<Pest>();
-                rosePests.add(new Aphids());
-                rosePests.add(new Beetles());
-                Rose rose = new Rose("Rose", 100, 15, 100, 60, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+//            case "rose":
+//                ArrayList<Pest> rosePests = new ArrayList<Pest>();
+//                rosePests.add(new Aphids());
+//                rosePests.add(new Beetles());
+//                Rose rose = new Rose("Rose", 100, 15, 100, 60, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+//                grid.add(rose.getPlantView(), col, row);
+//                gridNodeMap.put(row + "," + col, rose.getPlantView());
+//                life.setGrid(grid);
+//                Plants.plantsList.add(rose);
 
                 // Create a StackPane for this cell
-                StackPane roseCell = new StackPane();
-                roseCell.getChildren().add(rose.getPlantView()); // Add plant image to the StackPane
-                roseCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-                grid.add(roseCell, col, row);
-                gridNodeMap.put(row + "," + col, roseCell);
-                life.setGrid(grid);
-                Plants.plantsList.add(rose);
-                log.info("Planting Rose at Col: " + col + " Row: " + row);
-                break;
-            case "sunflower":
-                ArrayList<Pest> sunflowerPests = new ArrayList<Pest>();
-                sunflowerPests.add(new Aphids());
-                sunflowerPests.add(new Beetles());
-                sunflowerPests.add(new Cutworms());
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 100, 50, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
+//                StackPane roseCell = new StackPane();
+//                roseCell.getChildren().add(rose.getPlantView()); // Add plant image to the StackPane
+//                roseCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
+//                grid.add(roseCell, col, row);
+//                gridNodeMap.put(row + "," + col, roseCell);
+//                life.setGrid(grid);
+//                Plants.plantsList.add(rose);
 
-                StackPane sunflowerCell = new StackPane();
-                sunflowerCell.getChildren().add(sunflower.getPlantView());
-                sunflowerCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(sunflowerCell, col, row);
-                gridNodeMap.put(row + "," + col, sunflowerCell);
-                life.setGrid(grid);
-                Plants.plantsList.add(sunflower);
-
-                log.info("Planting Sunflower at Col: " + col + " Row: " + row);
-                break;
-            case "lily":
-                ArrayList<Pest> lilyPests = new ArrayList<Pest>();
-                lilyPests.add(new Aphids());
-                lilyPests.add(new SpiderMites());
-                lilyPests.add(new Beetles());
-                Lily lily = new Lily("Lily", 100, 30, 95, 55, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
-                StackPane lilyCell = new StackPane();
-                lilyCell.getChildren().add(lily.getPlantView());
-                lilyCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(lilyCell, col, row);
-                gridNodeMap.put(row + "," + col, lilyCell);
-                life.setGrid(grid);
-                Plants.plantsList.add(lily);
-
-                log.info("Planting Lily at Col: " + col + " Row: " + row);
-                break;
-            case "tomato":
-                ArrayList<Pest> tomatoPests = new ArrayList<Pest>();
-                tomatoPests.add(new Aphids());
-                tomatoPests.add(new Whiteflies());
-                tomatoPests.add(new HornWorms());
-                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
-
-                StackPane tomatoCell = new StackPane();
-                tomatoCell.getChildren().add(tomato.getPlantView());
-                tomatoCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(tomatoCell, col, row);
-                gridNodeMap.put(row + "," + col, tomatoCell);
-                life.setGrid(grid);
-                Plants.plantsList.add(tomato);
-
-                log.info("Planting Tomato at Col: " + col + " Row: " + row);
-                break;
-            case "tulip":
-                ArrayList<Pest> tulipPests = new ArrayList<Pest>();
-                tulipPests.add(new Aphids());
-                tulipPests.add(new SpiderMites());
-                tulipPests.add(new BulbFly());
-                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
-
-
-                grid.add(tulip.getPlantView(), col, row);
-                gridNodeMap.put(row + "," + col, tulip.getPlantView());
-                life.setGrid(grid);
-                Plants.plantsList.add(tulip);
-                log.info("Planting a Tulip at Col: " + col + " Row: " + row);
-                break;
-            case "lemon":
-                ArrayList<Pest> lemonPests = new ArrayList<Pest>();
-                lemonPests.add(new Aphids());
-                lemonPests.add(new LeafMiner());
-                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
-                grid.add(lemon.getPlantView(), col, row);
-                gridNodeMap.put(row + "," + col, lemon.getPlantView());
-                life.setGrid(grid);
-                Plants.plantsList.add(lemon);
-                log.info("Planting a Lemon at Col: " + col + " Row: " + row);
-                break;
-            case "orange":
-                ArrayList<Pest> orangePests = new ArrayList<Pest>();
-                orangePests.add(new Aphids());
-                orangePests.add(new Whiteflies());
-                Orange orange = new Orange("Orange", 100, 15, 105, 53, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
-                grid.add(orange.getPlantView(), col, row);
-                gridNodeMap.put(row + "," + col, orange.getPlantView());
-                life.setGrid(grid);
-                Plants.plantsList.add(orange);
-                log.info("Planting an Orange at Col: " + col + " Row: " + row);
-                break;
+//                log.info("Planting Rose at Col: " + col + " Row: " + row);
+//                break;
+//            case "sunflower":
+//                ArrayList<Pest> sunflowerPests = new ArrayList<Pest>();
+//                sunflowerPests.add(new Aphids());
+//                sunflowerPests.add(new Beetles());
+//                sunflowerPests.add(new Cutworms());
+//                Sunflower sunflower = new Sunflower("Sunflower", 100, 100, 50, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
+//
+//                StackPane sunflowerCell = new StackPane();
+//                sunflowerCell.getChildren().add(sunflower.getPlantView());
+//                sunflowerCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
+//
+//                grid.add(sunflowerCell, col, row);
+//                gridNodeMap.put(row + "," + col, sunflowerCell);
+//                life.setGrid(grid);
+//                Plants.plantsList.add(sunflower);
+//
+//                log.info("Planting Sunflower at Col: " + col + " Row: " + row);
+//                break;
+//            case "lily":
+//                ArrayList<Pest> lilyPests = new ArrayList<Pest>();
+//                lilyPests.add(new Aphids());
+//                lilyPests.add(new SpiderMites());
+//                lilyPests.add(new Beetles());
+//                Lily lily = new Lily("Lily", 100, 30, 95, 55, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
+//                StackPane lilyCell = new StackPane();
+//                lilyCell.getChildren().add(lily.getPlantView());
+//                lilyCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
+//
+//                grid.add(lilyCell, col, row);
+//                gridNodeMap.put(row + "," + col, lilyCell);
+//                life.setGrid(grid);
+//                Plants.plantsList.add(lily);
+//
+//                log.info("Planting Lily at Col: " + col + " Row: " + row);
+//                break;
+//            case "tomato":
+//                ArrayList<Pest> tomatoPests = new ArrayList<Pest>();
+//                tomatoPests.add(new Aphids());
+//                tomatoPests.add(new Whiteflies());
+//                tomatoPests.add(new HornWorms());
+//                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
+//
+//                StackPane tomatoCell = new StackPane();
+//                tomatoCell.getChildren().add(tomato.getPlantView());
+//                tomatoCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
+//
+//                grid.add(tomatoCell, col, row);
+//                gridNodeMap.put(row + "," + col, tomatoCell);
+//                life.setGrid(grid);
+//                Plants.plantsList.add(tomato);
+//
+//                log.info("Planting Tomato at Col: " + col + " Row: " + row);
+//                break;
+//            case "tulip":
+//                ArrayList<Pest> tulipPests = new ArrayList<Pest>();
+//                tulipPests.add(new Aphids());
+//                tulipPests.add(new SpiderMites());
+//                tulipPests.add(new BulbFly());
+//                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
+//
+//
+//                grid.add(tulip.getPlantView(), col, row);
+//                gridNodeMap.put(row + "," + col, tulip.getPlantView());
+//                life.setGrid(grid);
+//                Plants.plantsList.add(tulip);
+//                log.info("Planting a Tulip at Col: " + col + " Row: " + row);
+//                break;
+//            case "lemon":
+//                ArrayList<Pest> lemonPests = new ArrayList<Pest>();
+//                lemonPests.add(new Aphids());
+//                lemonPests.add(new LeafMiner());
+//                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
+//                grid.add(lemon.getPlantView(), col, row);
+//                gridNodeMap.put(row + "," + col, lemon.getPlantView());
+//                life.setGrid(grid);
+//                Plants.plantsList.add(lemon);
+//                log.info("Planting a Lemon at Col: " + col + " Row: " + row);
+//                break;
+//            case "orange":
+//                ArrayList<Pest> orangePests = new ArrayList<Pest>();
+//                orangePests.add(new Aphids());
+//                orangePests.add(new Whiteflies());
+//                Orange orange = new Orange("Orange", 100, 15, 105, 53, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
+//                grid.add(orange.getPlantView(), col, row);
+//                gridNodeMap.put(row + "," + col, orange.getPlantView());
+//                life.setGrid(grid);
+//                Plants.plantsList.add(orange);
+//                log.info("Planting an Orange at Col: " + col + " Row: " + row);
+//                break;
             case "apple":
                 ArrayList<Pest> applePests = new ArrayList<Pest>();
                 applePests.add(new Aphids());

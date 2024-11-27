@@ -2,6 +2,7 @@ package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WeatherController {

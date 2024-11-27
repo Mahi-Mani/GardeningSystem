@@ -14,7 +14,7 @@ public class LifeController implements Runnable {
     private DaySimulator currentDay = new DaySimulator();
     private boolean isRunning = true;
     private int tempDay = 1;
-    private GridPane grid;
+    private static GridPane grid;
     private Map<String, Node> gridNodeMap;
     WeatherController weatherController = new WeatherController();
     PestController pestController = new PestController();
@@ -33,19 +33,25 @@ public class LifeController implements Runnable {
             weatherController.simulateDailyWeather();
             weatherController.updateWeatherForNextDay();
 
-            Iterator<Plants> iterator = Plants.plantsList.iterator();
-            while (iterator.hasNext()) {
-                Plants plant = iterator.next();
-                if (plant.isAlive()) {
-                    plant.setAge(plant.getAge() - 5);
-                }
-                if (plant.getAge() <= 0) {
-                    plant.setAge(0);
-//                    plant.die();
-                    plant.setAlive(false);
-                    log.severe(plant.getName() + " is Dead!");
-                    removePlantFromGrid(plant.getRow(), plant.getCol());
-                    iterator.remove();
+            synchronized (Plants.plantsList) {
+                Iterator<Plants> iterator = Plants.plantsList.iterator();
+                while (iterator.hasNext()) {
+                    Plants plant;
+//                if (iterator.next() != null) {
+                    plant = iterator.next();
+                    if (plant.isAlive()) {
+                        plant.setAge(plant.getAge() - 5);
+                    }
+                    if (plant.getAge() <= 0) {
+                        plant.setAge(0);
+                        plant.die();
+//                    plant.setAlive(false);
+//                    log.severe(plant.getName() + " is Dead!");
+//                    removePlantFromGrid(plant.getRow(), plant.getCol());
+                        iterator.remove();
+                    }
+//                }
+
                 }
             }
 //            for (Plants plant : Plants.plantsList) {
@@ -74,8 +80,9 @@ public class LifeController implements Runnable {
 
     public void removePlantFromGrid(int row, int col) {
 
+        System.out.println("Removing plant: " + row + col);
         // Iterate over all children in the GridPane
-        for (Node node : this.grid.getChildren()) {
+        for (Node node : LifeController.grid.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node); // Get row index
             Integer nodeCol = GridPane.getColumnIndex(node); // Get column index
 
@@ -86,7 +93,7 @@ public class LifeController implements Runnable {
             // Check if the node is at the specified row and column
             if (nodeRow == row && nodeCol == col) {
                 if (node instanceof ImageView) { // Check if the node is an ImageView
-                    grid.getChildren().remove(node);
+                    LifeController.grid.getChildren().remove(node);
 //                    ImageView imageView = (ImageView) node;
 //                    imageView.setImage(null); // Remove the image, but keep the ImageView node intact
 //                    Plants plantToRemove = findPlant(row, col);

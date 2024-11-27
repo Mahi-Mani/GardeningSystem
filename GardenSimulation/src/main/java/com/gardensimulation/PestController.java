@@ -2,6 +2,7 @@ package com.gardensimulation;
 
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.Plants;
+import javafx.application.Platform;
 
 import java.util.*;
 
@@ -73,23 +74,54 @@ public class PestController {
     public void attackPlants(List<Pest> selectedPests) {
         System.out.println("INSIDE ATTACK PLANTS METHODS");
         // Attack plants vulnerable to the selected pests
-        for (Pest pest : selectedPests) {
-            for (Plants plant : Plants.plantsList) {
-                if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
-                    int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
-                    plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
-                    System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
-                    System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
-                    plant.addPest(pest.getName());
-//                    Platform.runLater(() -> viewController.overlayPest(plant.getRow(), plant.getCol()));
+        Iterator<Pest> pestIterator = selectedPests.iterator();
+        while (pestIterator.hasNext()) {
+            Pest pest = pestIterator.next();
 
-                    if (plant.getAge() <= 0) {
-//                        plant.die();
+            synchronized (Plants.plantsList) {
+                Iterator<Plants> plantIterator = Plants.plantsList.iterator();
+                while (plantIterator.hasNext()) {
+                    Plants plant = plantIterator.next();
+
+                    if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
+                        int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
+                        plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
+                        System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
+                        System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
+                        plant.addPest(pest.getName());
+
+                        // If using UI updates
+                        // Platform.runLater(() -> viewController.overlayPest(plant.getRow(), plant.getCol()));
+
+                        if (plant.getAge() <= 0) {
+                            // Handle plant death logic
+                            System.out.println("Handing Plant dyig logic in pest..........");
+                             plant.die();
+                            plantIterator.remove();
+                        }
+                        break; // Exit inner loop after attacking one plant
                     }
-                    break;
                 }
             }
         }
+
+//        for (Pest pest : selectedPests) {
+//            for (Plants plant : Plants.plantsList) {
+//                if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
+//                    int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
+//                    plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
+//                    System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
+//                    System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
+//                    plant.addPest(pest.getName());
+////                    Platform.runLater(() -> viewController.overlayPest(plant.getRow(), plant.getCol()));
+//
+//                    if (plant.getAge() <= 0) {
+////                        plant.die();
+//                    }
+//                    break;
+//                }
+//            }
+//        }
     }
 
     private List<Pest> selectRandomPests(String weather) {
