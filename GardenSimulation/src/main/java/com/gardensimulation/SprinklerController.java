@@ -24,7 +24,6 @@ public class SprinklerController implements Runnable {
                 }
                 log.info("Sprinklers activated! Plants received an average of " + avgWaterReq + " units.");
                 TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 5);
-                log.info("Current Temperature is: " + TemperatureController.getCurrentTemperature());
             } else {
                 log.info("Sufficient water in the garden already! No need sprinklers!");
             }
@@ -60,6 +59,25 @@ public class SprinklerController implements Runnable {
             log.info("There are no plants in the garden!");
         }
         return average;
+    }
+
+    public void reduceWaterLevel() {
+        int reduceAmt = 0;
+        int temperature = TemperatureController.getCurrentTemperature();
+
+        if(temperature > 100) {
+            reduceAmt = 10;
+        } else if(temperature > 90) {
+            reduceAmt = 7;
+        } else if(temperature > 80) {
+            reduceAmt = 5;
+        } else {
+            reduceAmt = 1;
+        }
+
+        for(Plants plant: Plants.plantsList) {
+            plant.dryThePlant(reduceAmt);
+        }
     }
 
     @Override

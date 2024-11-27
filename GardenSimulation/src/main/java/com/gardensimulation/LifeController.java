@@ -16,6 +16,7 @@ public class LifeController implements Runnable {
     private int tempDay = 1;
     private GridPane grid;
     private Map<String, Node> gridNodeMap;
+    WeatherController weatherController = new WeatherController();
 
     public LifeController() {
 
@@ -26,7 +27,10 @@ public class LifeController implements Runnable {
 
         daySimulator.setDayChangeListener(day ->
         {
-            log.info("Morning! Garden Status Check!");
+            log.info("Morning! Day: " + day + " Garden Status Check!");
+            weatherController.generateRandomWeather();
+            weatherController.simulateDailyWeather();
+            weatherController.updateWeatherForNextDay();
             Iterator<Plants> iterator = Plants.plantsList.iterator();
             while (iterator.hasNext()) {
                 Plants plant = iterator.next();
@@ -54,6 +58,12 @@ public class LifeController implements Runnable {
 //                }
 //            }
         });
+    }
+
+    public void initialize() {
+        log.info("Morning! Day: 1 Garden Status Check!");
+        weatherController.generateRandomWeather();
+        weatherController.simulateDailyWeather();
     }
 
     public void setGrid(GridPane grid) {
@@ -124,6 +134,7 @@ public class LifeController implements Runnable {
     @Override
     public void run() {
         log.info("Lifecycle thread is running!");
+        this.initialize();
         while (isRunning) {
 //            this.adjustPlantHealth();
             try {

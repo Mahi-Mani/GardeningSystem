@@ -201,9 +201,10 @@ public class Plants {
     }
 
     public void die() {
+        System.out.println("FROM INSIDE DIE METHOD IN PLANT");
         this.setAlive(false);
         this.age = 0;
-        log.severe(this.getName() + " is Dead!");
+        log.severe(this.getName() + "at Row: " + this.getRow() + "Col: " + this.getCol() + " is Dead!");
         life.removePlantFromGrid(this.getRow(), this.getCol());
         plantsList.removeIf(plant -> plant.equals(this));
     }
@@ -220,14 +221,46 @@ public class Plants {
             }
         }
         if(this.age <=0 ) {
+            log.severe("Due to more rain, " + this.getName() + " is dying!");
             this.isAlive = false;
             this.setAge(0);
+        }
+    }
+
+    public void dryThePlant(int amount) {
+        this.water_level = this.water_level - amount;
+        if (this.water_level < this.water_requirement) {
+            log.warning("Today's temperature affected " + this.getName() + " water level!");
+            if (this.age > 0) {
+                this.age = this.age - 5;
+            }
+        }
+        if(this.age <=0 ) {
+            this.isAlive = false;
+            this.setAge(0);
+            this.die();
         }
     }
 
     public void temperatureChange(int temperature) {
         if((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
             log.severe("Untollerable temperature!");
+            this.die();
+        }
+    }
+
+    public void checkDailyTemp(int temperature) {
+        int diff1 = Math.abs(temperature - this.getMinTemp_level());
+        int diff2 = Math.abs(temperature - this.getMaxTemp_level());
+        int tempDiff = Math.min(diff1, diff2);
+
+        if(tempDiff < 10) {
+            log.warning("Today's temperature affected " + this.getName() + " !");
+            if(this.age > 0) {
+                this.setAge(this.getAge() - 5);
+            }
+        }
+        if(this.age < 0) {
             this.die();
         }
     }

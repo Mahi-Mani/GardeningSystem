@@ -24,8 +24,8 @@ public class RainController {
         for(Plants plant: plants) {
             plant.waterThePlant(rainfallUnits);
         }
-        temperatureController.setCurrentTemperature(temperatureController.getCurrentTemperature() - 15);
-        log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
+//        TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 15);
+//        log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
         sprinkler.activateSprinklers(plants);
     }
 

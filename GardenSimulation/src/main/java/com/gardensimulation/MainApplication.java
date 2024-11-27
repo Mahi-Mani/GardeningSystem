@@ -2,6 +2,7 @@ package com.gardensimulation;
 
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 
 import com.almasb.fxgl.core.View;
@@ -18,11 +19,12 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) {
         ViewController controller = new ViewController();
         // Set up the scene and show the stage
-        Scene scene = new Scene(controller.createContent(), 800, 700);
-        primaryStage.setTitle("Automated Gardening System");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        Platform.runLater(() -> {
+            Scene scene = new Scene(controller.createContent(), 800, 700);
+            primaryStage.setTitle("Automated Gardening System");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        });
     }
 
     public static void main(String[] args) {

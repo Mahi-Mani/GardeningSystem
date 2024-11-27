@@ -5,6 +5,7 @@ import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
+import javafx.application.Platform;
 import javafx.scene.Node;
 
 import javafx.application.Application;
@@ -38,8 +39,9 @@ public class ViewController {
     private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private TemperatureController temperatureController;
     private LifeController life;
-//    private PestController pestController;
+    //    private PestController pestController;
 //    private PesticideController pesticideController;
+    private WeatherWidget weatherWidget;
     private Map<String, Node> gridNodeMap = new HashMap<>();
 
     public ViewController() {
@@ -47,19 +49,21 @@ public class ViewController {
         sprinklerController = new SprinklerController();
         rainController = new RainController();
         temperatureController = new TemperatureController(45);
+
 //        pestController = new PestController(this);
         life = new LifeController(daySimulator, gridNodeMap);
+        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
 //        pesticideController = new PesticideController();
         executor.submit(sprinklerController);
         executor.submit(temperatureController);
         executor.submit(life);
+//        executor.submit(life.weatherController);
 //        executor.submit(pestController);
 //        executor.submit(pesticideController);
     }
 
     // Get the DaySimulator UI
     BorderPane rootPane = new BorderPane();
-
 
 
     public StackPane createContent() {
@@ -146,6 +150,9 @@ public class ViewController {
         gridPane.add(lemonRadio, 1, 1); // Column 1, Row 1
         gridPane.add(orangeRadio, 2, 1); // Column 2, Row 1
         gridPane.add(appleRadio, 3, 1);
+//        Platform.runLater(() -> {
+//        gridPane.add(weatherWidget, 3, 3);
+//        });
 
         Button sprinkerBtn = new Button();
         Button rainBtn = new Button();
@@ -186,8 +193,10 @@ public class ViewController {
         btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
-        layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                grid, btnPane);
+        Platform.runLater(() -> {
+            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
+                    grid, btnPane, weatherWidget);
+        });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
 
@@ -240,7 +249,7 @@ public class ViewController {
                 ArrayList<Pest> rosePests = new ArrayList<Pest>();
                 rosePests.add(new Aphids());
                 rosePests.add(new Beetles());
-                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+                Rose rose = new Rose("Rose", 100, 15, 100, 60, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
 
                 // Create a StackPane for this cell
                 StackPane roseCell = new StackPane();
@@ -257,7 +266,7 @@ public class ViewController {
                 sunflowerPests.add(new Aphids());
                 sunflowerPests.add(new Beetles());
                 sunflowerPests.add(new Cutworms());
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 100, 50, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
 
                 StackPane sunflowerCell = new StackPane();
                 sunflowerCell.getChildren().add(sunflower.getPlantView());
@@ -275,7 +284,7 @@ public class ViewController {
                 lilyPests.add(new Aphids());
                 lilyPests.add(new SpiderMites());
                 lilyPests.add(new Beetles());
-                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
+                Lily lily = new Lily("Lily", 100, 30, 95, 55, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
                 StackPane lilyCell = new StackPane();
                 lilyCell.getChildren().add(lily.getPlantView());
                 lilyCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
@@ -292,7 +301,7 @@ public class ViewController {
                 tomatoPests.add(new Aphids());
                 tomatoPests.add(new Whiteflies());
                 tomatoPests.add(new HornWorms());
-                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
+                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
 
                 StackPane tomatoCell = new StackPane();
                 tomatoCell.getChildren().add(tomato.getPlantView());
@@ -310,7 +319,7 @@ public class ViewController {
                 tulipPests.add(new Aphids());
                 tulipPests.add(new SpiderMites());
                 tulipPests.add(new BulbFly());
-                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
+                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
 
 
                 grid.add(tulip.getPlantView(), col, row);
@@ -323,7 +332,7 @@ public class ViewController {
                 ArrayList<Pest> lemonPests = new ArrayList<Pest>();
                 lemonPests.add(new Aphids());
                 lemonPests.add(new LeafMiner());
-                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
+                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lemon.getPlantView());
                 life.setGrid(grid);
@@ -334,7 +343,7 @@ public class ViewController {
                 ArrayList<Pest> orangePests = new ArrayList<Pest>();
                 orangePests.add(new Aphids());
                 orangePests.add(new Whiteflies());
-                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
+                Orange orange = new Orange("Orange", 100, 15, 105, 53, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
                 grid.add(orange.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, orange.getPlantView());
                 life.setGrid(grid);
@@ -346,7 +355,7 @@ public class ViewController {
                 applePests.add(new Aphids());
                 applePests.add(new Caterpillars());
                 applePests.add(new CodlingMoth());
-                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
+                Apple apple = new Apple("Apple", 100, 15, 102, 50, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, apple.getPlantView());
                 life.setGrid(grid);
