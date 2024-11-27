@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -30,7 +32,7 @@ import java.util.logging.*;
 
 public class ViewController {
     private ExecutorService executor = Executors.newFixedThreadPool(5);
-//    private SprinklerController sprinklerController;
+    //    private SprinklerController sprinklerController;
 //    private RainController rainController;
     private DaySimulator daySimulator;
     private GridPane grid;
@@ -39,10 +41,14 @@ public class ViewController {
     private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private TemperatureController temperatureController;
     private LifeController life;
-        private PestController pestController;
+    private PestController pestController;
     private PesticideController pesticideController;
-    private WeatherWidget weatherWidget;
+    //    private WeatherWidget weatherWidget;
     private Map<String, Node> gridNodeMap = new HashMap<>();
+
+    //    Weather grid try
+    StackPane weatherPane;
+    WeatherCard weatherCard;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -51,8 +57,8 @@ public class ViewController {
 //        temperatureController = new TemperatureController(45);
 
         pestController = new PestController(this);
-        life = new LifeController(daySimulator, gridNodeMap);
-        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
+        life = new LifeController(daySimulator, gridNodeMap, this);
+//        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
         pesticideController = new PesticideController(new WeatherController());
 //        executor.submit(sprinklerController);
 //        executor.submit(temperatureController);
@@ -60,6 +66,16 @@ public class ViewController {
 //        executor.submit(life.weatherController);
 //        executor.submit(pestController);
         executor.submit(pesticideController);
+        weatherCard = new WeatherCard();
+
+        weatherPane = new StackPane();
+        weatherPane.getChildren().add(weatherCard);
+    }
+
+    //Weather try
+// Method to update the weather dynamically
+    public void updateWeather(String weatherCondition, String imageUrl) {
+        weatherCard.updateWeather(weatherCondition, imageUrl);
     }
 
     // Get the DaySimulator UI
@@ -195,7 +211,7 @@ public class ViewController {
         VBox layout = new VBox(20);
         Platform.runLater(() -> {
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                    grid, btnPane, weatherWidget);
+                    grid, btnPane, weatherPane);
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);

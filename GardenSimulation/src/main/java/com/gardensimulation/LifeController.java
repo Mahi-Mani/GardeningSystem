@@ -23,7 +23,7 @@ public class LifeController implements Runnable {
 
     }
 
-    public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap) {
+    public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap, ViewController viewController) {
         this.gridNodeMap = gridNodeMap;
 
         daySimulator.setDayChangeListener(day ->
@@ -32,6 +32,7 @@ public class LifeController implements Runnable {
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             weatherController.updateWeatherForNextDay();
+            viewController.updateWeather(weatherController.getCurrentWeather(), "https://example.com/rainy_icon.jpg");
 
             synchronized (Plants.plantsList) {
                 Iterator<Plants> iterator = Plants.plantsList.iterator();
