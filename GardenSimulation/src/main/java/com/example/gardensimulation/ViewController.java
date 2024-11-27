@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.*;
 
 public class ViewController {
-    private ExecutorService executor = Executors.newFixedThreadPool(4);
+    private ExecutorService executor = Executors.newFixedThreadPool(5);
     private SprinklerController sprinklerController;
     private RainController rainController;
     private DaySimulator daySimulator;
@@ -30,6 +30,7 @@ public class ViewController {
     private TemperatureController temperatureController;
     private LifeController life;
     private PestController pestController;
+    private PesticideController pesticideController;
     private Map<String, Node> gridNodeMap = new HashMap<>();
 
     public ViewController() {
@@ -37,12 +38,14 @@ public class ViewController {
         sprinklerController = new SprinklerController();
         rainController = new RainController();
         temperatureController = new TemperatureController(45);
-//        pestController = new PestController(this);
+        pestController = new PestController(this);
         life = new LifeController(daySimulator, gridNodeMap);
-        executor.submit(sprinklerController);
-        executor.submit(temperatureController);
+        pesticideController = new PesticideController();
+//        executor.submit(sprinklerController);
+//        executor.submit(temperatureController);
         executor.submit(life);
-//        executor.submit(pestController);
+        executor.submit(pestController);
+//        executor.submit(pesticideController);
     }
 
     // Get the DaySimulator UI
@@ -223,6 +226,7 @@ public class ViewController {
                 rosePests.add(new Aphids());
                 rosePests.add(new Beetles());
                 Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+
                 // Create a StackPane for this cell
                 StackPane roseCell = new StackPane();
                 roseCell.getChildren().add(rose.getPlantView()); // Add plant image to the StackPane

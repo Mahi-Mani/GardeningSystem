@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Plants {
@@ -22,6 +23,8 @@ public class Plants {
     private int days_for_fertilizer;
     private int last_fertilizer_day;
     private ArrayList<Pest> parasites;
+    private ArrayList<Pest> currentPests1;
+    private ArrayList<String> currentPests;
     private boolean isAlive;
     private int row;
     private int col;
@@ -48,6 +51,11 @@ public class Plants {
         this.row = row;
         this.col = col;
         this.parasites = parasites;
+        this.currentPests = new ArrayList<>();
+    }
+
+    public Plants(ArrayList<Pest> currentPests) {
+        this.currentPests1 = currentPests;
     }
 
     //    Getters
@@ -183,6 +191,18 @@ public class Plants {
         return this.parasites;
     }
 
+    public ArrayList<String> getPestAttack() {
+        return currentPests;
+    }
+
+    public void addPest(String pest) {
+         currentPests.add(pest);
+    }
+
+    public void removePests() {
+        currentPests.clear();
+    }
+
     public void die() {
         this.setAlive(false);
         this.age = 0;
@@ -204,6 +224,7 @@ public class Plants {
         }
         if(this.age <=0 ) {
             this.isAlive = false;
+            this.setAge(0);
         }
     }
 

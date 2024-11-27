@@ -10,6 +10,10 @@ public class Lemon extends Vegetables{
         super(name,age,water_requirement,maxtemp_level,mintemp_level,fertilizer_level,water_level, time_for_watering,last_watering_time,days_for_fertilizer, last_fertilizer_day, parasites, true, row, col);
     }
 
+    public Lemon(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the tomato image
         return new Image("https://t4.ftcdn.net/jpg/02/85/95/37/360_F_285953794_Aufu90PPcaOk59DQLSbSMRkLQumniBXi.jpg"); // Replace with actual path

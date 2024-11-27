@@ -10,6 +10,10 @@ public class Sunflower extends Flowers {
         super(name, age, water_requirement, maxtemp_level, mintemp_level, fertilizer_level, water_level, time_for_watering, last_watering_time, days_for_fertilizer, last_fertilizer_day, parasites,true, row, col);
     }
 
+    public Sunflower(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the sunflower image (make sure the path is correct)
         return new Image("https://media.istockphoto.com/id/927047528/vector/sunflower-flower-isolated.jpg?s=2048x2048&w=is&k=20&c=ARVqqtW_PFKOrVmLYpzR24RByFaAfpcflTeb0IKj6aM="); // Replace with actual path

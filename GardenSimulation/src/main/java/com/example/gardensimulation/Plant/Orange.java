@@ -10,6 +10,10 @@ public class Orange extends Fruits{
         super(name,age,water_requirement,maxtemp_level,mintemp_level,fertilizer_level,water_level, time_for_watering,last_watering_time,days_for_fertilizer, last_fertilizer_day, parasites, true, row, col);
     }
 
+    public Orange(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the tomato image
         return new Image("https://media.istockphoto.com/id/185284489/photo/orange.jpg?s=612x612&w=0&k=20&c=m4EXknC74i2aYWCbjxbzZ6EtRaJkdSJNtekh4m1PspE="); // Replace with actual path

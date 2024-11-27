@@ -37,6 +37,7 @@ public class LifeController implements Runnable {
                     plant.setAge(plant.getAge() - 5);
                 }
                 if (plant.getAge() <= 0) {
+                    plant.setAge(0);
 //                    plant.die();
                     plant.setAlive(false);
                     log.severe(plant.getName() + " is Dead!");

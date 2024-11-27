@@ -2,6 +2,7 @@ package com.example.gardensimulation;
 
 import com.example.gardensimulation.Pests.*;
 import com.example.gardensimulation.Plant.Plants;
+import javafx.application.Platform;
 
 import java.util.*;
 
@@ -30,10 +31,13 @@ public class PestController implements Runnable {
         // Attack plants vulnerable to the selected pests
         for (Pest pest : selectedPests) {
             for (Plants plant : Plants.plantsList) {
-                if (plant.getParasites().contains(pest)) {
+                if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
                     plant.setAge(plant.getAge() - pest.getSeverity() * 7);  // Reduce health based on pest severity
-                    System.out.println(pest.getName() + " are attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
-                    viewController.overlayPest(plant.getRow(), plant.getCol());
+                    System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
+                    System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
+                    plant.addPest(pest.getName());
+                    Platform.runLater(() -> viewController.overlayPest(plant.getRow(), plant.getCol()));
+
                     if (plant.getAge() <= 0) {
 //                        plant.die();
                     }

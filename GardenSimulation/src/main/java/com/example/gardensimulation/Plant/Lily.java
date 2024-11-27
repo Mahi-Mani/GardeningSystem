@@ -10,6 +10,10 @@ public class Lily extends Flowers {
         super(name, age,water_requirement, maxtemp_level, mintemp_level, fertilizer_level, water_level, time_for_watering, last_watering_time, days_for_fertilizer, last_fertilizer_day, parasites, true, row, col);
     }
 
+    public Lily(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the rose image (make sure the path is correct)
         return new Image("https://media.istockphoto.com/id/183384405/photo/lily-isolated.jpg?s=1024x1024&w=is&k=20&c=a2ivn26nEzIla2icgb52uX2bMdGr7MUDkABkcaakEW4="); // Replace with actual path

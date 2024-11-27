@@ -17,6 +17,10 @@ public abstract class Vegetables extends Plants{
         plantView.setImage(getPlantImage());
     }
 
+    public Vegetables(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     // Abstract method to get the specific plant image
     protected abstract Image getPlantImage();
 

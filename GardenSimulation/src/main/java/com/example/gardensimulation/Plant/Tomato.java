@@ -10,6 +10,10 @@ public class Tomato extends Vegetables{
         super(name,age,water_requirement,maxtemp_level,mintemp_level,fertilizer_level,water_level, time_for_watering,last_watering_time,days_for_fertilizer, last_fertilizer_day, parasites,true, row, col);
     }
 
+    public Tomato(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the tomato image
         return new Image("https://media.istockphoto.com/id/466175630/photo/tomato-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=ELzCVzaiRMgiO7A5zQLkuws0N_lvPxrgJWPn7C7BXz0="); // Replace with actual path

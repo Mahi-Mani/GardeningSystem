@@ -11,6 +11,10 @@ public class Rose extends Flowers {
         super(name, age, water_requirement, maxtemp_level, mintemp_level, fertilizer_level, water_level, time_for_watering, last_watering_time, days_for_fertilizer, last_fertilizer_day, parasites, true, row, col);
     }
 
+    public Rose(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
    protected Image getPlantImage() {
         // Load the rose image (make sure the path is correct)
         return new Image("https://cdn.sanity.io/images/pn4rwssl/production/349d734442fdbcc734bd8060f126330fdf19e825-500x750.jpg?w=2880&q=75&auto=format"); // Replace with actual path

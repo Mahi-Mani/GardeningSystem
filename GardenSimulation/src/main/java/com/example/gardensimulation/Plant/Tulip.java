@@ -10,6 +10,10 @@ public class Tulip extends Flowers{
         super(name, age, water_requirement, maxtemp_level, mintemp_level, fertilizer_level, water_level, time_for_watering, last_watering_time, days_for_fertilizer, last_fertilizer_day, parasites,true, row, col);
     }
 
+    public Tulip(ArrayList<Pest> currentPests) {
+        super(currentPests);
+    }
+
     protected Image getPlantImage() {
         // Load the sunflower image (make sure the path is correct)
         return new Image("https://media.istockphoto.com/id/512048658/photo/flowers.jpg?s=612x612&w=0&k=20&c=iiZ5x9FVyGUx3GG88PptXl-HGFrJZPpagE2CxCOTimw="); // Replace with actual path
