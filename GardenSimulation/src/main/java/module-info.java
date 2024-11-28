@@ -11,6 +11,7 @@ module com.example.gardensimulation {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
+    requires com.fasterxml.jackson.databind;
     requires java.logging;
 
 //    requires org.apache.logging.log4j;

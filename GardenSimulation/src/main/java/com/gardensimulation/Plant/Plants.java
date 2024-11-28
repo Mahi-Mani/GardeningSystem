@@ -203,7 +203,7 @@ public class Plants {
     }
 
     public void die() {
-        System.out.println("FROM INSIDE DIE METHOD IN PLANT");
+//        System.out.println("FROM INSIDE DIE METHOD IN PLANT");
         this.setAlive(false);
         this.age = 0;
         log.severe(this.getName() + "at Row: " + this.getRow() + "Col: " + this.getCol() + " is Dead!");

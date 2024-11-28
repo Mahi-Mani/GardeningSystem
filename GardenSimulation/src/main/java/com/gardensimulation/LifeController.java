@@ -18,6 +18,7 @@ public class LifeController implements Runnable {
     private Map<String, Node> gridNodeMap;
     WeatherController weatherController = new WeatherController();
     PestController pestController = new PestController();
+    private ViewController viewController;
 
     public LifeController() {
 
@@ -25,10 +26,12 @@ public class LifeController implements Runnable {
 
     public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap, ViewController viewController) {
         this.gridNodeMap = gridNodeMap;
+        this.viewController = viewController.getViewController();
 
         daySimulator.setDayChangeListener(day ->
         {
             log.info("Morning! Day: " + day + " Garden Status Check!");
+//            viewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             viewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
@@ -82,6 +85,7 @@ public class LifeController implements Runnable {
     public void removePlantFromGrid(int row, int col) {
 
         System.out.println("Removing plant: " + row + col);
+        String cellKey = row + "," + col;
         // Iterate over all children in the GridPane
         for (Node node : LifeController.grid.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node); // Get row index
@@ -106,6 +110,8 @@ public class LifeController implements Runnable {
                 }
             }
         }
+//        viewController.setCurrentPlantCount(viewController.getCurrentPlantCount() - 1);
+//        viewController.getOccupiedCells().remove(cellKey);
 
 //        Rectangle emptyCell = new Rectangle(50, 50); // Set the size of the empty cell
 //        emptyCell.setStroke(Color.BLACK);            // Set the border color
@@ -129,7 +135,7 @@ public class LifeController implements Runnable {
     }
 
     public void adjustPlantHealth() {
-        System.out.println("Inside adjust plant health");
+//        System.out.println("Inside adjust plant health");
 
         for (Plants plant : Plants.plantsList) {
             if (!plant.isAlive()) {
