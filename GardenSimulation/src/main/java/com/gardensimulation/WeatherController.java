@@ -72,10 +72,10 @@ public class WeatherController {
 
     // Simulate weather for the day
     public void simulateDailyWeather() {
+        this.setCurrentWeather(currentWeather);
         System.out.println("Today's weather: " + currentWeather);
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
-        this.setCurrentWeather(currentWeather);
         this.setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
         weatherWidget.requestLayout();
