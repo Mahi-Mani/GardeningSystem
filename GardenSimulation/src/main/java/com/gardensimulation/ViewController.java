@@ -47,7 +47,7 @@ public class ViewController {
     private Map<String, Node> gridNodeMap = new HashMap<>();
     BorderPane root = new BorderPane();
     StackPane weatherPane;
-    WeatherCard weatherCard;
+    static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
     private int currentPlantCount = 0;
     private Set<String> occupiedCells = new HashSet<>();
@@ -85,7 +85,7 @@ public class ViewController {
 
     //Weather try
 // Method to update the weather dynamically
-    public void updateWeather(String weatherCondition, String imageUrl) {
+    public static void updateWeather(String weatherCondition, String imageUrl) {
         weatherCard.updateWeather(weatherCondition, imageUrl);
     }
 

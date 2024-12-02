@@ -8,7 +8,7 @@ public class PesticideController implements Runnable {
     private PestController pestController;
 
     public PesticideController(WeatherController weatherController) {
-        this.weatherController = weatherController;
+//        this.weatherController = weatherController;
         pestController = new PestController();
     }
 

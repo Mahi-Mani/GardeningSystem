@@ -1,6 +1,7 @@
 package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -76,6 +77,11 @@ public class LifeController implements Runnable {
         log.info("Morning! Day: 1 Garden Status Check!");
         weatherController.generateRandomWeather();
         weatherController.simulateDailyWeather();
+        System.out.println("***************WEATHER UPDATE FROM LIFE FOR DAY 1");
+        System.out.println(weatherController.getCurrentWeather());
+        Platform.runLater(() -> {
+            ViewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
+        });
     }
 
     public void setGrid(GridPane grid) {

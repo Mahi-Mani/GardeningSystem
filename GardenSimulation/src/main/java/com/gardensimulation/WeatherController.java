@@ -24,6 +24,8 @@ public class WeatherController {
     public WeatherController() {
         currentWeather = generateRandomWeather();
         weatherWidget = new WeatherWidget(currentWeather);
+//        this.setCurrentWeather(currentWeather);
+//        this.setWeatherWidget(currentWeather);
         updateTemperatureAndHumidity();
         temperatureController = new TemperatureController(temperature);
         sprinklerController = new SprinklerController();
@@ -75,8 +77,8 @@ public class WeatherController {
         System.out.println("Today's weather: " + currentWeather);
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
-        this.setCurrentWeather(currentWeather);
-        this.setWeatherWidget(currentWeather);
+        setCurrentWeather(currentWeather);
+        setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
         weatherWidget.requestLayout();
 
