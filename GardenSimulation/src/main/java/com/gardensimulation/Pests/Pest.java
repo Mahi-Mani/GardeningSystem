@@ -37,6 +37,10 @@ public class Pest {
         return this.severity;
     }
 
+    public String getWeather() {
+        return this.weather;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true; // Same reference
