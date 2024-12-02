@@ -2,6 +2,6 @@ package com.gardensimulation.Pests;
 
 public class LeafMiner extends Pest{
     public LeafMiner() {
-        super("LeafMiner", 10);
+        super("LeafMiner", 10, "cloudy");
     }
 }
