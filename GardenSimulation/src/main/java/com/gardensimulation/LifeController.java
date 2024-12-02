@@ -32,7 +32,7 @@ public class LifeController implements Runnable {
         daySimulator.setDayChangeListener(day ->
         {
             log.info("Morning! Day: " + day + " Garden Status Check!");
-//            viewController.autoPlacePlant();
+            viewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
@@ -75,6 +75,9 @@ public class LifeController implements Runnable {
 
     public void initialize() {
         log.info("Morning! Day: 1 Garden Status Check!");
+        Platform.runLater(() -> {
+            ViewController.autoPlacePlant();
+        });
         weatherController.generateRandomWeather();
         weatherController.simulateDailyWeather();
         System.out.println("***************WEATHER UPDATE FROM LIFE FOR DAY 1");

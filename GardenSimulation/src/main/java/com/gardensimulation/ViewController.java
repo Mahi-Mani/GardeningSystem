@@ -37,22 +37,22 @@ public class ViewController {
     private SprinklerController sprinklerController;
     private RainController rainController;
     private DaySimulator daySimulator;
-    private GridPane grid;
+    private static GridPane grid;
     private List<Rectangle> cells;
-    private String selectedPlant = "rose"; // Default plant type
+    private static String selectedPlant = "rose"; // Default plant type
     private TemperatureController temperatureController;
-    private LifeController life;
+    private static LifeController life;
     private PestController pestController;
     private PesticideController pesticideController;
-    private Map<String, Node> gridNodeMap = new HashMap<>();
+    private static Map<String, Node> gridNodeMap = new HashMap<>();
     BorderPane root = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 20; // Minimum allowed plants
     private int currentPlantCount = 0;
-    private Set<String> occupiedCells = new HashSet<>();
-    private int numRows;
-    private int numCols;
+    private static Set<String> occupiedCells = new HashSet<>();
+    private static int numRows;
+    private static int numCols;
     private com.gardensimulation.ViewController viewController;
 
     public ViewController() {
@@ -256,8 +256,8 @@ public class ViewController {
         grid.setGridLinesVisible(false);
 
         // Add cells with brown borders
-         numRows = 6;
-         numCols = 8;
+        numRows = 6;
+        numCols = 8;
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 Rectangle cell = new Rectangle(120, 120);
@@ -277,13 +277,13 @@ public class ViewController {
     }
 
     //    Function to automatically place plants
-    public void autoPlacePlant() {
-        if (currentPlantCount >= MIN_PLANTS_THRESHOLD) {
+    public static void autoPlacePlant() {
+        if (Plants.plantsList.size() >= MIN_PLANTS_THRESHOLD) {
             return; // No need to add plants if the count is above the threshold
         }
 
         Random random = new Random();
-        while (currentPlantCount < MIN_PLANTS_THRESHOLD) {
+        while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
             int row = random.nextInt(numRows);
             int col = random.nextInt(numCols);
 
@@ -294,7 +294,7 @@ public class ViewController {
     }
 
     //    Function to place a plant
-    private void placePlant(int row, int col) {
+    private static void placePlant(int row, int col) {
         // Check if there's already a plant in this cell
         for (javafx.scene.Node node : grid.getChildren()) {
             if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
@@ -302,6 +302,10 @@ public class ViewController {
                 return; // Exit if the cell already has a plant
             }
         }
+
+        String[] plantChoices = {"rose", "sunflower", "lily", "tomato", "tulip", "lemon", "orange", "apple"};
+        Random random = new Random();
+        selectedPlant = plantChoices[random.nextInt(plantChoices.length)];
 
 //        Load image
         Image plantImage = null;
@@ -317,10 +321,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(rose);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-//                currentPlantCount++;
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
@@ -334,9 +334,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(sunflower);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
@@ -350,9 +347,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(lily);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
@@ -366,9 +360,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(tomato);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
@@ -382,9 +373,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(tulip);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
@@ -397,9 +385,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(lemon);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
@@ -412,9 +397,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(orange);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
@@ -428,9 +410,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(apple);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }
