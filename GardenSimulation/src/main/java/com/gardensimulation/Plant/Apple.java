@@ -16,6 +16,10 @@ public class Apple extends Fruits {
 
     protected Image getPlantImage() {
         // Load the apple image
-        return new Image("https://thumbs.dreamstime.com/b/red-apple-isolated-clipping-path-19130134.jpg"); // Replace with actual path
+        return new Image("https://www.isons.com/wp-content/uploads/2023/07/Crimson-Crisp_shutterstock_323667563.jpg"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://www.bhg.com/thmb/Bb_85P595R4tWPNymZw9x_tbi4U=/1983x0/filters:no_upscale():strip_icc()/apple-scab-1142266260-ce7a480d595d445dac54eaf446a15b14.jpg"); // Pest-attacked image
     }
 }

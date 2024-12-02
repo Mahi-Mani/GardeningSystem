@@ -1,16 +1,19 @@
 package com.gardensimulation;
 
 
+import com.fasterxml.jackson.databind.util.EnumResolver;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
+import javafx.application.Platform;
 import javafx.scene.Node;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -21,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -28,6 +32,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.*;
 
 public class ViewController {
+    private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private ExecutorService executor = Executors.newFixedThreadPool(5);
     private SprinklerController sprinklerController;
     private RainController rainController;
@@ -35,31 +40,69 @@ public class ViewController {
     private GridPane grid;
     private List<Rectangle> cells;
     private String selectedPlant = "rose"; // Default plant type
-    private static final Logger log = Logger.getLogger(ViewController.class.getName());
     private TemperatureController temperatureController;
     private LifeController life;
-//    private PestController pestController;
-//    private PesticideController pesticideController;
+    private PestController pestController;
+    private PesticideController pesticideController;
     private Map<String, Node> gridNodeMap = new HashMap<>();
+    BorderPane root = new BorderPane();
+    StackPane weatherPane;
+    WeatherCard weatherCard;
+    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
+    private int currentPlantCount = 0;
+    private Set<String> occupiedCells = new HashSet<>();
+    private int numRows;
+    private int numCols;
+    private com.gardensimulation.ViewController viewController;
 
     public ViewController() {
         daySimulator = new DaySimulator();
         sprinklerController = new SprinklerController();
         rainController = new RainController();
         temperatureController = new TemperatureController(45);
-//        pestController = new PestController(this);
-        life = new LifeController(daySimulator, gridNodeMap);
-//        pesticideController = new PesticideController();
+
+        pestController = new PestController(this);
+        life = new LifeController(daySimulator, gridNodeMap, this);
+//        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
+        pesticideController = new PesticideController(new WeatherController());
         executor.submit(sprinklerController);
         executor.submit(temperatureController);
         executor.submit(life);
-//        executor.submit(pestController);
-//        executor.submit(pesticideController);
+        executor.submit(pesticideController);
+        weatherCard = new WeatherCard();
+
+//        weatherPane = new StackPane();
+//        weatherPane = new VBox(20);
+//        weatherPane.setPrefWidth(1);
+//        weatherPane.getChildren().add(weatherCard);
+        root.setTop(weatherCard);
+        root.setMaxWidth(100);
+    }
+
+    public ViewController getViewController() {
+        return viewController;
+    }
+
+    //Weather try
+// Method to update the weather dynamically
+    public void updateWeather(String weatherCondition, String imageUrl) {
+        weatherCard.updateWeather(weatherCondition, imageUrl);
+    }
+
+    public void setCurrentPlantCount(int currentPlantCount) {
+        this.currentPlantCount = currentPlantCount;
+    }
+
+    public int getCurrentPlantCount() {
+        return this.currentPlantCount;
+    }
+
+    public Set<String> getOccupiedCells() {
+        return this.occupiedCells;
     }
 
     // Get the DaySimulator UI
     BorderPane rootPane = new BorderPane();
-
 
 
     public StackPane createContent() {
@@ -146,15 +189,18 @@ public class ViewController {
         gridPane.add(lemonRadio, 1, 1); // Column 1, Row 1
         gridPane.add(orangeRadio, 2, 1); // Column 2, Row 1
         gridPane.add(appleRadio, 3, 1);
+//        Platform.runLater(() -> {
+//        gridPane.add(weatherWidget, 3, 3);
+//        });
 
         Button sprinkerBtn = new Button();
         Button rainBtn = new Button();
         sprinkerBtn.setOnAction(e -> {
-            sprinklerController.activateSprinklers(Plants.plantsList);
+//            sprinklerController.activateSprinklers(Plants.plantsList);
         });
 
         rainBtn.setOnAction(e -> {
-            rainController.generateRainfall(Plants.plantsList);
+//            rainController.generateRainfall(Plants.plantsList);
         });
         Image sprinklerImage = new Image("https://www.bankrate.com/2022/04/07090806/sprinkler-system-cost-667767602.jpg?auto=webp&optimize=high&crop=16:9"); // Replace with a real image URL or file path
         ImageView imageView = new ImageView(sprinklerImage);
@@ -182,16 +228,24 @@ public class ViewController {
         GridPane btnPane = new GridPane();
         btnPane.setHgap(20); // Horizontal gap between columns
         btnPane.setVgap(15);
-        btnPane.add(sprinkerBtn, 0, 0);
-        btnPane.add(rainBtn, 1, 0);
+//        btnPane.add(sprinkerBtn, 0, 0);
+//        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
-        layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                grid, btnPane);
+//        VBox weatherLayout = new VBox(1);
+//        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
+        Platform.runLater(() -> {
+            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
+                    grid, btnPane, root);
+//            weatherLayout.getChildren().addAll(weatherPane);
+        });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
+//        weatherLayout.setPrefWidth(1);
+//        weatherLayout.setStyle("-fx-padding: 500; -fx-border-color: #ccc; -fx-border-width: 10; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
 
-        stackPane.getChildren().add(layout);
+        stackPane.getChildren().addAll(layout);
+//        stackPane.getChildren().add(weatherLayout);
 
         return stackPane;
     }
@@ -202,11 +256,11 @@ public class ViewController {
         grid.setGridLinesVisible(false);
 
         // Add cells with brown borders
-        int numRows = 6;
-        int numCols = 8;
+         numRows = 6;
+         numCols = 8;
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                Rectangle cell = new Rectangle(80, 80);
+                Rectangle cell = new Rectangle(120, 120);
                 cell.setFill(Color.TRANSPARENT);
                 cell.setStroke(Color.BROWN);
 
@@ -220,6 +274,23 @@ public class ViewController {
         }
 
         return grid;
+    }
+
+    //    Function to automatically place plants
+    public void autoPlacePlant() {
+        if (currentPlantCount >= MIN_PLANTS_THRESHOLD) {
+            return; // No need to add plants if the count is above the threshold
+        }
+
+        Random random = new Random();
+        while (currentPlantCount < MIN_PLANTS_THRESHOLD) {
+            int row = random.nextInt(numRows);
+            int col = random.nextInt(numCols);
+
+            if (!occupiedCells.contains(row + "," + col)) {
+                placePlant(row, col); // Place a plant in the empty cell
+            }
+        }
     }
 
     //    Function to place a plant
@@ -236,38 +307,36 @@ public class ViewController {
         Image plantImage = null;
         switch (selectedPlant) {
             case "rose":
-
                 ArrayList<Pest> rosePests = new ArrayList<Pest>();
                 rosePests.add(new Aphids());
                 rosePests.add(new Beetles());
-                Rose rose = new Rose("Rose", 100, 15, 45, 25, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
-
-                // Create a StackPane for this cell
-                StackPane roseCell = new StackPane();
-                roseCell.getChildren().add(rose.getPlantView()); // Add plant image to the StackPane
-                roseCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-                grid.add(roseCell, col, row);
-                gridNodeMap.put(row + "," + col, roseCell);
+                rosePests.add(new Cutworms());
+                Rose rose = new Rose("Rose", 100, 15, 100, 60, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+                grid.add(rose.getPlantView(), col, row);
+                gridNodeMap.put(row + "," + col, rose.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(rose);
-                log.info("Planting Rose at Col: " + col + " Row: " + row);
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+//                currentPlantCount++;
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
+                log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
                 ArrayList<Pest> sunflowerPests = new ArrayList<Pest>();
                 sunflowerPests.add(new Aphids());
                 sunflowerPests.add(new Beetles());
                 sunflowerPests.add(new Cutworms());
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 30, 40, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
-
-                StackPane sunflowerCell = new StackPane();
-                sunflowerCell.getChildren().add(sunflower.getPlantView());
-                sunflowerCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(sunflowerCell, col, row);
-                gridNodeMap.put(row + "," + col, sunflowerCell);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 100, 50, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
+                grid.add(sunflower.getPlantView(), col, row);
+                gridNodeMap.put(row + "," + col, sunflower.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(sunflower);
-
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
@@ -275,16 +344,15 @@ public class ViewController {
                 lilyPests.add(new Aphids());
                 lilyPests.add(new SpiderMites());
                 lilyPests.add(new Beetles());
-                Lily lily = new Lily("Lily", 100, 30, 60, 20, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
-                StackPane lilyCell = new StackPane();
-                lilyCell.getChildren().add(lily.getPlantView());
-                lilyCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(lilyCell, col, row);
-                gridNodeMap.put(row + "," + col, lilyCell);
+                Lily lily = new Lily("Lily", 100, 30, 95, 55, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
+                grid.add(lily.getPlantView(), col, row);
+                gridNodeMap.put(row + "," + col, lily.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(lily);
-
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
@@ -292,17 +360,15 @@ public class ViewController {
                 tomatoPests.add(new Aphids());
                 tomatoPests.add(new Whiteflies());
                 tomatoPests.add(new HornWorms());
-                Tomato tomato = new Tomato("Tomato", 100, 12, 50, 30, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
-
-                StackPane tomatoCell = new StackPane();
-                tomatoCell.getChildren().add(tomato.getPlantView());
-                tomatoCell.setStyle("-fx-border-color: black; -fx-border-width: 1;");
-
-                grid.add(tomatoCell, col, row);
-                gridNodeMap.put(row + "," + col, tomatoCell);
+                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
+                grid.add(tomato.getPlantView(), col, row);
+                gridNodeMap.put(row + "," + col, tomato.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(tomato);
-
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
@@ -310,35 +376,45 @@ public class ViewController {
                 tulipPests.add(new Aphids());
                 tulipPests.add(new SpiderMites());
                 tulipPests.add(new BulbFly());
-                Tulip tulip = new Tulip("Tulip", 100, 18, 60, 30, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
-
-
+                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
                 grid.add(tulip.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, tulip.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(tulip);
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
                 ArrayList<Pest> lemonPests = new ArrayList<Pest>();
                 lemonPests.add(new Aphids());
                 lemonPests.add(new LeafMiner());
-                Lemon lemon = new Lemon("Lemon", 100, 25, 50, 25, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
+                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lemon.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(lemon);
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
                 ArrayList<Pest> orangePests = new ArrayList<Pest>();
                 orangePests.add(new Aphids());
                 orangePests.add(new Whiteflies());
-                Orange orange = new Orange("Orange", 100, 15, 50, 20, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
+                Orange orange = new Orange("Orange", 100, 15, 105, 53, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
                 grid.add(orange.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, orange.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(orange);
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
@@ -346,11 +422,15 @@ public class ViewController {
                 applePests.add(new Aphids());
                 applePests.add(new Caterpillars());
                 applePests.add(new CodlingMoth());
-                Apple apple = new Apple("Apple", 100, 15, 60, 30, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
+                Apple apple = new Apple("Apple", 100, 15, 102, 50, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, apple.getPlantView());
                 life.setGrid(grid);
                 Plants.plantsList.add(apple);
+                occupiedCells.add(row + "," + col);
+                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
+                System.out.println("Current plant count@@@@@@");
+                System.out.println(currentPlantCount);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }

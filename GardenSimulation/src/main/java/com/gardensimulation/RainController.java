@@ -2,7 +2,7 @@ package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -18,14 +18,14 @@ public class RainController {
         rainfallUnits = 0;
     }
 
-    public void generateRainfall(ArrayList<Plants> plants) {
+    public void generateRainfall(List<Plants> plants) {
         rainfallUnits = random.nextInt(20);
         log.info("It's raining!" + rainfallUnits + " units of rain recorded!");
         for(Plants plant: plants) {
             plant.waterThePlant(rainfallUnits);
         }
-        temperatureController.setCurrentTemperature(temperatureController.getCurrentTemperature() - 15);
-        log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
+//        TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 15);
+//        log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
         sprinkler.activateSprinklers(plants);
     }
 

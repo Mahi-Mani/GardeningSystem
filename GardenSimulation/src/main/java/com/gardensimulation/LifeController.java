@@ -14,32 +14,48 @@ public class LifeController implements Runnable {
     private DaySimulator currentDay = new DaySimulator();
     private boolean isRunning = true;
     private int tempDay = 1;
-    private GridPane grid;
+    private static GridPane grid;
     private Map<String, Node> gridNodeMap;
+    WeatherController weatherController = new WeatherController();
+    PestController pestController = new PestController();
+    private ViewController viewController;
 
     public LifeController() {
 
     }
 
-    public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap) {
+    public LifeController(DaySimulator daySimulator, Map<String, Node> gridNodeMap, ViewController viewController) {
         this.gridNodeMap = gridNodeMap;
+        this.viewController = viewController.getViewController();
 
         daySimulator.setDayChangeListener(day ->
         {
-            log.info("Morning! Garden Status Check!");
-            Iterator<Plants> iterator = Plants.plantsList.iterator();
-            while (iterator.hasNext()) {
-                Plants plant = iterator.next();
-                if (plant.isAlive()) {
-                    plant.setAge(plant.getAge() - 5);
-                }
-                if (plant.getAge() <= 0) {
-                    plant.setAge(0);
-//                    plant.die();
-                    plant.setAlive(false);
-                    log.severe(plant.getName() + " is Dead!");
-                    removePlantFromGrid(plant.getRow(), plant.getCol());
-                    iterator.remove();
+            log.info("Morning! Day: " + day + " Garden Status Check!");
+//            viewController.autoPlacePlant();
+            weatherController.generateRandomWeather();
+            weatherController.simulateDailyWeather();
+            viewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
+            weatherController.updateWeatherForNextDay();
+
+            synchronized (Plants.plantsList) {
+                Iterator<Plants> iterator = Plants.plantsList.iterator();
+                while (iterator.hasNext()) {
+                    Plants plant;
+//                if (iterator.next() != null) {
+                    plant = iterator.next();
+                    if (plant.isAlive()) {
+                        plant.setAge(plant.getAge() - 5);
+                    }
+                    if (plant.getAge() <= 0) {
+                        plant.setAge(0);
+                        plant.die();
+//                    plant.setAlive(false);
+//                    log.severe(plant.getName() + " is Dead!");
+//                    removePlantFromGrid(plant.getRow(), plant.getCol());
+                        iterator.remove();
+                    }
+//                }
+
                 }
             }
 //            for (Plants plant : Plants.plantsList) {
@@ -56,14 +72,22 @@ public class LifeController implements Runnable {
         });
     }
 
+    public void initialize() {
+        log.info("Morning! Day: 1 Garden Status Check!");
+        weatherController.generateRandomWeather();
+        weatherController.simulateDailyWeather();
+    }
+
     public void setGrid(GridPane grid) {
         this.grid = grid;
     }
 
     public void removePlantFromGrid(int row, int col) {
 
+        System.out.println("Removing plant: " + row + col);
+        String cellKey = row + "," + col;
         // Iterate over all children in the GridPane
-        for (Node node : this.grid.getChildren()) {
+        for (Node node : LifeController.grid.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node); // Get row index
             Integer nodeCol = GridPane.getColumnIndex(node); // Get column index
 
@@ -74,7 +98,7 @@ public class LifeController implements Runnable {
             // Check if the node is at the specified row and column
             if (nodeRow == row && nodeCol == col) {
                 if (node instanceof ImageView) { // Check if the node is an ImageView
-                    grid.getChildren().remove(node);
+                    LifeController.grid.getChildren().remove(node);
 //                    ImageView imageView = (ImageView) node;
 //                    imageView.setImage(null); // Remove the image, but keep the ImageView node intact
 //                    Plants plantToRemove = findPlant(row, col);
@@ -86,6 +110,8 @@ public class LifeController implements Runnable {
                 }
             }
         }
+//        viewController.setCurrentPlantCount(viewController.getCurrentPlantCount() - 1);
+//        viewController.getOccupiedCells().remove(cellKey);
 
 //        Rectangle emptyCell = new Rectangle(50, 50); // Set the size of the empty cell
 //        emptyCell.setStroke(Color.BLACK);            // Set the border color
@@ -109,7 +135,7 @@ public class LifeController implements Runnable {
     }
 
     public void adjustPlantHealth() {
-        System.out.println("Inside adjust plant health");
+//        System.out.println("Inside adjust plant health");
 
         for (Plants plant : Plants.plantsList) {
             if (!plant.isAlive()) {
@@ -124,6 +150,7 @@ public class LifeController implements Runnable {
     @Override
     public void run() {
         log.info("Lifecycle thread is running!");
+        this.initialize();
         while (isRunning) {
 //            this.adjustPlantHealth();
             try {

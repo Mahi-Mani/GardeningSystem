@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 public class TemperatureController implements Runnable {
     private static final Logger log = Logger.getLogger(TemperatureController.class.getName());
-    private static final int MIN_SAFE_TEMPERATURE = 30;
-    private static final int MAX_SAFE_TEMPERATURE = 50;
+    private static final int MIN_SAFE_TEMPERATURE = 50;
+    private static final int MAX_SAFE_TEMPERATURE = 100;
     public static final int OPTIMUM_TEMPERATURE = 45;
     private static int currentTemperature;
     private TemperatureRegulator regulator = new TemperatureRegulator();
@@ -23,6 +23,12 @@ public class TemperatureController implements Runnable {
 
     public static void setCurrentTemperature(int temperature) {
         currentTemperature = temperature;
+    }
+
+    public void checkPlantTempStatus() {
+        for (Plants plant : Plants.plantsList) {
+            plant.checkDailyTemp(getCurrentTemperature());
+        }
     }
 
     public void adjustTemperature() {

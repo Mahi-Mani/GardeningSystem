@@ -16,6 +16,10 @@ public class Lemon extends Vegetables{
 
     protected Image getPlantImage() {
         // Load the tomato image
-        return new Image("https://t4.ftcdn.net/jpg/02/85/95/37/360_F_285953794_Aufu90PPcaOk59DQLSbSMRkLQumniBXi.jpg"); // Replace with actual path
+        return new Image("https://www.bhg.com/thmb/sMcFJE8aJdtudLVwlVduvvr64f0=/1244x0/filters:no_upscale():strip_icc()/lemon-tree-pot-5de2d1aa-145020d2490c464396d8b982219dce95.jpg"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://www.shutterstock.com/image-photo/lemon-fruits-affected-by-pest-600nw-2229584175.jpg"); // Pest-attacked image
     }
 }

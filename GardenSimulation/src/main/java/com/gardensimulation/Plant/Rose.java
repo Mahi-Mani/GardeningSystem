@@ -14,8 +14,12 @@ public class Rose extends Flowers {
         super(currentPests);
     }
 
-   protected Image getPlantImage() {
-        // Load the rose image (make sure the path is correct)
-        return new Image("https://cdn.sanity.io/images/pn4rwssl/production/349d734442fdbcc734bd8060f126330fdf19e825-500x750.jpg?w=2880&q=75&auto=format"); // Replace with actual path
+    protected Image getPlantImage() {
+        // Load the Rose image
+        return new Image("https://www.shutterstock.com/shutterstock/videos/9492146/thumb/1.jpg?ip=x480"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://www.gardentech.com/-/media/project/oneweb/gardentech/images/blog/protecting-roses-from-aphids-and-other-common-pests/protect-roses-japanese.jpg"); // Pest-attacked image
     }
 }

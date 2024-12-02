@@ -16,6 +16,10 @@ public class Tomato extends Vegetables{
 
     protected Image getPlantImage() {
         // Load the tomato image
-        return new Image("https://media.istockphoto.com/id/466175630/photo/tomato-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=ELzCVzaiRMgiO7A5zQLkuws0N_lvPxrgJWPn7C7BXz0="); // Replace with actual path
+        return new Image("https://www.bhg.com/thmb/q8rfs1JikMcnBN8StgjLdYFwHdE=/4000x0/filters:no_upscale():strip_icc()/BHG-Cherry-Tomato-Plant-1407386653-69dc42c014cb4fc1a9788e595cf000b7.jpg"); // Replace with actual path
+    }
+
+    protected Image getAttackedImage() {
+        return new Image("https://croach.com/wp-content/uploads/2015/11/Garden-Tomato-Pests-How-to-Identify-Prevent-Eliminate-Croach-1000x500.jpg"); // Pest-attacked image
     }
 }
