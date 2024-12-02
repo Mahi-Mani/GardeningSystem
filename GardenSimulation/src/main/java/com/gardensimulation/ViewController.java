@@ -66,9 +66,9 @@ public class ViewController {
 //        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
         pesticideController = new PesticideController(new WeatherController());
         executor.submit(sprinklerController);
-//        executor.submit(temperatureController);
+        executor.submit(temperatureController);
         executor.submit(life);
-//        executor.submit(pesticideController);
+        executor.submit(pesticideController);
         weatherCard = new WeatherCard();
 
 //        weatherPane = new StackPane();
