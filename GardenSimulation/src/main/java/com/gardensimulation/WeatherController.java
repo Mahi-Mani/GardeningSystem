@@ -77,7 +77,7 @@ public class WeatherController {
         System.out.println("Today's weather: " + currentWeather);
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
-        setCurrentWeather(currentWeather);
+        setCurrentWeather(currentWeather.substring(0,1).toUpperCase().concat(currentWeather.substring(1)));
         setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
         weatherWidget.requestLayout();
