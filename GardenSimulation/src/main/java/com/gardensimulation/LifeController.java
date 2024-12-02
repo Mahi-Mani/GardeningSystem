@@ -35,7 +35,7 @@ public class LifeController implements Runnable {
 //            viewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
-            viewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
+            ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
             weatherController.updateWeatherForNextDay();
 
             synchronized (Plants.plantsList) {
@@ -80,7 +80,7 @@ public class LifeController implements Runnable {
         System.out.println("***************WEATHER UPDATE FROM LIFE FOR DAY 1");
         System.out.println(weatherController.getCurrentWeather());
         Platform.runLater(() -> {
-            ViewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
+            ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
         });
     }
 

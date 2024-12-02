@@ -72,23 +72,34 @@ public class WeatherController {
         }
     }
 
+    public static String getCapitalized(String str) {
+        if (str == null || str.isEmpty()) {
+            return str; // Return the original string if it's null or empty
+        }
+        // Create a new string with the first letter capitalized
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     // Simulate weather for the day
     public void simulateDailyWeather() {
         System.out.println("Today's weather: " + currentWeather);
         System.out.println("Temperature: " + temperature + "°F");
         System.out.println("Humidity: " + humidity + "%");
-        setCurrentWeather(currentWeather.substring(0,1).toUpperCase().concat(currentWeather.substring(1)));
+        setCurrentWeather(currentWeather);
         setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
-        weatherWidget.requestLayout();
+//        weatherWidget.requestLayout();
 
         if ("rainy".equals(currentWeather)) {
+            System.out.println("!!!!!!!!!!!!!!RAINY WEATHER SIMULATION");
             simulateRainyDay();
             pestController.attackPlan("rainy");
         } else if ("sunny".equals(currentWeather)) {
+            System.out.println("!!!!!!!!!!!!!!SUNNY WEATHER SIMULATION");
             simulateSunnyDay();
             pestController.attackPlan("sunny");
         } else if ("cloudy".equals(currentWeather)) {
+            System.out.println("!!!!!!!!!!!!!!RAINY WEATHER SIMULATION");
             simulateCloudyDay();
             pestController.attackPlan("cloudy");
         }
