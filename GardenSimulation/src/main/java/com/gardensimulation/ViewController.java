@@ -278,7 +278,7 @@ public class ViewController {
 //                cell.setStroke(Color.BROWN);
                 // Create a Pane for each cell
                 Pane cell = new Pane();
-                cell.setPrefSize(120, 120);
+                cell.setPrefSize(100, 100);
 
                 // Set the soil background image for the cell
                 BackgroundImage soilBackground = new BackgroundImage(
@@ -286,7 +286,7 @@ public class ViewController {
                         BackgroundRepeat.NO_REPEAT, // Repeat for seamless soil texture
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
-                        new BackgroundSize(120, 120, true, true, false, true) // Scale the image dynamically
+                        new BackgroundSize(100, 100, true, true, false, true) // Scale the image dynamically
                 );
                 cell.setBackground(new Background(soilBackground));
                 cell.setStyle("-fx-border-color: saddlebrown; -fx-border-width: 2px;");
