@@ -1,30 +1,20 @@
 package com.gardensimulation;
 
 
-import com.fasterxml.jackson.databind.util.EnumResolver;
-import com.gardensimulation.Pests.*;
-import com.gardensimulation.Plant.*;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
 import javafx.scene.Node;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.geometry.Pos;
-
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -38,7 +28,7 @@ public class ViewController {
     private RainController rainController;
     private DaySimulator daySimulator;
     private static GridPane grid;
-    private List<Rectangle> cells;
+    private List<Pane> cells;
     private static String selectedPlant = "rose"; // Default plant type
     private TemperatureController temperatureController;
     private static LifeController life;
@@ -262,7 +252,7 @@ public class ViewController {
 
     private GridPane createGrid() {
         grid = new GridPane();
-        cells = new ArrayList<>();
+        cells = new ArrayList<Pane>();
         grid.setGridLinesVisible(false);
 
         // Add cells with brown borders
@@ -270,9 +260,23 @@ public class ViewController {
         numCols = 8;
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                Rectangle cell = new Rectangle(120, 120);
-                cell.setFill(Color.TRANSPARENT);
-                cell.setStroke(Color.BROWN);
+//                Rectangle cell = new Rectangle(120, 120);
+//                cell.setFill(Color.TRANSPARENT);
+//                cell.setStroke(Color.BROWN);
+                // Create a Pane for each cell
+                Pane cell = new Pane();
+                cell.setPrefSize(120, 120);
+
+                // Set the soil background image for the cell
+                BackgroundImage soilBackground = new BackgroundImage(
+                        new Image("https://t3.ftcdn.net/jpg/02/57/58/20/360_F_257582025_LUf6zGRPA0x0OGaLFS1UJIgkRKrrZhAk.jpg"),
+                        BackgroundRepeat.NO_REPEAT, // Repeat for seamless soil texture
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        new BackgroundSize(120, 120, true, true, false, true) // Scale the image dynamically
+                );
+                cell.setBackground(new Background(soilBackground));
+                cell.setStyle("-fx-border-color: saddlebrown; -fx-border-width: 2px;");
 
                 // Add click event to the cell
                 final int cellRow = row;
@@ -306,10 +310,22 @@ public class ViewController {
     //    Function to place a plant
     private static void placePlant(int row, int col) {
         // Check if there's already a plant in this cell
+//        for (javafx.scene.Node node : grid.getChildren()) {
+//            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
+//                System.out.println("Garden is full!");
+//                return; // Exit if the cell already has a plant
+//            }
+//        }
+
         for (javafx.scene.Node node : grid.getChildren()) {
-            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
-                System.out.println("Garden is full!");
-                return; // Exit if the cell already has a plant
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
+                if (node instanceof Pane && ((Pane) node).getChildren().isEmpty()) {
+                    // If the cell has a Pane but no children, it's empty and can have a plant
+                    continue;
+                } else {
+                    System.out.println("Garden is full!");
+                    return; // Exit if the cell already has a plant or is occupied
+                }
             }
         }
 
