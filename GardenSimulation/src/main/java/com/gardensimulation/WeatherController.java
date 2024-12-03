@@ -33,7 +33,7 @@ public class WeatherController {
     }
 
     public String generateRandomWeather() {
-        String[] conditions = {"sunny", "rainy", "cloudy"};
+        String[] conditions = {"sunny", "cloudy"};
         return conditions[random.nextInt(conditions.length)];
     }
 
@@ -99,7 +99,7 @@ public class WeatherController {
             simulateSunnyDay();
             pestController.attackPlan("sunny");
         } else if ("cloudy".equals(currentWeather)) {
-            System.out.println("!!!!!!!!!!!!!!RAINY WEATHER SIMULATION");
+            System.out.println("!!!!!!!!!!!!!!CLOUDY WEATHER SIMULATION");
             simulateCloudyDay();
             pestController.attackPlan("cloudy");
         }

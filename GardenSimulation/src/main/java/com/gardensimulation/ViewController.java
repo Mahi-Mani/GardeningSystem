@@ -48,7 +48,7 @@ public class ViewController {
     BorderPane root = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 20; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
     private int currentPlantCount = 0;
     private static Set<String> occupiedCells = new HashSet<>();
     private static int numRows;

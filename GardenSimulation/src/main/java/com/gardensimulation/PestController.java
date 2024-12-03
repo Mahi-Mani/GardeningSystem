@@ -15,7 +15,7 @@ public class PestController {
     private ViewController viewController;
     private WeatherController weatherController;
     Random randomSeverity = new Random();
-    private boolean isPesticideApplied = false;
+    private volatile boolean isPesticideApplied = false;
 
     public PestController(ViewController viewController) {
 //        this.plants = plants;
@@ -23,7 +23,7 @@ public class PestController {
                 new Cutworms(), new HornWorms(), new SpiderMites(),
                 new Whiteflies(), new LeafMiner(), new Caterpillars());
         this.viewController = viewController;
-
+//        isPesticideApplied = false;
     }
 
     public PestController() {
@@ -33,20 +33,21 @@ public class PestController {
 //        weatherController = new WeatherController();
     }
 
-    public void setPesticideApplied(boolean value) {
-        this.isPesticideApplied = value;
+    public synchronized void setPesticideApplied(boolean value) {
+        isPesticideApplied = value;
     }
 
-    public boolean getPesticideApplied() {
-        return this.isPesticideApplied;
+    public synchronized boolean getPesticideApplied() {
+        return isPesticideApplied;
     }
 
     //    Method to attack plants
     public void attackPlan(String weather) {
         System.out.println("PRINTING WEATHER FROM PEST: " + weather);
         List<Pest> selectedPests = new ArrayList<>();
+        System.out.println("<>>>>>>>>>" + PesticideController.isPesticideApplied + "<<<<<<<<<>>>>");
 
-        if (this.getPesticideApplied()) {
+        if (PesticideController.isPesticideApplied) {
             System.out.println("Pesticide in effect, no pest activity!");
         } else {
             if (weather == "sunny") {
@@ -55,7 +56,6 @@ public class PestController {
                     System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
-                    attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
                 }
@@ -65,7 +65,6 @@ public class PestController {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
-                    attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
                 }
@@ -74,7 +73,7 @@ public class PestController {
                 selectedPests = selectRandomPests(weather);
                 System.out.println(selectedPests);
                 attackPlants(selectedPests);
-                this.setPesticideApplied(false);
+                PesticideController.isPesticideApplied = false;
                 System.out.println("Pesticide is washed away due to rain.");
             }
         }
