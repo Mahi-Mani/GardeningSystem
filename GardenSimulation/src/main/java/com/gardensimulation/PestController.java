@@ -51,7 +51,7 @@ public class PestController {
             System.out.println("Pesticide in effect, no pest activity!");
         } else {
             if (weather == "sunny") {
-                System.out.println("(30% chance) pest activity due to sunny weather.");
+                System.out.println("(30% chance) pest activity due to Sunny weather.");
                 if (random.nextInt(10) < 3) {
                     System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
@@ -60,7 +60,7 @@ public class PestController {
                     System.out.println("No pest activity!");
                 }
             } else if (weather == "cloudy") {
-                System.out.println("(40% chance) pest activity due to cloudy weather.");
+                System.out.println("(40% chance) pest activity due to Cloudy weather.");
                 if (random.nextInt(10) < 4) {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
@@ -69,7 +69,7 @@ public class PestController {
                     System.out.println("No pest activity!");
                 }
             } else if (weather == "rainy") {
-                System.out.println("Increased pest activity due to high humid rainy weather!");
+                System.out.println("Increased pest activity due to high humid Rainy weather!");
                 selectedPests = selectRandomPests(weather);
                 System.out.println(selectedPests);
                 attackPlants(selectedPests);
