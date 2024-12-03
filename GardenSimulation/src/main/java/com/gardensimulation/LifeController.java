@@ -1,6 +1,7 @@
 package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -31,10 +32,10 @@ public class LifeController implements Runnable {
         daySimulator.setDayChangeListener(day ->
         {
             log.info("Morning! Day: " + day + " Garden Status Check!");
-//            viewController.autoPlacePlant();
+            viewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
-            viewController.updateWeather(weatherController.getCurrentWeather(), weatherController.getWeatherWidget());
+            ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
             weatherController.updateWeatherForNextDay();
 
             synchronized (Plants.plantsList) {
@@ -44,6 +45,7 @@ public class LifeController implements Runnable {
 //                if (iterator.next() != null) {
                     plant = iterator.next();
                     if (plant.isAlive()) {
+//                        With each passing day, reduce the age of plant by 5
                         plant.setAge(plant.getAge() - 5);
                     }
                     if (plant.getAge() <= 0) {
@@ -74,8 +76,16 @@ public class LifeController implements Runnable {
 
     public void initialize() {
         log.info("Morning! Day: 1 Garden Status Check!");
+        Platform.runLater(() -> {
+            ViewController.autoPlacePlant();
+        });
         weatherController.generateRandomWeather();
         weatherController.simulateDailyWeather();
+        System.out.println("***************WEATHER UPDATE FROM LIFE FOR DAY 1");
+        System.out.println(weatherController.getCurrentWeather());
+        Platform.runLater(() -> {
+            ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
+        });
     }
 
     public void setGrid(GridPane grid) {

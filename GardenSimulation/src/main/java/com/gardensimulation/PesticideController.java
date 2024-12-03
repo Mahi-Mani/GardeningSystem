@@ -6,13 +6,14 @@ public class PesticideController implements Runnable {
     private boolean isRunning = true;
     private WeatherController weatherController;
     private PestController pestController;
+    public static boolean isPesticideApplied = false;
 
     public PesticideController(WeatherController weatherController) {
-        this.weatherController = weatherController;
+//        this.weatherController = weatherController;
         pestController = new PestController();
     }
 
-    public void treatPlant(Plants plant) {
+    public static void treatPlant(Plants plant) {
         // Log the treatment action
         System.out.println("Spraying pesticide to garden!");
 
@@ -43,7 +44,7 @@ public class PesticideController implements Runnable {
                 System.out.println("inside instance f");
                 Tomato tomato = (Tomato) plant;
                 tomato.setNormalImage();
-            }else if (plant instanceof Rose) {
+            } else if (plant instanceof Rose) {
                 System.out.println("inside instance f");
                 Rose rose = (Rose) plant;
                 rose.setNormalImage();
@@ -57,7 +58,12 @@ public class PesticideController implements Runnable {
             plant.die();
         }
 //        Notify pest controller
-        pestController.setPesticideApplied(true);
+//        pestController.setPesticideApplied(true);
+        isPesticideApplied = true;
+        System.out.println("<<<<<<<<<< Inside Pesticide >>>>>");
+        System.out.println(isPesticideApplied);
+
+//        System.out.println(pestController.getPesticideApplied());
 
         // Update the UI (remove pest overlays)
 //        viewController.updatePlantPestOverlay(plant);
@@ -73,7 +79,7 @@ public class PesticideController implements Runnable {
                     System.out.println(plant.getPestAttack());
                     if (!plant.getPestAttack().isEmpty()) {
                         // Treat the plant and remove pests
-                        treatPlant(plant);
+                        this.treatPlant(plant);
                     }
                 }
 

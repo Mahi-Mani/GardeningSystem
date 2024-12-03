@@ -15,7 +15,7 @@ public class PestController {
     private ViewController viewController;
     private WeatherController weatherController;
     Random randomSeverity = new Random();
-    private boolean isPesticideApplied = false;
+    private volatile boolean isPesticideApplied = false;
 
     public PestController(ViewController viewController) {
 //        this.plants = plants;
@@ -23,7 +23,7 @@ public class PestController {
                 new Cutworms(), new HornWorms(), new SpiderMites(),
                 new Whiteflies(), new LeafMiner(), new Caterpillars());
         this.viewController = viewController;
-
+//        isPesticideApplied = false;
     }
 
     public PestController() {
@@ -33,39 +33,49 @@ public class PestController {
 //        weatherController = new WeatherController();
     }
 
-    public void setPesticideApplied(boolean value) {
-        this.isPesticideApplied = value;
+    public synchronized void setPesticideApplied(boolean value) {
+        isPesticideApplied = value;
     }
 
-    public boolean getPesticideApplied() {
-        return this.isPesticideApplied;
+    public synchronized boolean getPesticideApplied() {
+        return isPesticideApplied;
     }
 
     //    Method to attack plants
     public void attackPlan(String weather) {
         System.out.println("PRINTING WEATHER FROM PEST: " + weather);
         List<Pest> selectedPests = new ArrayList<>();
+        System.out.println("<>>>>>>>>>" + PesticideController.isPesticideApplied + "<<<<<<<<<>>>>");
 
-        if (this.getPesticideApplied()) {
+        if (PesticideController.isPesticideApplied) {
             System.out.println("Pesticide in effect, no pest activity!");
         } else {
             if (weather == "sunny") {
-                System.out.println("Expect more pest activity today due to sunny weather!"); // Select 1 to all pests
-//            Select one or more pests
-                selectedPests = selectRandomPests(weather);
-                attackPlants(selectedPests);
-            } else if (weather == "cloudy") {
-                System.out.println("(30% chance) pest activity due to cloudy weather.");
+                System.out.println("(30% chance) pest activity due to Sunny weather.");
                 if (random.nextInt(10) < 3) {
+                    System.out.println("Pest: Mild");
+                    selectedPests = selectRandomPests(weather);
+                    System.out.println(selectedPests);
+                    attackPlants(selectedPests);
+                } else {
+                    System.out.println("No pest activity!");
+                }
+            } else if (weather == "cloudy") {
+                System.out.println("(40% chance) pest activity due to Cloudy weather.");
+                if (random.nextInt(10) < 4) {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
+                    System.out.println(selectedPests);
                     attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
                 }
             } else if (weather == "rainy") {
-                System.out.println("Pest activity reduced due to rain.");
-                this.setPesticideApplied(false);
+                System.out.println("Increased pest activity due to high humid Rainy weather!");
+                selectedPests = selectRandomPests(weather);
+                System.out.println(selectedPests);
+                attackPlants(selectedPests);
+                PesticideController.isPesticideApplied = false;
                 System.out.println("Pesticide is washed away due to rain.");
             }
         }
@@ -92,28 +102,28 @@ public class PestController {
 //                        System.out.println("!!!APPLE IS ATTACJED");
                         if (plant instanceof Apple) {
                             Apple apple = (Apple) plant;
-                            apple.setAttackedImage();
+                            Platform.runLater(apple::setAttackedImage);
                         } else if (plant instanceof Orange) {
                             Orange orange = (Orange) plant;
-                            orange.setAttackedImage();
+                            Platform.runLater(orange::setAttackedImage);
                         } else if (plant instanceof Lemon) {
                             Lemon lemon = (Lemon) plant;
-                            lemon.setAttackedImage();
+                            Platform.runLater(lemon::setAttackedImage);
                         } else if (plant instanceof Lily) {
                             Lily lily = (Lily) plant;
-                            lily.setAttackedImage();
+                            Platform.runLater(lily::setAttackedImage);
                         } else if (plant instanceof Tulip) {
                             Tulip tulip = (Tulip) plant;
-                            tulip.setAttackedImage();
+                            Platform.runLater(tulip::setAttackedImage);
                         } else if (plant instanceof Tomato) {
                             Tomato tomato = (Tomato) plant;
-                            tomato.setAttackedImage();
+                            Platform.runLater(tomato::setAttackedImage);
                         } else if (plant instanceof Rose) {
                             Rose rose = (Rose) plant;
-                            rose.setAttackedImage();
+                            Platform.runLater(rose::setAttackedImage);
                         } else if (plant instanceof Sunflower) {
                             Sunflower sunflower = (Sunflower) plant;
-                            sunflower.setAttackedImage();
+                            Platform.runLater(sunflower::setAttackedImage);
                         }
 
                         // If using UI updates
@@ -151,15 +161,20 @@ public class PestController {
     }
 
     private List<Pest> selectRandomPests(String weather) {
-        int numPests = 0;
-        if (weather == "sunny") {
-            numPests = random.nextInt(allPests.size()) + 1; // Select 1 to all pests
-        } else if (weather == "cloudy") {
-            numPests = 2;
+        List<Pest> potentialPests = new ArrayList<>();
+        Iterator<Pest> iterator = allPests.iterator();
+        while (iterator.hasNext()) {
+            Pest nextPest = iterator.next();
+            if (weather.equals(nextPest.getWeather())) {
+                potentialPests.add(nextPest);
+            } else if (weather.equals(nextPest.getWeather())) {
+                potentialPests.add(nextPest);
+            } else if (weather.equalsIgnoreCase(nextPest.getWeather())) {
+                potentialPests.add(nextPest);
+            }
         }
 
-        Collections.shuffle(allPests); // Randomize pest order
-        return allPests.subList(0, numPests); // Select random pests
+        return potentialPests;
     }
 
 //    public void run() {

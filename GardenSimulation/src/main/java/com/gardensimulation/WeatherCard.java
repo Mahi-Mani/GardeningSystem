@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 public class WeatherCard extends VBox {
     private ImageView weatherIcon;  // Image for the weather icon
     private Label weatherTextLabel; // Text label for weather condition
+//    private WeatherController weatherController = new WeatherController();
 
     // Constructor for the WeatherCard
     public WeatherCard() {
@@ -20,7 +21,7 @@ public class WeatherCard extends VBox {
         weatherIcon.setFitHeight(100);
 
         // Create the weather text Label
-        weatherTextLabel = new Label("Weather");
+        weatherTextLabel = new Label("");
         weatherTextLabel.setFont(new Font("Arial", 20));
         weatherTextLabel.setTextFill(Color.BLACK);
 

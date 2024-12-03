@@ -2,6 +2,7 @@ package com.gardensimulation.Plant;
 
 import com.gardensimulation.LifeController;
 import com.gardensimulation.Pests.Pest;
+import com.gardensimulation.SprinklerController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +31,7 @@ public class Plants {
     public static final List<Plants> plantsList = Collections.synchronizedList(new ArrayList<>());
     private static final Logger log = Logger.getLogger(Plants.class.getName());
     private LifeController life = new LifeController();
+    SprinklerController sprinklerController = new SprinklerController();
 
     //    Parameterized constructor
     public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, ArrayList<Pest> parasites, boolean isAlive, int row, int col) {
@@ -225,7 +227,7 @@ public class Plants {
             }
         }
         if (this.age <= 0) {
-            log.severe("Due to more rain, " + this.getName() + " is dying!");
+            log.severe("Due to more water, " + this.getName() + " is dying!");
             this.isAlive = false;
             this.setAge(0);
         }
@@ -234,20 +236,22 @@ public class Plants {
     public void dryThePlant(int amount) {
         this.water_level = this.water_level - amount;
         if (this.water_level < this.water_requirement) {
-            log.warning("Today's temperature affected " + this.getName() + " water level!");
+            log.warning("Today's temperature caused reduction in " + this.getName() + " water level!");
             if (this.age > 0) {
                 this.age = this.age - 5;
             }
+//            sprinklerController.activateSprinklers(Plants.plantsList);
         }
         if (this.age <= 0) {
-            System.out.println("Plant dying due to water leel @@@@@@@@@@@@@@@@@@@@@");
+            System.out.println("Plant dying due to prolonged change in the water level @@@@@@@@@@@@@@@@@@@@@");
             this.die();
         }
     }
 
     public void temperatureChange(int temperature) {
+        dryThePlant(15);
         if ((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
-            log.severe("Untollerable temperature!");
+            log.severe("Untolerable temperature!");
             System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
             this.die();
         }
@@ -259,7 +263,7 @@ public class Plants {
         int tempDiff = Math.min(diff1, diff2);
 
         if (tempDiff < 10) {
-            log.warning("Today's temperature affected " + this.getName() + " !");
+            log.warning("Today's temperature affected aging of " + this.getName() + " !");
             if (this.age > 0) {
                 this.setAge(this.getAge() - 5);
             }

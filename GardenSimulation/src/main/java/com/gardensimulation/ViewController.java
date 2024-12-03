@@ -1,30 +1,20 @@
 package com.gardensimulation;
 
 
-import com.fasterxml.jackson.databind.util.EnumResolver;
-import com.gardensimulation.Pests.*;
-import com.gardensimulation.Plant.*;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
 import javafx.scene.Node;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.geometry.Pos;
-
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -37,22 +27,22 @@ public class ViewController {
     private SprinklerController sprinklerController;
     private RainController rainController;
     private DaySimulator daySimulator;
-    private GridPane grid;
-    private List<Rectangle> cells;
-    private String selectedPlant = "rose"; // Default plant type
+    private static GridPane grid;
+    private List<Pane> cells;
+    private static String selectedPlant = "rose"; // Default plant type
     private TemperatureController temperatureController;
-    private LifeController life;
+    private static LifeController life;
     private PestController pestController;
     private PesticideController pesticideController;
-    private Map<String, Node> gridNodeMap = new HashMap<>();
+    private static Map<String, Node> gridNodeMap = new HashMap<>();
     BorderPane root = new BorderPane();
     StackPane weatherPane;
-    WeatherCard weatherCard;
+    static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
     private int currentPlantCount = 0;
-    private Set<String> occupiedCells = new HashSet<>();
-    private int numRows;
-    private int numCols;
+    private static Set<String> occupiedCells = new HashSet<>();
+    private static int numRows;
+    private static int numCols;
     private com.gardensimulation.ViewController viewController;
 
     public ViewController() {
@@ -65,8 +55,8 @@ public class ViewController {
         life = new LifeController(daySimulator, gridNodeMap, this);
 //        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
         pesticideController = new PesticideController(new WeatherController());
-        executor.submit(sprinklerController);
-        executor.submit(temperatureController);
+//        executor.submit(sprinklerController);
+//        executor.submit(temperatureController);
         executor.submit(life);
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();
@@ -85,7 +75,7 @@ public class ViewController {
 
     //Weather try
 // Method to update the weather dynamically
-    public void updateWeather(String weatherCondition, String imageUrl) {
+    public static void updateWeather(String weatherCondition, String imageUrl) {
         weatherCard.updateWeather(weatherCondition, imageUrl);
     }
 
@@ -108,9 +98,19 @@ public class ViewController {
     public StackPane createContent() {
         // Create the root layout
         StackPane stackPane = new StackPane();
+        Image gardenBackgroundImage = new Image("https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0=");
+        BackgroundImage backgroundImage = new BackgroundImage(
+                gardenBackgroundImage,
+                BackgroundRepeat.NO_REPEAT, // How the image is repeated
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, // Position of the image
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
 
+        // Set the background to the Pane
+        stackPane.setBackground(new Background(backgroundImage));
         // Set background color for the root layout
-        stackPane.setStyle("-fx-background-color: #008631;");
+//        stackPane.setStyle("-fx-background-color: #008631;");
 
         // Create the 8x6 grid
         grid = createGrid();
@@ -252,17 +252,31 @@ public class ViewController {
 
     private GridPane createGrid() {
         grid = new GridPane();
-        cells = new ArrayList<>();
+        cells = new ArrayList<Pane>();
         grid.setGridLinesVisible(false);
 
         // Add cells with brown borders
-         numRows = 6;
-         numCols = 8;
+        numRows = 6;
+        numCols = 8;
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                Rectangle cell = new Rectangle(120, 120);
-                cell.setFill(Color.TRANSPARENT);
-                cell.setStroke(Color.BROWN);
+//                Rectangle cell = new Rectangle(120, 120);
+//                cell.setFill(Color.TRANSPARENT);
+//                cell.setStroke(Color.BROWN);
+                // Create a Pane for each cell
+                Pane cell = new Pane();
+                cell.setPrefSize(120, 120);
+
+                // Set the soil background image for the cell
+                BackgroundImage soilBackground = new BackgroundImage(
+                        new Image("https://t3.ftcdn.net/jpg/02/57/58/20/360_F_257582025_LUf6zGRPA0x0OGaLFS1UJIgkRKrrZhAk.jpg"),
+                        BackgroundRepeat.NO_REPEAT, // Repeat for seamless soil texture
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        new BackgroundSize(120, 120, true, true, false, true) // Scale the image dynamically
+                );
+                cell.setBackground(new Background(soilBackground));
+                cell.setStyle("-fx-border-color: saddlebrown; -fx-border-width: 2px;");
 
                 // Add click event to the cell
                 final int cellRow = row;
@@ -277,13 +291,13 @@ public class ViewController {
     }
 
     //    Function to automatically place plants
-    public void autoPlacePlant() {
-        if (currentPlantCount >= MIN_PLANTS_THRESHOLD) {
+    public static void autoPlacePlant() {
+        if (Plants.plantsList.size() >= MIN_PLANTS_THRESHOLD) {
             return; // No need to add plants if the count is above the threshold
         }
 
         Random random = new Random();
-        while (currentPlantCount < MIN_PLANTS_THRESHOLD) {
+        while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
             int row = random.nextInt(numRows);
             int col = random.nextInt(numCols);
 
@@ -294,14 +308,30 @@ public class ViewController {
     }
 
     //    Function to place a plant
-    private void placePlant(int row, int col) {
+    private static void placePlant(int row, int col) {
         // Check if there's already a plant in this cell
+//        for (javafx.scene.Node node : grid.getChildren()) {
+//            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
+//                System.out.println("Garden is full!");
+//                return; // Exit if the cell already has a plant
+//            }
+//        }
+
         for (javafx.scene.Node node : grid.getChildren()) {
-            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
-                System.out.println("Garden is full!");
-                return; // Exit if the cell already has a plant
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
+                if (node instanceof Pane && ((Pane) node).getChildren().isEmpty()) {
+                    // If the cell has a Pane but no children, it's empty and can have a plant
+                    continue;
+                } else {
+                    System.out.println("Garden is full!");
+                    return; // Exit if the cell already has a plant or is occupied
+                }
             }
         }
+
+        String[] plantChoices = {"rose", "sunflower", "lily", "tomato", "tulip", "lemon", "orange", "apple"};
+        Random random = new Random();
+        selectedPlant = plantChoices[random.nextInt(plantChoices.length)];
 
 //        Load image
         Image plantImage = null;
@@ -317,10 +347,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(rose);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-//                currentPlantCount++;
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "sunflower":
@@ -334,9 +360,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(sunflower);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
                 break;
             case "lily":
@@ -350,9 +373,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(lily);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
                 break;
             case "tomato":
@@ -366,9 +386,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(tomato);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting Tomato at Col: " + col + " Row: " + row);
                 break;
             case "tulip":
@@ -382,9 +399,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(tulip);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
                 break;
             case "lemon":
@@ -397,9 +411,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(lemon);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
                 break;
             case "orange":
@@ -412,9 +423,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(orange);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
                 break;
             case "apple":
@@ -428,9 +436,6 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(apple);
                 occupiedCells.add(row + "," + col);
-                this.setCurrentPlantCount(this.getCurrentPlantCount() + 1);
-                System.out.println("Current plant count@@@@@@");
-                System.out.println(currentPlantCount);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }

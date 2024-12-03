@@ -5,10 +5,12 @@ public class Pest {
     private int row;
     private int col;
     private int severity;
+    private String weather;
 
-    public Pest(String name, int severity) {
+    public Pest(String name, int severity, String weather) {
         this.name = name;
         this.severity = severity;
+        this.weather = weather;
     }
 
     public String getName() {
@@ -33,6 +35,10 @@ public class Pest {
 
     public int getSeverity() {
         return this.severity;
+    }
+
+    public String getWeather() {
+        return this.weather;
     }
 
     @Override
