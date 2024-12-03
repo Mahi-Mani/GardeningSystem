@@ -65,8 +65,8 @@ public class ViewController {
         life = new LifeController(daySimulator, gridNodeMap, this);
 //        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
         pesticideController = new PesticideController(new WeatherController());
-        executor.submit(sprinklerController);
-        executor.submit(temperatureController);
+//        executor.submit(sprinklerController);
+//        executor.submit(temperatureController);
         executor.submit(life);
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();

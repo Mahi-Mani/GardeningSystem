@@ -45,6 +45,7 @@ public class LifeController implements Runnable {
 //                if (iterator.next() != null) {
                     plant = iterator.next();
                     if (plant.isAlive()) {
+//                        With each passing day, reduce the age of plant by 5
                         plant.setAge(plant.getAge() - 5);
                     }
                     if (plant.getAge() <= 0) {

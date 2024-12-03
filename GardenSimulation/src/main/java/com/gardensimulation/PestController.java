@@ -56,6 +56,7 @@ public class PestController {
                     System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
+                    attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
                 }
@@ -65,6 +66,7 @@ public class PestController {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
+                    attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
                 }
@@ -100,28 +102,28 @@ public class PestController {
 //                        System.out.println("!!!APPLE IS ATTACJED");
                         if (plant instanceof Apple) {
                             Apple apple = (Apple) plant;
-                            apple.setAttackedImage();
+                            Platform.runLater(apple::setAttackedImage);
                         } else if (plant instanceof Orange) {
                             Orange orange = (Orange) plant;
-                            orange.setAttackedImage();
+                            Platform.runLater(orange::setAttackedImage);
                         } else if (plant instanceof Lemon) {
                             Lemon lemon = (Lemon) plant;
-                            lemon.setAttackedImage();
+                            Platform.runLater(lemon::setAttackedImage);
                         } else if (plant instanceof Lily) {
                             Lily lily = (Lily) plant;
-                            lily.setAttackedImage();
+                            Platform.runLater(lily::setAttackedImage);
                         } else if (plant instanceof Tulip) {
                             Tulip tulip = (Tulip) plant;
-                            tulip.setAttackedImage();
+                            Platform.runLater(tulip::setAttackedImage);
                         } else if (plant instanceof Tomato) {
                             Tomato tomato = (Tomato) plant;
-                            tomato.setAttackedImage();
+                            Platform.runLater(tomato::setAttackedImage);
                         } else if (plant instanceof Rose) {
                             Rose rose = (Rose) plant;
-                            rose.setAttackedImage();
+                            Platform.runLater(rose::setAttackedImage);
                         } else if (plant instanceof Sunflower) {
                             Sunflower sunflower = (Sunflower) plant;
-                            sunflower.setAttackedImage();
+                            Platform.runLater(sunflower::setAttackedImage);
                         }
 
                         // If using UI updates

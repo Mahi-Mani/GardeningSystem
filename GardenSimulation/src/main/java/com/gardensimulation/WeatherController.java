@@ -1,6 +1,7 @@
 package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -93,15 +94,21 @@ public class WeatherController {
         if ("rainy".equals(currentWeather)) {
             System.out.println("!!!!!!!!!!!!!!RAINY WEATHER SIMULATION");
             simulateRainyDay();
-            pestController.attackPlan("rainy");
+            Platform.runLater(() -> {
+                pestController.attackPlan("rainy");
+            });
         } else if ("sunny".equals(currentWeather)) {
             System.out.println("!!!!!!!!!!!!!!SUNNY WEATHER SIMULATION");
             simulateSunnyDay();
-            pestController.attackPlan("sunny");
+            Platform.runLater(() -> {
+                pestController.attackPlan("sunny");
+            });
         } else if ("cloudy".equals(currentWeather)) {
             System.out.println("!!!!!!!!!!!!!!CLOUDY WEATHER SIMULATION");
             simulateCloudyDay();
-            pestController.attackPlan("cloudy");
+            Platform.runLater(() -> {
+                pestController.attackPlan("cloudy");
+            });
         }
     }
 
@@ -113,11 +120,16 @@ public class WeatherController {
         temperatureController.checkPlantTempStatus();
         temperatureController.adjustTemperature();
         sprinklerController.reduceWaterLevel();
+        sprinklerController.activateSprinklers(Plants.plantsList);
     }
 
     // Simulate rain happening 4 times randomly during a rainy day
     private void simulateRainyDay() {
         System.out.println("Rain is expected throughout the day.");
+        TemperatureController.setCurrentTemperature(temperature);
+        System.out.println("Rainy day temp: " + TemperatureController.getCurrentTemperature());
+        temperatureController.checkPlantTempStatus();
+        temperatureController.adjustTemperature();
         rainController.generateRainfall(Plants.plantsList); // Notify RainController
     }
 
@@ -126,12 +138,15 @@ public class WeatherController {
         System.out.println("It's cloudy today. Rain is less likely.");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             System.out.println("Rain started briefly! 5 units of rain recorded");
+            PesticideController.isPesticideApplied = false;
+            System.out.println("Rain washed the pesticide away!");
             for (Plants plant : Plants.plantsList) {
                 plant.waterThePlant(5);// Notify RainController
             }
         } else {
             System.out.println("No rain today despite cloudy weather.");
         }
+        sprinklerController.activateSprinklers(Plants.plantsList);
     }
 
     // Randomize weather condition for the next day

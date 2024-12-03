@@ -8,7 +8,7 @@ public class TemperatureController implements Runnable {
     private static final Logger log = Logger.getLogger(TemperatureController.class.getName());
     private static final int MIN_SAFE_TEMPERATURE = 50;
     private static final int MAX_SAFE_TEMPERATURE = 100;
-    public static final int OPTIMUM_TEMPERATURE = 45;
+    public static final int OPTIMUM_TEMPERATURE = 70;
     private static int currentTemperature;
     private TemperatureRegulator regulator = new TemperatureRegulator();
     private boolean isRunning = true;

@@ -8,6 +8,6 @@ public class TemperatureRegulator {
 
     public void activate() {
         temperatureController.setCurrentTemperature(TemperatureController.OPTIMUM_TEMPERATURE);
-        log.info("Temperature Regulator activated! Setting current Temperature to 45");
+        log.info("Temperature Regulator activated! Setting current Temperature to OPTIMUM!");
     }
 }
