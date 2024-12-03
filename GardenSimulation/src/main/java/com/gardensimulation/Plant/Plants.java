@@ -3,6 +3,8 @@ package com.gardensimulation.Plant;
 import com.gardensimulation.LifeController;
 import com.gardensimulation.Pests.Pest;
 import com.gardensimulation.SprinklerController;
+import javafx.application.Platform;
+import com.gardensimulation.ViewController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -213,6 +215,13 @@ public class Plants {
 //        synchronized (plantsList) {
 //            plantsList.removeIf(plant -> plant.equals(this));
 //        }
+        Platform.runLater(() -> {
+            life.removePlantFromGrid(this.getRow(), this.getCol());
+            ViewController.plantCountLabel.setText("No of Plants: " + Plants.plantsList.size());
+        });
+        synchronized (plantsList) {
+            plantsList.remove(this); // Remove plant from the list
+        }
     }
 
     public void waterThePlant(int amount) {

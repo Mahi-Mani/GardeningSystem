@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 import java.util.*;
@@ -44,6 +45,7 @@ public class ViewController {
     private static int numRows;
     private static int numCols;
     private com.gardensimulation.ViewController viewController;
+    public static Label plantCountLabel;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -236,13 +238,16 @@ public class ViewController {
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         Platform.runLater(() -> {
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                    grid, btnPane, root);
+                    grid, btnPane, plantCountLabel, root);
 //            weatherLayout.getChildren().addAll(weatherPane);
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
 //        weatherLayout.setPrefWidth(1);
 //        weatherLayout.setStyle("-fx-padding: 500; -fx-border-color: #ccc; -fx-border-width: 10; -fx-border-radius: 5;");
 //        layout.setAlignment(Pos.TOP_CENTER);
+
+        plantCountLabel = new Label("No. of Plants: 0");
+        plantCountLabel.setStyle("-fx-font-size: 16px; -fx-padding: 5;");
 
         stackPane.getChildren().addAll(layout);
 //        stackPane.getChildren().add(weatherLayout);
@@ -439,6 +444,9 @@ public class ViewController {
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
                 break;
         }
+        Platform.runLater(() -> {
+            plantCountLabel.setText("No of Plants: " + Plants.plantsList.size());
+        });
     }
 
     //    Overlay Pest
