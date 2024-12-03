@@ -108,9 +108,19 @@ public class ViewController {
     public StackPane createContent() {
         // Create the root layout
         StackPane stackPane = new StackPane();
+        Image gardenBackgroundImage = new Image("https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0=");
+        BackgroundImage backgroundImage = new BackgroundImage(
+                gardenBackgroundImage,
+                BackgroundRepeat.NO_REPEAT, // How the image is repeated
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, // Position of the image
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
 
+        // Set the background to the Pane
+        stackPane.setBackground(new Background(backgroundImage));
         // Set background color for the root layout
-        stackPane.setStyle("-fx-background-color: #008631;");
+//        stackPane.setStyle("-fx-background-color: #008631;");
 
         // Create the 8x6 grid
         grid = createGrid();
