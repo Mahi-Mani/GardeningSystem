@@ -135,13 +135,13 @@ public class WeatherController {
 
     // Simulate cloudy day with reduced rain probability
     private void simulateCloudyDay() {
-        System.out.println("It's cloudy today. Rain is less likely.");
+        System.out.println("It's cloudy today. 30% chance of rain!");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             System.out.println("Rain started briefly! 5 units of rain recorded");
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
             for (Plants plant : Plants.plantsList) {
-                plant.waterThePlant(5);// Notify RainController
+                plant.waterThePlant(5);// Notify SprinklerController
             }
         } else {
             System.out.println("No rain today despite cloudy weather.");

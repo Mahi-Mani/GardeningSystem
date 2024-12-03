@@ -246,7 +246,7 @@ public class ViewController {
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         Platform.runLater(() -> {
             cardLayout.getChildren().addAll(root, root1);
-            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
+            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(),
                     grid, btnPane, cardLayout);
 
 //            cardLayout.getChildren().addAll(layout1);
