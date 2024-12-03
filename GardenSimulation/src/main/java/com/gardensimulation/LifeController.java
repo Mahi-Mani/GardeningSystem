@@ -1,5 +1,6 @@
 package com.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.Plant.Plants;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -36,6 +37,7 @@ public class LifeController implements Runnable {
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
+            ViewController.updatePesticideUI(PesticideController.isPesticideApplied, "https://www.autoimmuneinstitute.org/wp-content/uploads/2024/02/Pesticides-1.jpg");
             weatherController.updateWeatherForNextDay();
 
             synchronized (Plants.plantsList) {
@@ -85,6 +87,7 @@ public class LifeController implements Runnable {
         System.out.println(weatherController.getCurrentWeather());
         Platform.runLater(() -> {
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
+            ViewController.updatePesticideUI(PesticideController.isPesticideApplied, "https://www.autoimmuneinstitute.org/wp-content/uploads/2024/02/Pesticides-1.jpg");
         });
     }
 

@@ -36,6 +36,7 @@ public class ViewController {
     private PesticideController pesticideController;
     private static Map<String, Node> gridNodeMap = new HashMap<>();
     BorderPane root = new BorderPane();
+    BorderPane root1 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
@@ -44,6 +45,7 @@ public class ViewController {
     private static int numRows;
     private static int numCols;
     private com.gardensimulation.ViewController viewController;
+    private static PesticideCard pesticideCard;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -60,6 +62,7 @@ public class ViewController {
         executor.submit(life);
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();
+        pesticideCard = new PesticideCard();
 
 //        weatherPane = new StackPane();
 //        weatherPane = new VBox(20);
@@ -67,16 +70,21 @@ public class ViewController {
 //        weatherPane.getChildren().add(weatherCard);
         root.setTop(weatherCard);
         root.setMaxWidth(100);
+        root1.setTop(pesticideCard);
+        root1.setMaxWidth(100);
     }
 
     public ViewController getViewController() {
         return viewController;
     }
 
-    //Weather try
-// Method to update the weather dynamically
+    // Method to update the weather dynamically
     public static void updateWeather(String weatherCondition, String imageUrl) {
         weatherCard.updateWeather(weatherCondition, imageUrl);
+    }
+
+    public static void updatePesticideUI(Boolean status, String imageUrl) {
+        pesticideCard.updatePesticideCard(status, imageUrl);
     }
 
     public void setCurrentPlantCount(int currentPlantCount) {
@@ -232,11 +240,16 @@ public class ViewController {
 //        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
+//        VBox cardLayout = new VBox(20);
+        HBox cardLayout = new HBox(20);
 //        VBox weatherLayout = new VBox(1);
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         Platform.runLater(() -> {
+            cardLayout.getChildren().addAll(root, root1);
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridPane,
-                    grid, btnPane, root);
+                    grid, btnPane, cardLayout);
+
+//            cardLayout.getChildren().addAll(layout1);
 //            weatherLayout.getChildren().addAll(weatherPane);
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
