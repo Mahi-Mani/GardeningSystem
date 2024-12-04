@@ -84,8 +84,10 @@ public class WeatherController {
 
     // Simulate weather for the day
     public void simulateDailyWeather() {
+        String temperatureMsg = "Temperature: " + temperature + "°F";
         System.out.println("Today's weather: " + currentWeather);
-        System.out.println("Temperature: " + temperature + "°F");
+        System.out.println(temperatureMsg);
+        ViewController.addLogMessage(temperatureMsg, "info");
         System.out.println("Humidity: " + humidity + "%");
         setCurrentWeather(currentWeather);
         setWeatherWidget(currentWeather);
@@ -128,21 +130,29 @@ public class WeatherController {
 
     // Simulate rain happening 4 times randomly during a rainy day
     private void simulateRainyDay() {
-        System.out.println("Rain is expected throughout the day.");
+        String rainyMsg = "Rain is expected throughout the day.";
+        String rainPesticideMsg = "Rain washed the pesticide away!";
+        System.out.println(rainyMsg);
+        ViewController.addLogMessage(rainyMsg, "info");
         TemperatureController.setCurrentTemperature(temperature);
         System.out.println("Rainy day temp: " + TemperatureController.getCurrentTemperature());
         temperatureController.checkPlantTempStatus();
         temperatureController.adjustTemperature();
         rainController.generateRainfall(Plants.plantsList); // Notify RainController
         PesticideController.isPesticideApplied = false;
-        System.out.println("Rain washed the pesticide away!");
+        System.out.println(rainPesticideMsg);
+        ViewController.addLogMessage(rainPesticideMsg, "warn");
     }
 
     // Simulate cloudy day with reduced rain probability
     private void simulateCloudyDay() {
-        System.out.println("It's cloudy today. 30% chance of rain!");
+        String cloudyMsg = "It's cloudy today. 30% chance of rain!";
+        String noRainMsg = "No rain today despite cloudy weather.";
+        System.out.println(cloudyMsg);
+        ViewController.addLogMessage(cloudyMsg, "info");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             System.out.println("Rain started briefly! 5 units of rain recorded");
+            ViewController.addLogMessage("5 units of rain recorded!", "info");
             ViewController.updateRainUI(true);
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
@@ -150,8 +160,9 @@ public class WeatherController {
                 plant.waterThePlant(5);// Notify SprinklerController
             }
         } else {
-            System.out.println("No rain today despite cloudy weather.");
+            System.out.println(noRainMsg);
             ViewController.updateRainUI(false);
+            ViewController.addLogMessage(noRainMsg, "info");
         }
         sprinklerController.activateSprinklers(Plants.plantsList);
     }

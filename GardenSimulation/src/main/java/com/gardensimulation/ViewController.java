@@ -6,14 +6,12 @@ import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
 import javafx.scene.Node;
 
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 
 import java.util.*;
@@ -52,6 +50,7 @@ public class ViewController {
     private static RainCard rainCard;
     private static boolean isRaining = false;
     static HBox cardLayout;
+    private static ListView<String> logView;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -72,6 +71,7 @@ public class ViewController {
         sprinklerCard = new SprinklerCard();
         rainCard = new RainCard();
         cardLayout = new HBox(20);
+        logView = new ListView<>();
 
 //        weatherPane = new StackPane();
 //        weatherPane = new VBox(20);
@@ -85,6 +85,57 @@ public class ViewController {
         root2.setMaxWidth(100);
         root3.setTop(rainCard);
         root3.setMaxWidth(100);
+    }
+
+    public VBox createLogViewer() {
+        logView.setPrefHeight(500);
+        logView.setPrefWidth(500);
+        logView.setStyle("-fx-font-family: 'Calibri'; -fx-font-size: 16;");
+        ImageView icon = new ImageView(new Image("https://seewhatgrows.org/wp-content/uploads/2017/10/icon-garden.png"));
+        ImageView butterfly = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/235/235423.png"));
+        icon.setFitWidth(25);
+        icon.setFitHeight(25);
+        butterfly.setFitWidth(25);
+        butterfly.setFitHeight(25);
+        VBox logViewer = new VBox();
+        HBox header = new HBox();
+        header.getChildren().addAll(icon, new Label(" Garden Status "), butterfly);
+        logViewer.getChildren().add(header);
+        logViewer.getChildren().add(logView);
+
+        return logViewer;
+    }
+
+    public static void addLogMessage(String message, String label) {
+        Platform.runLater(() -> {
+//            logView.setStyle("-fx-font-family: 'Calibri'; -fx-font-size: 16;-fx-text-fill: 'red';");
+            logView.setCellFactory(listView -> new ListCell<String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item);
+                        if (label.equalsIgnoreCase("severe")) {
+                            setStyle("-fx-text-fill: red; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                        } else if (label.equalsIgnoreCase("info")) {
+                            setStyle("-fx-text-fill: #4a7c59; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                        } else if (label.equalsIgnoreCase("warn")) {
+                            setStyle("-fx-text-fill: orange; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                        }
+                    }
+                }
+            });
+            if (logView.getItems().size() > 1000) { // Limit logs
+                logView.getItems().remove(0);
+            }
+            logView.getItems().add(message);
+        });
+    }
+
+    public static void clearLogs() {
+        logView.getItems().clear();
     }
 
     public ViewController getViewController() {
@@ -264,14 +315,17 @@ public class ViewController {
 //        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
+        HBox gridLogLayout = new HBox(20);
 //        HBox cardLayout = new HBox(20);
 //        VBox weatherLayout = new VBox(1);
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         updateCardLayout(isRaining);
         Platform.runLater(() -> {
             layout.getChildren().clear();
-            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(),
-                    grid, btnPane, cardLayout);
+            gridLogLayout.getChildren().clear();
+            gridLogLayout.getChildren().addAll(grid, createLogViewer());
+            layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridLogLayout,
+                    btnPane, cardLayout);
 
 //            cardLayout.getChildren().addAll(layout1);
 //            weatherLayout.getChildren().addAll(weatherPane);

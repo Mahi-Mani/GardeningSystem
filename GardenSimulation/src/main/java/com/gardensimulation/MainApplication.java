@@ -21,6 +21,7 @@ public class MainApplication extends Application {
         // Set up the scene and show the stage
         Platform.runLater(() -> {
             Scene scene = new Scene(controller.createContent(), 800, 700);
+            scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
             primaryStage.setTitle("Automated Gardening System");
             primaryStage.setScene(scene);
             primaryStage.show();

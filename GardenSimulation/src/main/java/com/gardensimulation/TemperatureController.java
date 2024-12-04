@@ -1,5 +1,6 @@
 package com.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.Plant.Plants;
 
 import java.util.logging.Logger;
@@ -39,6 +40,7 @@ public class TemperatureController implements Runnable {
             }
 //            Activate heating controller
             log.warning("Current Temperature is below MINIMUM safe temperature!");
+            ViewController.addLogMessage("Current Temperature is below MINIMUM safe temperature!", "warn");
             regulator.activate();
         } else if (currentTemperature > MAX_SAFE_TEMPERATURE) {
             for (Plants plant : Plants.plantsList) {
@@ -46,9 +48,11 @@ public class TemperatureController implements Runnable {
             }
 //            Activate cooling controller
             log.warning("Current Temperature is above MAXIMUM safe temperature!");
+            ViewController.addLogMessage("Current Temperature is above MAXIMUM safe temperature!", "warn");
             regulator.activate();
         } else {
             log.info("Current Temperature is OPTIMUM! No need to turn on the regulator!");
+            ViewController.addLogMessage("OPTIMUM Temperature! No need to turn on the regulator!", "info");
         }
     }
 
