@@ -50,7 +50,7 @@ public class ViewController {
     private static RainCard rainCard;
     private static boolean isRaining = false;
     static HBox cardLayout;
-    private static ListView<String> logView;
+    private static ListView<LogMessage> logView;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -102,37 +102,44 @@ public class ViewController {
         header.getChildren().addAll(icon, new Label(" Garden Status "), butterfly);
         logViewer.getChildren().add(header);
         logViewer.getChildren().add(logView);
-
         return logViewer;
     }
 
+
     public static void addLogMessage(String message, String label) {
         Platform.runLater(() -> {
-//            logView.setStyle("-fx-font-family: 'Calibri'; -fx-font-size: 16;-fx-text-fill: 'red';");
-            logView.setCellFactory(listView -> new ListCell<String>() {
+            // Create a LogMessage object
+            LogMessage logMessage = new LogMessage(message, label);
+
+            // Set the cell factory for ListView
+            logView.setCellFactory(listView -> new ListCell<LogMessage>() {
                 @Override
-                protected void updateItem(String item, boolean empty) {
+                protected void updateItem(LogMessage item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
-                        setStyle("");
+                        setStyle(""); // Reset style
                     } else {
-                        setText(item);
-                        setStyle("");
-                        if (label.equalsIgnoreCase("severe")) {
+                        setText(item.getMessage());  // Set the message as text
+                        setStyle(""); // Reset the style
+
+                        // Apply style based on severity
+                        if (item.getSeverity().equalsIgnoreCase("severe")) {
                             setStyle("-fx-text-fill: red;");
-                        } else if (label.equalsIgnoreCase("info")) {
+                        } else if (item.getSeverity().equalsIgnoreCase("info")) {
                             setStyle("-fx-text-fill: #4a7c59;");
-                        } else if (label.equalsIgnoreCase("warn")) {
+                        } else if (item.getSeverity().equalsIgnoreCase("warn")) {
                             setStyle("-fx-text-fill: orange;");
                         }
                     }
                 }
             });
+
+            // Add the LogMessage to the ListView
             if (logView.getItems().size() > 1000) { // Limit logs
                 logView.getItems().remove(0);
             }
-            logView.getItems().add(message);
+            logView.getItems().add(logMessage); // Add the new log message
         });
     }
 
