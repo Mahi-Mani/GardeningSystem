@@ -37,6 +37,7 @@ public class ViewController {
     private static Map<String, Node> gridNodeMap = new HashMap<>();
     BorderPane root = new BorderPane();
     BorderPane root1 = new BorderPane();
+    BorderPane root2 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
@@ -46,6 +47,7 @@ public class ViewController {
     private static int numCols;
     private com.gardensimulation.ViewController viewController;
     private static PesticideCard pesticideCard;
+    private static SprinklerCard sprinklerCard;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -63,6 +65,7 @@ public class ViewController {
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();
         pesticideCard = new PesticideCard();
+        sprinklerCard = new SprinklerCard();
 
 //        weatherPane = new StackPane();
 //        weatherPane = new VBox(20);
@@ -72,6 +75,8 @@ public class ViewController {
         root.setMaxWidth(100);
         root1.setTop(pesticideCard);
         root1.setMaxWidth(100);
+        root2.setTop(sprinklerCard);
+        root2.setMaxWidth(100);
     }
 
     public ViewController getViewController() {
@@ -85,6 +90,10 @@ public class ViewController {
 
     public static void updatePesticideUI(Boolean status, String imageUrl) {
         pesticideCard.updatePesticideCard(status, imageUrl);
+    }
+
+    public static void updateSprinklerUI(String status, String imageUrl) {
+        sprinklerCard.updateSprinkler(status, imageUrl);
     }
 
     public void setCurrentPlantCount(int currentPlantCount) {
@@ -245,7 +254,7 @@ public class ViewController {
 //        VBox weatherLayout = new VBox(1);
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         Platform.runLater(() -> {
-            cardLayout.getChildren().addAll(root, root1);
+            cardLayout.getChildren().addAll(root, root1, root2);
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(),
                     grid, btnPane, cardLayout);
 
@@ -310,13 +319,17 @@ public class ViewController {
         }
 
         Random random = new Random();
-        while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
-            int row = random.nextInt(numRows);
-            int col = random.nextInt(numCols);
+        try {
+            while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
+                int row = random.nextInt(numRows);
+                int col = random.nextInt(numCols);
 
-            if (!occupiedCells.contains(row + "," + col)) {
-                placePlant(row, col); // Place a plant in the empty cell
+                if (!occupiedCells.contains(row + "," + col)) {
+                    placePlant(row, col); // Place a plant in the empty cell
+                }
             }
+        } catch (IllegalArgumentException ie) {
+            System.out.println("Bound is not positive!");
         }
     }
 
