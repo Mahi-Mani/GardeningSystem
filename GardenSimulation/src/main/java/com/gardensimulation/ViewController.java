@@ -35,9 +35,10 @@ public class ViewController {
     private PestController pestController;
     private PesticideController pesticideController;
     private static Map<String, Node> gridNodeMap = new HashMap<>();
-    BorderPane root = new BorderPane();
-    BorderPane root1 = new BorderPane();
-    BorderPane root2 = new BorderPane();
+    static BorderPane root = new BorderPane();
+    static BorderPane root1 = new BorderPane();
+    static BorderPane root2 = new BorderPane();
+    static BorderPane root3 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
@@ -48,6 +49,9 @@ public class ViewController {
     private com.gardensimulation.ViewController viewController;
     private static PesticideCard pesticideCard;
     private static SprinklerCard sprinklerCard;
+    private static RainCard rainCard;
+    private static boolean isRaining = false;
+    static HBox cardLayout;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -66,6 +70,8 @@ public class ViewController {
         weatherCard = new WeatherCard();
         pesticideCard = new PesticideCard();
         sprinklerCard = new SprinklerCard();
+        rainCard = new RainCard();
+        cardLayout = new HBox(20);
 
 //        weatherPane = new StackPane();
 //        weatherPane = new VBox(20);
@@ -77,6 +83,8 @@ public class ViewController {
         root1.setMaxWidth(100);
         root2.setTop(sprinklerCard);
         root2.setMaxWidth(100);
+        root3.setTop(rainCard);
+        root3.setMaxWidth(100);
     }
 
     public ViewController getViewController() {
@@ -94,6 +102,13 @@ public class ViewController {
 
     public static void updateSprinklerUI(boolean status) {
         sprinklerCard.updateSprinkler(status);
+    }
+
+    public static void updateRainUI(boolean status) {
+        isRaining = status;
+        rainCard.updateRain();
+        System.out.println("Inisde updaterainUI");
+        updateCardLayout(isRaining);
     }
 
     public void setCurrentPlantCount(int currentPlantCount) {
@@ -249,12 +264,12 @@ public class ViewController {
 //        btnPane.add(rainBtn, 1, 0);
 
         VBox layout = new VBox(20);
-//        VBox cardLayout = new VBox(20);
-        HBox cardLayout = new HBox(20);
+//        HBox cardLayout = new HBox(20);
 //        VBox weatherLayout = new VBox(1);
 //        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
+        updateCardLayout(isRaining);
         Platform.runLater(() -> {
-            cardLayout.getChildren().addAll(root, root1, root2);
+            layout.getChildren().clear();
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(),
                     grid, btnPane, cardLayout);
 
@@ -270,6 +285,20 @@ public class ViewController {
 //        stackPane.getChildren().add(weatherLayout);
 
         return stackPane;
+    }
+
+    public static void updateCardLayout(boolean isRaining) {
+        Platform.runLater(() -> {
+            cardLayout.getChildren().clear();
+            if (isRaining) {
+                cardLayout.getChildren().addAll(root, root1, root2, root3);
+            } else {
+                cardLayout.getChildren().addAll(root, root1, root2);
+            }
+
+//            cardLayout.getChildren().addAll(layout1);
+//            weatherLayout.getChildren().addAll(weatherPane);
+        });
     }
 
     private GridPane createGrid() {

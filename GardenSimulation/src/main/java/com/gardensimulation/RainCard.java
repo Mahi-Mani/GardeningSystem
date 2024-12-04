@@ -36,11 +36,12 @@ public class RainCard extends VBox {
     }
 
     // Method to update the weather card
-    public void updateRain(String weatherCondition, String imageUrl) {
+    public void updateRain() {
         // Update the weather icon
-        rainIcon.setImage(new Image(imageUrl));
+        rainIcon.setImage(new Image("https://i.pinimg.com/originals/b1/f3/f1/b1f3f164e96c1b8b203fd7d34640eb57.gif"));
 
         // Update the weather text
-        rainTextLabel.setText(weatherCondition);
+        rainTextLabel.setText("Raining!");
+        System.out.println("Inisde updaterainUI update rain");
     }
 }

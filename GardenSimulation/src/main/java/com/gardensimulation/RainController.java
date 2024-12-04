@@ -22,7 +22,7 @@ public class RainController {
     public void generateRainfall(List<Plants> plants) {
         rainfallUnits = random.nextInt(20);
         log.info("It's raining!" + rainfallUnits + " units of rain recorded!");
-//        ViewController.updateRainUI("Raining", "https://i.pinimg.com/originals/ad/ff/f5/adfff5954c255a39f0afedfc7e7c9937.gif");
+        ViewController.updateRainUI(true);
         for (Plants plant : plants) {
             plant.waterThePlant(rainfallUnits);
         }

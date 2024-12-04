@@ -122,6 +122,7 @@ public class WeatherController {
         temperatureController.adjustTemperature();
         sprinklerController.reduceWaterLevel();
         sprinklerController.activateSprinklers(Plants.plantsList);
+        ViewController.updateRainUI(false);
 //        ViewController.updateRainUI("NO", "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png");
     }
 
@@ -142,7 +143,7 @@ public class WeatherController {
         System.out.println("It's cloudy today. 30% chance of rain!");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             System.out.println("Rain started briefly! 5 units of rain recorded");
-//            ViewController.updateRainUI("Raining", "https://i.pinimg.com/originals/ad/ff/f5/adfff5954c255a39f0afedfc7e7c9937.gif");
+            ViewController.updateRainUI(true);
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
             for (Plants plant : Plants.plantsList) {
@@ -150,7 +151,7 @@ public class WeatherController {
             }
         } else {
             System.out.println("No rain today despite cloudy weather.");
-//            ViewController.updateRainUI("NO", "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png");
+            ViewController.updateRainUI(false);
         }
         sprinklerController.activateSprinklers(Plants.plantsList);
     }
