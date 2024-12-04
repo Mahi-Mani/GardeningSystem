@@ -24,6 +24,7 @@ public class RainController {
         log.info("It's raining!" + rainfallUnits + " units of rain recorded!");
         ViewController.updateRainUI(true);
         ViewController.addLogMessage(rainfallUnits + " units of rain recorded!", "info");
+        ViewController.appendLogToFile(rainfallUnits + " units of rain recorded!", "info");
         for (Plants plant : plants) {
             plant.waterThePlant(rainfallUnits);
         }

@@ -246,7 +246,7 @@ public class Plants {
         }
         if (this.age <= 0) {
             System.out.println("Plant dying due to prolonged change in the water level @@@@@@@@@@@@@@@@@@@@@");
-            ViewController.addLogMessage("Plant " + this.getName() + " dying due to prolonged change in the water level !", "severe");
+//            ViewController.addLogMessage("Plant " + this.getName() + " dying due to prolonged change in the water level !", "severe");
             this.die();
         }
     }
@@ -274,7 +274,7 @@ public class Plants {
         }
         if (this.age < 0) {
             System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
-            ViewController.addLogMessage("Plant died due to prolonged temperature change!", "severe");
+//            ViewController.addLogMessage("Plant died due to prolonged temperature change!", "severe");
             this.die();
         }
     }

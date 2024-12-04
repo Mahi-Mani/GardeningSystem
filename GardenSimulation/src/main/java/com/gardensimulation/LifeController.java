@@ -35,6 +35,7 @@ public class LifeController implements Runnable {
             ViewController.clearLogs();
             log.info("Morning! Day: " + day + " Garden Status Check!");
             ViewController.addLogMessage("Morning! Day: " + day + " Garden Status Check!", "info");
+            ViewController.appendLogToFile("Morning! Day: " + day + " Garden Status Check!", "info");
             viewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
@@ -83,6 +84,7 @@ public class LifeController implements Runnable {
         String morningMsg = "Morning! Day: 1 Garden Status Check!";
         log.info(morningMsg);
         ViewController.addLogMessage(morningMsg, "info");
+        ViewController.appendLogToFile(morningMsg, "info");
         Platform.runLater(() -> {
             ViewController.autoPlacePlant();
         });
@@ -102,8 +104,8 @@ public class LifeController implements Runnable {
     }
 
     public void removePlantFromGrid(int row, int col) {
-
-        System.out.println("Removing plant: " + row + col);
+        log.info("Removing plant: " + row + col);
+        ViewController.addLogMessage("Removing plant: " + row + col, "info");
         String cellKey = row + "," + col;
         // Iterate over all children in the GridPane
         for (Node node : LifeController.grid.getChildren()) {
@@ -158,10 +160,9 @@ public class LifeController implements Runnable {
 
         for (Plants plant : Plants.plantsList) {
             if (!plant.isAlive()) {
-                System.out.println("Age of this plant before death");
-                System.out.println(plant.getAge());
-                System.out.println(currentDay.getDayCounter());
                 log.severe(plant.getName() + " is dead!");
+                ViewController.addLogMessage(plant.getName() + " is dead!", "severe");
+                ViewController.appendLogToFile(plant.getName() + " is dead!", "severe");
             }
         }
     }
@@ -169,6 +170,7 @@ public class LifeController implements Runnable {
     @Override
     public void run() {
         log.info("Lifecycle thread is running!");
+        ViewController.appendLogToFile("Lifecycle thread is running!", "info");
         this.initialize();
         while (isRunning) {
 //            this.adjustPlantHealth();

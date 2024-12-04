@@ -32,7 +32,7 @@ public class RainCard extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
 //        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
-        setStyle("-fx-background-color: lightblue; -fx-padding: 10; -fx-border-color: black; -fx-border-width: 2;");
+        setStyle("-fx-background-color: #d1fb96; -fx-padding: 10; -fx-border-color: black; -fx-border-width: 2;");
     }
 
     // Method to update the weather card

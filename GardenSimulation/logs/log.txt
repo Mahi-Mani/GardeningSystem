@@ -1,0 +1,3 @@
+INFO: Morning! Day: 2 Garden Status Check!
+INFO: (30% chance) pest activity
+INFO: No pest activity!

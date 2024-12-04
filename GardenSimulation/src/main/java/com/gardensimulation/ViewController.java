@@ -14,6 +14,10 @@ import javafx.scene.shape.Rectangle;
 
 import javafx.scene.layout.BorderPane;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,7 +43,7 @@ public class ViewController {
     static BorderPane root3 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 15; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 10; // Minimum allowed plants
     private int currentPlantCount = 0;
     private static Set<String> occupiedCells = new HashSet<>();
     private static int numRows;
@@ -51,6 +55,7 @@ public class ViewController {
     private static boolean isRaining = false;
     static HBox cardLayout;
     private static ListView<LogMessage> logView;
+    private static final String LOG_FILE_PATH = "logs/log.txt";
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -102,10 +107,43 @@ public class ViewController {
         header.getChildren().addAll(icon, new Label(" Garden Status "), butterfly);
         logViewer.getChildren().add(header);
         logViewer.getChildren().add(logView);
+        clearLogFile();
         return logViewer;
     }
 
+    public static void clearLogFile() {
+        File logFile = new File(LOG_FILE_PATH);
+//            Delete if exists already
+        if (logFile.exists()) {
+            logFile.delete();
+        }
+    }
 
+    //    Update log details to file
+    public static void appendLogToFile(String message, String label) {
+        try {
+            // Specify the log file path (e.g., logs/log.txt)
+            File logFile = new File(LOG_FILE_PATH);
+
+            // Create the logs directory if it doesn't exist
+            logFile.getParentFile().mkdirs();
+
+            // Open the file in append mode
+            FileWriter fw = new FileWriter(logFile, true); // true = append mode
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            // Write the log message with the severity level
+            bw.write(label.toUpperCase() + ": " + message);
+            bw.newLine(); // Add a new line after each message
+
+            // Close the BufferedWriter
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Update log to UI
     public static void addLogMessage(String message, String label) {
         Platform.runLater(() -> {
             // Create a LogMessage object
@@ -167,7 +205,6 @@ public class ViewController {
     public static void updateRainUI(boolean status) {
         isRaining = status;
         rainCard.updateRain();
-        System.out.println("Inisde updaterainUI");
         updateCardLayout(isRaining);
     }
 
@@ -437,7 +474,7 @@ public class ViewController {
                     // If the cell has a Pane but no children, it's empty and can have a plant
                     continue;
                 } else {
-                    System.out.println("Garden is full!");
+                    log.info("Garden is full!");
                     return; // Exit if the cell already has a plant or is occupied
                 }
             }
@@ -461,7 +498,8 @@ public class ViewController {
                 life.setGrid(grid);
                 Plants.plantsList.add(rose);
                 occupiedCells.add(row + "," + col);
-                log.info("Planting Sunflower at Col: " + col + " Row: " + row);
+                log.info("Planting Rose at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Rose at Col: " + col + " Row: " + row, "info");
                 break;
             case "sunflower":
                 ArrayList<Pest> sunflowerPests = new ArrayList<Pest>();
@@ -475,6 +513,7 @@ public class ViewController {
                 Plants.plantsList.add(sunflower);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting Sunflower at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Sunflower at Col: " + col + " Row: " + row, "info");
                 break;
             case "lily":
                 ArrayList<Pest> lilyPests = new ArrayList<Pest>();
@@ -488,6 +527,7 @@ public class ViewController {
                 Plants.plantsList.add(lily);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting Lily at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Lily at Col: " + col + " Row: " + row, "info");
                 break;
             case "tomato":
                 ArrayList<Pest> tomatoPests = new ArrayList<Pest>();
@@ -501,6 +541,7 @@ public class ViewController {
                 Plants.plantsList.add(tomato);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting Tomato at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Tomato at Col: " + col + " Row: " + row, "info");
                 break;
             case "tulip":
                 ArrayList<Pest> tulipPests = new ArrayList<Pest>();
@@ -514,6 +555,7 @@ public class ViewController {
                 Plants.plantsList.add(tulip);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting a Tulip at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Tulip at Col: " + col + " Row: " + row, "info");
                 break;
             case "lemon":
                 ArrayList<Pest> lemonPests = new ArrayList<Pest>();
@@ -526,6 +568,7 @@ public class ViewController {
                 Plants.plantsList.add(lemon);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting a Lemon at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Lemon at Col: " + col + " Row: " + row, "info");
                 break;
             case "orange":
                 ArrayList<Pest> orangePests = new ArrayList<Pest>();
@@ -538,6 +581,7 @@ public class ViewController {
                 Plants.plantsList.add(orange);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting an Orange at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Orange at Col: " + col + " Row: " + row, "info");
                 break;
             case "apple":
                 ArrayList<Pest> applePests = new ArrayList<Pest>();
@@ -551,6 +595,7 @@ public class ViewController {
                 Plants.plantsList.add(apple);
                 occupiedCells.add(row + "," + col);
                 log.info("Planting an Apple at Col: " + col + " Row: " + row);
+                appendLogToFile("Planting Apple at Col: " + col + " Row: " + row, "info");
                 break;
         }
     }

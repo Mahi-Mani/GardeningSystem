@@ -6,6 +6,7 @@ import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 public class PestController {
     private boolean isRunning = true;
@@ -17,6 +18,7 @@ public class PestController {
     private WeatherController weatherController;
     Random randomSeverity = new Random();
     private volatile boolean isPesticideApplied = false;
+    private static final Logger log = Logger.getLogger(PestController.class.getName());
 
     public PestController(ViewController viewController) {
 //        this.plants = plants;
@@ -44,28 +46,30 @@ public class PestController {
 
     //    Method to attack plants
     public void attackPlan(String weather) {
-        System.out.println("PRINTING WEATHER FROM PEST: " + weather);
         List<Pest> selectedPests = new ArrayList<>();
-        System.out.println("<>>>>>>>>>" + PesticideController.isPesticideApplied + "<<<<<<<<<>>>>");
 
         if (PesticideController.isPesticideApplied) {
-            System.out.println("Pesticide in effect, no pest activity!");
+            log.info("Pesticide in effect, no pest activity!");
+            ViewController.appendLogToFile("Pesticide in effect, no pest activity!", "info");
         } else {
             if (weather == "sunny") {
-                System.out.println("(30% chance) pest activity due to Sunny weather.");
+                log.info("(30% chance) pest activity due to Sunny weather.");
                 ViewController.addLogMessage("(30% chance) pest activity", "info");
+                ViewController.appendLogToFile("(30% chance) pest activity", "info");
                 if (random.nextInt(10) < 3) {
                     System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
                     attackPlants(selectedPests);
                 } else {
-                    System.out.println("No pest activity!");
+                    log.info("No pest activity!");
                     ViewController.addLogMessage("No pest activity!", "info");
+                    ViewController.appendLogToFile("No pest activity!", "info");
                 }
             } else if (weather == "cloudy") {
-                System.out.println("(40% chance) pest activity due to Cloudy weather.");
+                log.info("(40% chance) pest activity due to Cloudy weather.");
                 ViewController.addLogMessage("(40% chance) pest activity", "info");
+                ViewController.appendLogToFile("(40% chance) pest activity", "info");
                 if (random.nextInt(10) < 4) {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
@@ -73,23 +77,26 @@ public class PestController {
                     attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
+                    log.info("No pest activity!");
                     ViewController.addLogMessage("No pest activity!", "info");
+                    ViewController.appendLogToFile("No pest activity!", "info");
                 }
             } else if (weather == "rainy") {
-                System.out.println("Increased pest activity due to high humid Rainy weather!");
+                log.warning("Increased pest activity due to high humid Rainy weather!");
                 ViewController.addLogMessage("Increased pest activity due to high humid Rainy weather!!", "warn");
+                ViewController.appendLogToFile("Increased pest activity due to high humid Rainy weather!!", "warn");
                 selectedPests = selectRandomPests(weather);
                 System.out.println(selectedPests);
                 attackPlants(selectedPests);
                 PesticideController.isPesticideApplied = false;
-                System.out.println("Pesticide is washed away due to rain.");
+                log.warning("Pesticide is washed away due to rain.");
                 ViewController.addLogMessage("Pesticide is washed away due to rain.", "warn");
+                ViewController.appendLogToFile("Pesticide is washed away due to rain.", "warn");
             }
         }
     }
 
     public void attackPlants(List<Pest> selectedPests) {
-        System.out.println("INSIDE ATTACK PLANTS METHODS");
         // Attack plants vulnerable to the selected pests
         Iterator<Pest> pestIterator = selectedPests.iterator();
         while (pestIterator.hasNext()) {
@@ -103,11 +110,11 @@ public class PestController {
                     if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
                         int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
                         plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
-                        System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
+                        log.warning(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
                         ViewController.addLogMessage(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!", "severe");
-                        System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
+                        ViewController.appendLogToFile(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!", "severe");
                         plant.addPest(pest.getName());
-//                        System.out.println("!!!APPLE IS ATTACJED");
+
                         if (plant instanceof Apple) {
                             Apple apple = (Apple) plant;
                             Platform.runLater(apple::setAttackedImage);
@@ -141,6 +148,7 @@ public class PestController {
                             // Handle plant death logic
 //                            System.out.println("Handing Plant dyig logic in pest..........");
                             ViewController.addLogMessage("Plant " + plant.getName() + " died due to pest attack!", "severe");
+                            ViewController.appendLogToFile("Plant " + plant.getName() + " died due to pest attack!", "severe");
                             plant.die();
                             plantIterator.remove();
                         }
@@ -189,6 +197,8 @@ public class PestController {
         }
 
         ViewController.addLogMessage("Today's weather attracts " + pestNames.toString(), "warn");
+        log.warning("Today's weather attracts " + pestNames.toString());
+        ViewController.appendLogToFile("Today's weather attracts " + pestNames.toString(), "warn");
         return potentialPests;
     }
 

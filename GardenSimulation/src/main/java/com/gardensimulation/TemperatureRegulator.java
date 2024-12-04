@@ -10,5 +10,6 @@ public class TemperatureRegulator {
         temperatureController.setCurrentTemperature(TemperatureController.OPTIMUM_TEMPERATURE);
         log.info("Temperature Regulator activated! Setting current Temperature to OPTIMUM!");
         ViewController.addLogMessage("Temperature Regulator activated! Setting current Temperature to OPTIMUM!", "info");
+        ViewController.appendLogToFile("Temperature Regulator activated! Setting current Temperature to OPTIMUM!", "info");
     }
 }
