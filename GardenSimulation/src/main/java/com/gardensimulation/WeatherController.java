@@ -1,5 +1,6 @@
 package com.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.Plant.Plants;
 import javafx.application.Platform;
 
@@ -34,7 +35,7 @@ public class WeatherController {
     }
 
     public String generateRandomWeather() {
-        String[] conditions = {"sunny", "cloudy"};
+        String[] conditions = {"sunny", "cloudy", "rainy"};
         return conditions[random.nextInt(conditions.length)];
     }
 
@@ -121,6 +122,7 @@ public class WeatherController {
         temperatureController.adjustTemperature();
         sprinklerController.reduceWaterLevel();
         sprinklerController.activateSprinklers(Plants.plantsList);
+//        ViewController.updateRainUI("NO", "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png");
     }
 
     // Simulate rain happening 4 times randomly during a rainy day
@@ -131,6 +133,8 @@ public class WeatherController {
         temperatureController.checkPlantTempStatus();
         temperatureController.adjustTemperature();
         rainController.generateRainfall(Plants.plantsList); // Notify RainController
+        PesticideController.isPesticideApplied = false;
+        System.out.println("Rain washed the pesticide away!");
     }
 
     // Simulate cloudy day with reduced rain probability
@@ -138,6 +142,7 @@ public class WeatherController {
         System.out.println("It's cloudy today. 30% chance of rain!");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             System.out.println("Rain started briefly! 5 units of rain recorded");
+//            ViewController.updateRainUI("Raining", "https://i.pinimg.com/originals/ad/ff/f5/adfff5954c255a39f0afedfc7e7c9937.gif");
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
             for (Plants plant : Plants.plantsList) {
@@ -145,6 +150,7 @@ public class WeatherController {
             }
         } else {
             System.out.println("No rain today despite cloudy weather.");
+//            ViewController.updateRainUI("NO", "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png");
         }
         sprinklerController.activateSprinklers(Plants.plantsList);
     }

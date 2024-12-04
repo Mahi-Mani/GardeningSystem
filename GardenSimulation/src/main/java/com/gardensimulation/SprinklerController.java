@@ -12,6 +12,7 @@ public class SprinklerController implements Runnable {
     private static final Logger log = Logger.getLogger(SprinklerController.class.getName());
     private TemperatureController temperatureController;
     private boolean isRunning = true;
+    public static boolean isSprinklerRunning = false;
 
     public void activateSprinklers(List<Plants> plants) {
         int avgWaterReq = calculateWaterForGarden(plants);
@@ -25,14 +26,17 @@ public class SprinklerController implements Runnable {
                     plant.waterThePlant(avgWaterReq);
                 }
                 log.info("Sprinklers activated! Plants received an average of " + avgWaterReq + " units.");
+                isSprinklerRunning = true;
                 TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 5);
-                ViewController.updateSprinklerUI("ON", "https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
+//                ViewController.updateSprinklerUI("ON", "https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
             } else {
                 log.info("Sufficient water in the garden already! No need sprinklers!");
-                ViewController.updateSprinklerUI("OFF", "https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp");
+                isSprinklerRunning = false;
+//                ViewController.updateSprinklerUI("OFF", "https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp");
             }
         } else {
             log.info("There are no plants in the garden!");
+            isSprinklerRunning = false;
         }
     }
 

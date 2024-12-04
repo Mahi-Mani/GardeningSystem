@@ -1,5 +1,6 @@
 package com.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.Plant.Plants;
 
 import java.util.List;
@@ -21,7 +22,8 @@ public class RainController {
     public void generateRainfall(List<Plants> plants) {
         rainfallUnits = random.nextInt(20);
         log.info("It's raining!" + rainfallUnits + " units of rain recorded!");
-        for(Plants plant: plants) {
+//        ViewController.updateRainUI("Raining", "https://i.pinimg.com/originals/ad/ff/f5/adfff5954c255a39f0afedfc7e7c9937.gif");
+        for (Plants plant : plants) {
             plant.waterThePlant(rainfallUnits);
         }
 //        TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 15);

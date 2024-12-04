@@ -92,8 +92,8 @@ public class ViewController {
         pesticideCard.updatePesticideCard(status, imageUrl);
     }
 
-    public static void updateSprinklerUI(String status, String imageUrl) {
-        sprinklerCard.updateSprinkler(status, imageUrl);
+    public static void updateSprinklerUI(boolean status) {
+        sprinklerCard.updateSprinkler(status);
     }
 
     public void setCurrentPlantCount(int currentPlantCount) {
@@ -319,17 +319,13 @@ public class ViewController {
         }
 
         Random random = new Random();
-        try {
-            while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
-                int row = random.nextInt(numRows);
-                int col = random.nextInt(numCols);
+        while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
+            int row = random.nextInt(numRows);
+            int col = random.nextInt(numCols);
 
-                if (!occupiedCells.contains(row + "," + col)) {
-                    placePlant(row, col); // Place a plant in the empty cell
-                }
+            if (!occupiedCells.contains(row + "," + col)) {
+                placePlant(row, col); // Place a plant in the empty cell
             }
-        } catch (IllegalArgumentException ie) {
-            System.out.println("Bound is not positive!");
         }
     }
 

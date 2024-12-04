@@ -11,12 +11,11 @@ import javafx.scene.text.Font;
 public class SprinklerCard extends VBox {
     private ImageView sprinklerIcon;  // Image for the weather icon
     private Label sprinklerTextLabel; // Text label for weather condition
-//    private WeatherController weatherController = new WeatherController();
 
-    // Constructor for the WeatherCard
+    // Constructor for the SprinklerCard
     public SprinklerCard() {
         // Create the weather icon ImageView
-        sprinklerIcon = new ImageView("https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp");
+        sprinklerIcon = new ImageView();
         sprinklerIcon.setFitWidth(100);
         sprinklerIcon.setFitHeight(100);
 
@@ -36,11 +35,16 @@ public class SprinklerCard extends VBox {
     }
 
     // Method to update the weather card
-    public void updateSprinkler(String weatherCondition, String imageUrl) {
+    public void updateSprinkler(Boolean status) {
         // Update the weather icon
-        sprinklerIcon.setImage(new Image(imageUrl));
+        if (status) {
+            sprinklerIcon.setImage(new Image("https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"));
+            sprinklerTextLabel.setText("ON");
+        } else {
 
-        // Update the weather text
-        sprinklerTextLabel.setText(weatherCondition);
+            sprinklerIcon.setImage(new Image("https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp"));
+            // Update the weather text
+            sprinklerTextLabel.setText("OFF");
+        }
     }
 }

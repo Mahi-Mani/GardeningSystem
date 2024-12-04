@@ -38,7 +38,7 @@ public class LifeController implements Runnable {
             weatherController.simulateDailyWeather();
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
             ViewController.updatePesticideUI(PesticideController.isPesticideApplied, "https://www.autoimmuneinstitute.org/wp-content/uploads/2024/02/Pesticides-1.jpg");
-//            ViewController.updateSprinklerUI();
+            ViewController.updateSprinklerUI(SprinklerController.isSprinklerRunning);
             weatherController.updateWeatherForNextDay();
 
             synchronized (Plants.plantsList) {
@@ -89,6 +89,7 @@ public class LifeController implements Runnable {
         Platform.runLater(() -> {
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
             ViewController.updatePesticideUI(PesticideController.isPesticideApplied, "https://www.autoimmuneinstitute.org/wp-content/uploads/2024/02/Pesticides-1.jpg");
+            ViewController.updateSprinklerUI(SprinklerController.isSprinklerRunning);
         });
     }
 
