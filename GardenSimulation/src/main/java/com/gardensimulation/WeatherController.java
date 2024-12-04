@@ -7,6 +7,7 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class WeatherController {
     //    private WeatherType currentWeather;
@@ -19,6 +20,7 @@ public class WeatherController {
     private SprinklerController sprinklerController;
     private WeatherWidget weatherWidget;
     private PestController pestController;
+    private static final Logger log = Logger.getLogger(WeatherController.class.getName());
     private String sunnyIcon = "https://www.shutterstock.com/image-photo/orange-sky-sun-clouds-during-260nw-2475701091.jpg";
     private String rainyIcon = "https://centralca.cdn-anvilcms.net/media/images/2019/01/02/images/Rainy_Weather_pix.max-752x423.jpg";
     private String cloudyIcon = "https://t4.ftcdn.net/jpg/05/13/26/73/360_F_513267391_QEmNGeOFLLqrILTnoq21dReUPp5UsoNr.jpg";
@@ -86,29 +88,30 @@ public class WeatherController {
     // Simulate weather for the day
     public void simulateDailyWeather() {
         String temperatureMsg = "Temperature: " + temperature + "°F";
-        System.out.println("Today's weather: " + currentWeather);
-        System.out.println(temperatureMsg);
+        log.info("Today's weather: " + currentWeather);
+        ViewController.appendLogToFile("Today's weather: " + currentWeather, "info");
+        log.info(temperatureMsg);
         ViewController.addLogMessage(temperatureMsg, "info");
-        System.out.println("Humidity: " + humidity + "%");
+        ViewController.appendLogToFile(temperatureMsg, "info");
         setCurrentWeather(currentWeather);
         setWeatherWidget(currentWeather);
 //        weatherWidget.updateWeather(currentWeather);
 //        weatherWidget.requestLayout();
 
         if ("rainy".equals(currentWeather)) {
-            System.out.println("!!!!!!!!!!!!!!RAINY WEATHER SIMULATION");
+            ViewController.appendLogToFile("Rainy Weather simulation", "info");
             simulateRainyDay();
             Platform.runLater(() -> {
                 pestController.attackPlan("rainy");
             });
         } else if ("sunny".equals(currentWeather)) {
-            System.out.println("!!!!!!!!!!!!!!SUNNY WEATHER SIMULATION");
+            ViewController.appendLogToFile("Sunny Weather simulation", "info");
             simulateSunnyDay();
             Platform.runLater(() -> {
                 pestController.attackPlan("sunny");
             });
         } else if ("cloudy".equals(currentWeather)) {
-            System.out.println("!!!!!!!!!!!!!!CLOUDY WEATHER SIMULATION");
+            ViewController.appendLogToFile("Cloudy Weather simulation", "info");
             simulateCloudyDay();
             Platform.runLater(() -> {
                 pestController.attackPlan("cloudy");
@@ -118,7 +121,6 @@ public class WeatherController {
 
     //    Simulate sunny day and notify temperature controller
     private void simulateSunnyDay() {
-        System.out.println("Sunny day");
         TemperatureController.setCurrentTemperature(temperature);
         System.out.println(TemperatureController.getCurrentTemperature());
         temperatureController.checkPlantTempStatus();
@@ -135,14 +137,15 @@ public class WeatherController {
         String rainPesticideMsg = "Rain washed the pesticide away!";
         System.out.println(rainyMsg);
         ViewController.addLogMessage(rainyMsg, "info");
+        ViewController.appendLogToFile(rainyMsg, "info");
         TemperatureController.setCurrentTemperature(temperature);
-        System.out.println("Rainy day temp: " + TemperatureController.getCurrentTemperature());
         temperatureController.checkPlantTempStatus();
         temperatureController.adjustTemperature();
         rainController.generateRainfall(Plants.plantsList); // Notify RainController
         PesticideController.isPesticideApplied = false;
         System.out.println(rainPesticideMsg);
         ViewController.addLogMessage(rainPesticideMsg, "severe");
+        ViewController.appendLogToFile(rainPesticideMsg, "severe");
     }
 
     // Simulate cloudy day with reduced rain probability
@@ -152,12 +155,13 @@ public class WeatherController {
         System.out.println(cloudyMsg);
         ViewController.addLogMessage(cloudyMsg, "info");
         if (random.nextInt(10) < 3) { // 30% chance of rain
-            System.out.println("Rain started briefly! 5 units of rain recorded");
             ViewController.addLogMessage("5 units of rain recorded!", "info");
+            ViewController.appendLogToFile("5 units of rain recorded!", "info");
             ViewController.updateRainUI(true);
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
             ViewController.addLogMessage("Rain washed the pesticide away!", "severe");
+            ViewController.appendLogToFile("Rain washed the pesticide away!", "severe");
             for (Plants plant : Plants.plantsList) {
                 plant.waterThePlant(5);// Notify SprinklerController
             }
@@ -165,6 +169,7 @@ public class WeatherController {
             System.out.println(noRainMsg);
             ViewController.updateRainUI(false);
             ViewController.addLogMessage(noRainMsg, "info");
+            ViewController.appendLogToFile(noRainMsg, "info");
         }
         sprinklerController.activateSprinklers(Plants.plantsList);
     }
