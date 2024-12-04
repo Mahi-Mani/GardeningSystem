@@ -14,9 +14,6 @@ public class PesticideController implements Runnable {
     }
 
     public static void treatPlant(Plants plant) {
-        // Log the treatment action
-        System.out.println("Spraying pesticide to garden!");
-
         // Clear pests from the plant
         plant.removePests();
         plant.setAge(plant.getAge() + 5);
@@ -84,6 +81,8 @@ public class PesticideController implements Runnable {
                 }
                 if (isPesticideApplied) {
                     ViewController.addLogMessage("Spraying pesticide to garden!", "info");
+                    // Log the treatment action
+                    System.out.println("Spraying pesticide to garden!");
                 }
 
                 // Wait for cooldown time before the next pesticide application

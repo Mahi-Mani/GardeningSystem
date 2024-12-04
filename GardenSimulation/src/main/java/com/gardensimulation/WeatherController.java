@@ -1,6 +1,7 @@
 package com.gardensimulation;
 
 import com.almasb.fxgl.core.View;
+import com.fasterxml.jackson.databind.ser.VirtualBeanPropertyWriter;
 import com.gardensimulation.Plant.Plants;
 import javafx.application.Platform;
 
@@ -141,7 +142,7 @@ public class WeatherController {
         rainController.generateRainfall(Plants.plantsList); // Notify RainController
         PesticideController.isPesticideApplied = false;
         System.out.println(rainPesticideMsg);
-        ViewController.addLogMessage(rainPesticideMsg, "warn");
+        ViewController.addLogMessage(rainPesticideMsg, "severe");
     }
 
     // Simulate cloudy day with reduced rain probability
@@ -156,6 +157,7 @@ public class WeatherController {
             ViewController.updateRainUI(true);
             PesticideController.isPesticideApplied = false;
             System.out.println("Rain washed the pesticide away!");
+            ViewController.addLogMessage("Rain washed the pesticide away!", "severe");
             for (Plants plant : Plants.plantsList) {
                 plant.waterThePlant(5);// Notify SprinklerController
             }

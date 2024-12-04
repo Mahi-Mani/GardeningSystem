@@ -16,8 +16,8 @@ public class SprinklerCard extends VBox {
     public SprinklerCard() {
         // Create the weather icon ImageView
         sprinklerIcon = new ImageView();
-        sprinklerIcon.setFitWidth(100);
-        sprinklerIcon.setFitHeight(100);
+        sprinklerIcon.setFitWidth(150);
+        sprinklerIcon.setFitHeight(150);
 
         // Create the weather text Label
         sprinklerTextLabel = new Label("OFF");

@@ -17,8 +17,8 @@ public class PesticideCard extends VBox {
     public PesticideCard() {
         // Create the weather icon ImageView
         pesticideIcon = new ImageView();
-        pesticideIcon.setFitWidth(100);
-        pesticideIcon.setFitHeight(100);
+        pesticideIcon.setFitWidth(150);
+        pesticideIcon.setFitHeight(150);
 
         // Create the weather text Label
         pesticideTextLabel = new Label("");

@@ -17,8 +17,8 @@ public class RainCard extends VBox {
     public RainCard() {
         // Create the weather icon ImageView
         rainIcon = new ImageView();
-        rainIcon.setFitWidth(100);
-        rainIcon.setFitHeight(100);
+        rainIcon.setFitWidth(150);
+        rainIcon.setFitHeight(150);
 
         // Create the weather text Label
         rainTextLabel = new Label("");

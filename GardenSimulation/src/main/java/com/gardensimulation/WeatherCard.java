@@ -17,8 +17,8 @@ public class WeatherCard extends VBox {
     public WeatherCard() {
         // Create the weather icon ImageView
         weatherIcon = new ImageView();
-        weatherIcon.setFitWidth(100);
-        weatherIcon.setFitHeight(100);
+        weatherIcon.setFitWidth(150);
+        weatherIcon.setFitHeight(150);
 
         // Create the weather text Label
         weatherTextLabel = new Label("");
