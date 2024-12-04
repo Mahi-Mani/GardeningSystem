@@ -20,14 +20,16 @@ public class RainController {
     }
 
     public void generateRainfall(List<Plants> plants) {
-        rainfallUnits = random.nextInt(20);
+        rainfallUnits = random.nextInt(15) + 7;
         log.info("It's raining!" + rainfallUnits + " units of rain recorded!");
         ViewController.updateRainUI(true);
+        ViewController.addLogMessage(rainfallUnits + " units of rain recorded!", "info");
         for (Plants plant : plants) {
             plant.waterThePlant(rainfallUnits);
         }
 //        TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 15);
 //        log.info("Current Temperature is: " + temperatureController.getCurrentTemperature());
+        sprinkler.isRaining = true;
         sprinkler.activateSprinklers(plants);
     }
 

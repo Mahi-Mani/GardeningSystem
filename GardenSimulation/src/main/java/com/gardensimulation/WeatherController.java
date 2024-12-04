@@ -128,7 +128,7 @@ public class WeatherController {
 //        ViewController.updateRainUI("NO", "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png");
     }
 
-    // Simulate rain happening 4 times randomly during a rainy day
+    // Simulate rain during a rainy day
     private void simulateRainyDay() {
         String rainyMsg = "Rain is expected throughout the day.";
         String rainPesticideMsg = "Rain washed the pesticide away!";

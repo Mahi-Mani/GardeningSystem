@@ -3,6 +3,7 @@ package com.gardensimulation.Plant;
 import com.gardensimulation.LifeController;
 import com.gardensimulation.Pests.Pest;
 import com.gardensimulation.SprinklerController;
+import com.gardensimulation.ViewController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -228,6 +229,7 @@ public class Plants {
         }
         if (this.age <= 0) {
             log.severe("Due to more water, " + this.getName() + " is dying!");
+            ViewController.addLogMessage("Due to more water, " + this.getName() + " is dying!", "severe");
             this.isAlive = false;
             this.setAge(0);
         }
@@ -244,6 +246,7 @@ public class Plants {
         }
         if (this.age <= 0) {
             System.out.println("Plant dying due to prolonged change in the water level @@@@@@@@@@@@@@@@@@@@@");
+            ViewController.addLogMessage("Plant " + this.getName() + " dying due to prolonged change in the water level !", "severe");
             this.die();
         }
     }
@@ -253,6 +256,7 @@ public class Plants {
         if ((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
             log.severe("Untolerable temperature!");
             System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
+            ViewController.addLogMessage("Plant " + this.getName() + " died due to untolerable temperature!", "severe");
             this.die();
         }
     }
@@ -270,6 +274,7 @@ public class Plants {
         }
         if (this.age < 0) {
             System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
+            ViewController.addLogMessage("Plant died due to prolonged temperature change!", "severe");
             this.die();
         }
     }

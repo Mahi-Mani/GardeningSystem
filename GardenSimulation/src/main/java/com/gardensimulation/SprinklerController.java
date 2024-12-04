@@ -13,6 +13,7 @@ public class SprinklerController implements Runnable {
     private TemperatureController temperatureController;
     private boolean isRunning = true;
     public static boolean isSprinklerRunning = false;
+    public boolean isRaining = false;
 
     public void activateSprinklers(List<Plants> plants) {
         int avgWaterReq = calculateWaterForGarden(plants);
@@ -20,17 +21,19 @@ public class SprinklerController implements Runnable {
         log.info("Water requirement: " + avgWaterReq);
         log.info("Current water level: " + avgWaterLevel);
 
-        if (plants.size() > 0) {
+        if (plants.size() > 0 && !isRaining) {
             if (avgWaterLevel < (avgWaterReq)) {
                 for (Plants plant : plants) {
                     plant.waterThePlant(avgWaterReq);
                 }
                 log.info("Sprinklers activated! Plants received an average of " + avgWaterReq + " units.");
+                ViewController.addLogMessage("Plants received water: " + avgWaterReq + " units.!", "info");
                 isSprinklerRunning = true;
                 TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 5);
 //                ViewController.updateSprinklerUI("ON", "https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
             } else {
                 log.info("Sufficient water in the garden already! No need sprinklers!");
+                ViewController.addLogMessage("Sufficient water in the garden already! No need sprinklers!", "info");
                 isSprinklerRunning = false;
 //                ViewController.updateSprinklerUI("OFF", "https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp");
             }

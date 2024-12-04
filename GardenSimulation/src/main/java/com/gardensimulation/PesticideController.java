@@ -82,6 +82,9 @@ public class PesticideController implements Runnable {
                         this.treatPlant(plant);
                     }
                 }
+                if (isPesticideApplied) {
+                    ViewController.addLogMessage("Spraying pesticide to garden!", "info");
+                }
 
                 // Wait for cooldown time before the next pesticide application
                 Thread.sleep(40000);

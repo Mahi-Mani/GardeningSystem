@@ -40,7 +40,11 @@ public class PesticideCard extends VBox {
         // Update the weather icon
         pesticideIcon.setImage(new Image(imageUrl));
 
-        // Update the weather text
-        pesticideTextLabel.setText("Pesticide: " + status.toString());
+        // Update the pesticide text
+        if (status) {
+            pesticideTextLabel.setText("Pesticide Effective!");
+        } else {
+            pesticideTextLabel.setText("No Pesticide!");
+        }
     }
 }

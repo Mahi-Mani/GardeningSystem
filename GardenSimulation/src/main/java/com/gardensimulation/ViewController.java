@@ -39,7 +39,7 @@ public class ViewController {
     static BorderPane root3 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 15; // Minimum allowed plants
     private int currentPlantCount = 0;
     private static Set<String> occupiedCells = new HashSet<>();
     private static int numRows;
@@ -115,14 +115,16 @@ public class ViewController {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
+                        setStyle("");
                     } else {
                         setText(item);
+                        setStyle("");
                         if (label.equalsIgnoreCase("severe")) {
-                            setStyle("-fx-text-fill: red; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                            setStyle("-fx-text-fill: red;");
                         } else if (label.equalsIgnoreCase("info")) {
-                            setStyle("-fx-text-fill: #4a7c59; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                            setStyle("-fx-text-fill: #4a7c59;");
                         } else if (label.equalsIgnoreCase("warn")) {
-                            setStyle("-fx-text-fill: orange; -fx-font-family: 'Calibri'; -fx-font-size: 16;");
+                            setStyle("-fx-text-fill: orange;");
                         }
                     }
                 }

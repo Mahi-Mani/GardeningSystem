@@ -1,5 +1,6 @@
 package com.gardensimulation;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
@@ -52,6 +53,7 @@ public class PestController {
         } else {
             if (weather == "sunny") {
                 System.out.println("(30% chance) pest activity due to Sunny weather.");
+                ViewController.addLogMessage("(30% chance) pest activity", "info");
                 if (random.nextInt(10) < 3) {
                     System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
@@ -59,9 +61,11 @@ public class PestController {
                     attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
+                    ViewController.addLogMessage("No pest activity!", "info");
                 }
             } else if (weather == "cloudy") {
                 System.out.println("(40% chance) pest activity due to Cloudy weather.");
+                ViewController.addLogMessage("(40% chance) pest activity", "info");
                 if (random.nextInt(10) < 4) {
                     System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
@@ -69,14 +73,17 @@ public class PestController {
                     attackPlants(selectedPests);
                 } else {
                     System.out.println("No pest activity!");
+                    ViewController.addLogMessage("No pest activity!", "info");
                 }
             } else if (weather == "rainy") {
                 System.out.println("Increased pest activity due to high humid Rainy weather!");
+                ViewController.addLogMessage("Increased pest activity due to high humid Rainy weather!!", "warn");
                 selectedPests = selectRandomPests(weather);
                 System.out.println(selectedPests);
                 attackPlants(selectedPests);
                 PesticideController.isPesticideApplied = false;
                 System.out.println("Pesticide is washed away due to rain.");
+                ViewController.addLogMessage("Pesticide is washed away due to rain.", "warn");
             }
         }
     }
@@ -97,6 +104,7 @@ public class PestController {
                         int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
                         plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
                         System.out.println(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
+                        ViewController.addLogMessage(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!", "severe");
                         System.out.println("Age of " + plant.getName() + " is: " + plant.getAge());
                         plant.addPest(pest.getName());
 //                        System.out.println("!!!APPLE IS ATTACJED");
@@ -132,6 +140,7 @@ public class PestController {
                         if (plant.getAge() <= 0) {
                             // Handle plant death logic
 //                            System.out.println("Handing Plant dyig logic in pest..........");
+                            ViewController.addLogMessage("Plant " + plant.getName() + " died due to pest attack!", "severe");
                             plant.die();
                             plantIterator.remove();
                         }
@@ -162,18 +171,24 @@ public class PestController {
 
     private List<Pest> selectRandomPests(String weather) {
         List<Pest> potentialPests = new ArrayList<>();
+        List<String> pestNames = new ArrayList<>();
         Iterator<Pest> iterator = allPests.iterator();
+
         while (iterator.hasNext()) {
             Pest nextPest = iterator.next();
             if (weather.equals(nextPest.getWeather())) {
                 potentialPests.add(nextPest);
+                pestNames.add(nextPest.getName());
             } else if (weather.equals(nextPest.getWeather())) {
                 potentialPests.add(nextPest);
+                pestNames.add(nextPest.getName());
             } else if (weather.equalsIgnoreCase(nextPest.getWeather())) {
                 potentialPests.add(nextPest);
+                pestNames.add(nextPest.getName());
             }
         }
 
+        ViewController.addLogMessage("Today's weather attracts " + pestNames.toString(), "warn");
         return potentialPests;
     }
 
