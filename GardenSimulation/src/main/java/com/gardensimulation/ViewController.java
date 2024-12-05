@@ -157,10 +157,13 @@ public class ViewController {
         });
 
         // Create layout for buttons
-        GridPane buttonPane = new GridPane();
-        buttonPane.setHgap(20);
-        buttonPane.add(sprinklerButton, 0, 0);
-        buttonPane.add(rainButton, 1, 0);
+        GridPane controlPane = new GridPane();
+        controlPane.setHgap(20);
+        controlPane.add(sprinklerButton, 0, 0);
+        controlPane.add(rainButton, 1, 0);
+
+        HBox controlBox = new HBox(20);
+        controlBox.getChildren().addAll(plantSelectionPane, controlPane);
 
         // Label for plant count with background color
         plantCountLabel = new Label("No. of Plants: 0");
@@ -171,23 +174,19 @@ public class ViewController {
         SprinklerCard sprinklerCard = sprinklerController.getSprinklerCard();
 
         // Create the layout for plant count and weather card (Align to the right)
-        VBox rightPane = new VBox(20);
-        rightPane.setAlignment(Pos.CENTER_RIGHT); // Align content to the right
-        rightPane.getChildren().addAll(plantCountLabel, weatherCard, sprinklerCard);
-
-        // Create the main layout for grid and right-aligned pane
-        HBox mainLayout = new HBox(20);  // Add space between grid and rightPane
-        mainLayout.setAlignment(Pos.CENTER); // Align at the top
-        mainLayout.getChildren().addAll(grid, rightPane);
+        VBox bottomPane = new VBox(20);
+        HBox bottomCards = new HBox(20);  // Add space between grid and rightPane
+        bottomCards.getChildren().addAll(weatherCard, sprinklerCard);
+        bottomPane.getChildren().addAll(plantCountLabel, bottomCards);
 
         // Create the layout for day simulator and other elements
         VBox layout = new VBox(20);
         Platform.runLater(() -> {
             layout.getChildren().addAll(
                     daySimulator.getDaySimulatorUI(), // Add day simulator UI
-                    plantSelectionPane,              // Add plant selection radio buttons
-                    buttonPane,                      // Add the sprinkler and rain buttons
-                    mainLayout                       // Add the grid + right-aligned pane
+                    controlBox,
+                    grid,
+                    bottomPane
             );
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
