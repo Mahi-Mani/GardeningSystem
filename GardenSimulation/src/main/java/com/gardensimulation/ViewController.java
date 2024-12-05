@@ -65,14 +65,6 @@ public class ViewController {
 //        executor.submit(temperatureController);
         executor.submit(life);
         executor.submit(pesticideController);
-        weatherCard = new WeatherCard();
-
-//        weatherPane = new StackPane();
-//        weatherPane = new VBox(20);
-//        weatherPane.setPrefWidth(1);
-//        weatherPane.getChildren().add(weatherCard);
-        root.setTop(weatherCard);
-        root.setMaxWidth(100);
     }
 
     public ViewController getViewController() {
@@ -102,6 +94,111 @@ public class ViewController {
 
 
     public StackPane createContent() {
+        // Create the root layout
+        StackPane stackPane = new StackPane();
+
+        // Set the background image for the garden
+        Image gardenBackgroundImage = new Image(
+                "https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0="
+        );
+        BackgroundImage backgroundImage = new BackgroundImage(
+                gardenBackgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
+        stackPane.setBackground(new Background(backgroundImage));
+
+        // Create the grid for the plants
+        grid = createGrid();
+
+        // Create radio buttons for plant selection
+        ToggleGroup plantGroup = new ToggleGroup();
+        String[] plants = { "Rose", "Sunflower", "Lily", "Tomato", "Tulip", "Lemon", "Orange", "Apple" };
+
+        GridPane plantSelectionPane = new GridPane();
+        plantSelectionPane.setHgap(20);
+        plantSelectionPane.setVgap(15);
+
+        for (int i = 0; i < plants.length; i++) {
+            RadioButton radioButton = new RadioButton(plants[i]);
+            radioButton.setToggleGroup(plantGroup);
+            radioButton.setStyle("-fx-font-size: 14px; -fx-padding: 5; -fx-cursor: hand;");
+            if (i == 0) radioButton.setSelected(true); // Default selection
+
+            // Add to grid (2 rows of 4 columns)
+            plantSelectionPane.add(radioButton, i % 4, i / 4);
+        }
+
+        // Update selectedPlant when the radio button selection changes
+        plantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (plantGroup.getSelectedToggle() != null) {
+                RadioButton selectedRadioButton = (RadioButton) plantGroup.getSelectedToggle();
+                selectedPlant = selectedRadioButton.getText().toLowerCase();
+            }
+        });
+
+        // Create text buttons
+        Button sprinklerButton = new Button("Activate Sprinklers");
+        sprinklerButton.setStyle("-fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;");
+        sprinklerButton.setOnAction(e -> {
+            if (sprinklerController != null) {
+                sprinklerController.activateSprinklers(Plants.plantsList);
+            }
+        });
+
+        Button rainButton = new Button("Generate Rain");
+        rainButton.setStyle("-fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;");
+        rainButton.setOnAction(e -> {
+            if (rainController != null) {
+                rainController.generateRainfall(Plants.plantsList);
+            }
+        });
+
+        // Create layout for buttons
+        GridPane buttonPane = new GridPane();
+        buttonPane.setHgap(20);
+        buttonPane.add(sprinklerButton, 0, 0);
+        buttonPane.add(rainButton, 1, 0);
+
+        // Label for plant count with background color
+        plantCountLabel = new Label("No. of Plants: 0");
+        plantCountLabel.setStyle("-fx-font-size: 16px; -fx-padding: 5; -fx-background-color: #FFD700; -fx-padding: 10;");
+
+        // Weather Card
+        weatherCard = new WeatherCard();
+        SprinklerCard sprinklerCard = sprinklerController.getSprinklerCard();
+
+        // Create the layout for plant count and weather card (Align to the right)
+        VBox rightPane = new VBox(20);
+        rightPane.setAlignment(Pos.CENTER_RIGHT); // Align content to the right
+        rightPane.getChildren().addAll(plantCountLabel, weatherCard, sprinklerCard);
+
+        // Create the main layout for grid and right-aligned pane
+        HBox mainLayout = new HBox(20);  // Add space between grid and rightPane
+        mainLayout.setAlignment(Pos.CENTER); // Align at the top
+        mainLayout.getChildren().addAll(grid, rightPane);
+
+        // Create the layout for day simulator and other elements
+        VBox layout = new VBox(20);
+        Platform.runLater(() -> {
+            layout.getChildren().addAll(
+                    daySimulator.getDaySimulatorUI(), // Add day simulator UI
+                    plantSelectionPane,              // Add plant selection radio buttons
+                    buttonPane,                      // Add the sprinkler and rain buttons
+                    mainLayout                       // Add the grid + right-aligned pane
+            );
+        });
+        layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
+
+        // Add layout to stack pane
+        stackPane.getChildren().add(layout);
+
+        return stackPane;
+    }
+
+    public StackPane createContent2() {
         // Create the root layout
         StackPane stackPane = new StackPane();
         Image gardenBackgroundImage = new Image("https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0=");

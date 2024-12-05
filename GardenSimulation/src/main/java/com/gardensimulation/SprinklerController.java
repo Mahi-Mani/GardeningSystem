@@ -11,6 +11,7 @@ public class SprinklerController implements Runnable {
     private static final Logger log = Logger.getLogger(SprinklerController.class.getName());
     private TemperatureController temperatureController;
     private boolean isRunning = true;
+    SprinklerCard card = new SprinklerCard();
 
     public void activateSprinklers(List<Plants> plants) {
         int avgWaterReq = calculateWaterForGarden(plants);
@@ -33,6 +34,9 @@ public class SprinklerController implements Runnable {
         }
     }
 
+    public SprinklerCard getSprinklerCard() {
+        return this.card;
+    }
 
     private int calculateWaterForGarden(List<Plants> plants) {
         int total = 0;
