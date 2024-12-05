@@ -68,6 +68,7 @@ public class PesticideController implements Runnable {
         while (isRunning) {
             try {
                 log.info("PESTICIDE thread is running!");
+                ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                System.out.println(this.weatherController.getCurrentWeather());
                 // Scan plants for pests

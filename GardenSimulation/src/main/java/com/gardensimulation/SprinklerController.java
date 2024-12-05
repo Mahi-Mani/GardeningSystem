@@ -19,7 +19,9 @@ public class SprinklerController implements Runnable {
         int avgWaterReq = calculateWaterForGarden(plants);
         int avgWaterLevel = calculateCurrentWaterLevel(plants);
         log.info("Water requirement: " + avgWaterReq);
+        ViewController.appendLogToFile("Water requirement: " + avgWaterReq, "info");
         log.info("Current water level: " + avgWaterLevel);
+        ViewController.appendLogToFile("Current water level: " + avgWaterLevel, "info");
 
         if (plants.size() > 0 && !isRaining) {
             if (avgWaterLevel < (avgWaterReq)) {

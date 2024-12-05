@@ -1,169 +1,77 @@
 INFO: Morning! Day: 1 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 91°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: There are no plants in the garden!
-INFO: Planting Apple at Col: 7 Row: 2
-INFO: Planting Sunflower at Col: 2 Row: 1
-INFO: Planting Tomato at Col: 3 Row: 5
-INFO: Planting Tulip at Col: 2 Row: 2
-INFO: Planting Tomato at Col: 3 Row: 1
-INFO: (30% chance) pest activity
-INFO: No pest activity!
-INFO: Morning! Day: 2 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 91°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Tulip age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-INFO: Plants received water: 31 units.!
-INFO: (30% chance) pest activity
-INFO: No pest activity!
-INFO: Morning! Day: 3 Garden Status Check!
-INFO: Today's weather: rainy
-INFO: Temperature: 49°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 13 units of rain recorded!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (2, 7)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (1, 2)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (2, 7)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 4 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 90°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: Due to more water, Apple is dying!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: Due to more water, Tomato is dying!
-SEVERE: More water, Tulip age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: Due to more water, Tomato is dying!
-INFO: Plants received water: 31 units.!
-INFO: Removing plant: 27
-INFO: Removing plant: 53
-INFO: Removing plant: 13
-INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 5 Garden Status Check!
-INFO: Planting Lemon at Col: 6 Row: 0
-INFO: Planting Tomato at Col: 7 Row: 0
-INFO: Planting Lemon at Col: 4 Row: 2
 INFO: Today's weather: cloudy
-INFO: Temperature: 67°F
+INFO: Temperature: 62°F
 INFO: Cloudy Weather simulation
 INFO: No rain today despite cloudy weather.
-SEVERE: More water, Tulip age is reduced by 20 units!
-SEVERE: Due to more water, Tulip is dying!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Lemon age is reduced by 20 units!
-INFO: Plants received water: 36 units.!
-INFO: Removing plant: 22
-INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 6 Garden Status Check!
-INFO: Planting Orange at Col: 3 Row: 2
+INFO: There are no plants in the garden!
+INFO: Planting Apple at Col: 6 Row: 2
+INFO: Planting Lemon at Col: 2 Row: 1
+INFO: Planting Lily at Col: 5 Row: 2
+INFO: Planting Rose at Col: 6 Row: 1
+INFO: Planting Rose at Col: 7 Row: 5
+INFO: (40% chance) pest activity
+WARN: Today's weather attracts [BulbFly, CodlingMoth, Whiteflies, LeafMiner]
+SEVERE: CodlingMoth is attacking Apple at (2, 6)! Health affected!
+SEVERE: LeafMiner is attacking Lemon at (1, 2)! Health affected!
+INFO: Morning! Day: 2 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 62°F
+INFO: Cloudy Weather simulation
+INFO: 5 units of rain recorded!
+SEVERE: Rain washed the pesticide away!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: (40% chance) pest activity
+WARN: Today's weather attracts [BulbFly, CodlingMoth, Whiteflies, LeafMiner]
+SEVERE: CodlingMoth is attacking Apple at (2, 6)! Health affected!
+SEVERE: LeafMiner is attacking Lemon at (1, 2)! Health affected!
+INFO: Morning! Day: 3 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 71°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: (40% chance) pest activity
+INFO: No pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 4 Garden Status Check!
 INFO: Today's weather: rainy
-INFO: Temperature: 45°F
+INFO: Temperature: 54°F
 INFO: Rainy Weather simulation
 INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 21 units of rain recorded!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Lemon age is reduced by 20 units!
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 9 units of rain recorded!
 INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (1, 2)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (1, 2)! Health affected!
+SEVERE: Aphids is attacking Apple at (2, 6)! Health affected!
+SEVERE: Cutworms is attacking Rose at (1, 6)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (2, 6)! Health affected!
 WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 5 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 89°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: (30% chance) pest activity
+INFO: No pest activity!
+INFO: Morning! Day: 6 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 80°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide thread is running
+INFO: (30% chance) pest activity
+WARN: Today's weather attracts [Beetles, HornWorms, SpiderMites]
+SEVERE: Beetles is attacking Lily at (2, 5)! Health affected!
+SEVERE: SpiderMites is attacking Lily at (2, 5)! Health affected!
+INFO: Spraying pesticide to garden!
 INFO: Morning! Day: 7 Garden Status Check!
 INFO: Today's weather: rainy
-INFO: Temperature: 51°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 12 units of rain recorded!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: Due to more water, Lemon is dying!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: Due to more water, Lemon is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 06
-INFO: Removing plant: 07
-INFO: Removing plant: 24
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (1, 2)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (1, 2)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 8 Garden Status Check!
-INFO: Planting Apple at Col: 0 Row: 5
-INFO: Planting Orange at Col: 2 Row: 5
-INFO: Planting Lily at Col: 0 Row: 3
-INFO: Today's weather: rainy
-INFO: Temperature: 50°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: Removing plant: 12
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 8 units of rain recorded!
-SEVERE: Due to more water, Sunflower is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 12
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Orange at (2, 3)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (5, 0)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 9 Garden Status Check!
-INFO: Planting Orange at Col: 4 Row: 4
-INFO: Today's weather: sunny
-INFO: Temperature: 101°F
-INFO: Sunny Weather simulation
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is above MAXIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-INFO: Plants received water: 18 units.!
-INFO: Removing plant: 23
-INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 10 Garden Status Check!
-INFO: Planting Lily at Col: 6 Row: 2
-INFO: Today's weather: rainy
-INFO: Temperature: 46°F
+INFO: Temperature: 47°F
 INFO: Rainy Weather simulation
 INFO: Rain is expected throughout the day.
 SEVERE: Untolerable temperature! Affected plant health by 20 units
@@ -178,365 +86,337 @@ INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (5, 0)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (5, 0)! Health affected!
+SEVERE: Aphids is attacking Apple at (2, 6)! Health affected!
+SEVERE: Cutworms is attacking Rose at (1, 6)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (2, 6)! Health affected!
 WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 11 Garden Status Check!
+INFO: Morning! Day: 8 Garden Status Check!
 INFO: Today's weather: sunny
-INFO: Temperature: 83°F
+INFO: Temperature: 87°F
 INFO: Sunny Weather simulation
 INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Removing plant: 30
 SEVERE: More water, Apple age is reduced by 20 units!
 SEVERE: Due to more water, Apple is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-SEVERE: Due to more water, Lily is dying!
-INFO: Plants received water: 21 units.!
-INFO: Removing plant: 50
-INFO: Removing plant: 52
-INFO: Removing plant: 30
+INFO: Plants received water: 20 units.!
+INFO: Removing plant: 26
+INFO: Removing plant: 12
+INFO: Removing plant: 25
 INFO: (30% chance) pest activity
 INFO: No pest activity!
-INFO: Morning! Day: 12 Garden Status Check!
-INFO: Planting Apple at Col: 1 Row: 3
-INFO: Planting Tulip at Col: 3 Row: 3
-INFO: Planting Lemon at Col: 3 Row: 4
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 9 Garden Status Check!
+INFO: Planting Lemon at Col: 3 Row: 2
+INFO: Planting Tulip at Col: 1 Row: 0
+INFO: Planting Tulip at Col: 7 Row: 1
+INFO: Today's weather: cloudy
+INFO: Temperature: 63°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 10 Garden Status Check!
 INFO: Today's weather: rainy
-INFO: Temperature: 45°F
+INFO: Temperature: 47°F
 INFO: Rainy Weather simulation
 INFO: Rain is expected throughout the day.
+INFO: Removing plant: 16
 SEVERE: Untolerable temperature! Affected plant health by 20 units
-INFO: Removing plant: 44
+INFO: Removing plant: 16
 SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 57
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 WARN: Current Temperature is below MINIMUM safe temperature!
 INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 13 units of rain recorded!
-SEVERE: Due to more water, Orange is dying!
+INFO: 20 units of rain recorded!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
 INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 44
+INFO: Removing plant: 16
+INFO: Removing plant: 57
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Lily at (2, 6)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (3, 1)! Health affected!
+SEVERE: Aphids is attacking Lemon at (2, 3)! Health affected!
 WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 13 Garden Status Check!
-INFO: Planting Tomato at Col: 7 Row: 1
+INFO: Morning! Day: 11 Garden Status Check!
+INFO: Planting Lemon at Col: 6 Row: 3
+INFO: Planting Rose at Col: 6 Row: 4
 INFO: Today's weather: sunny
-INFO: Temperature: 93°F
+INFO: Temperature: 83°F
 INFO: Sunny Weather simulation
 INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Removing plant: 26
-SEVERE: Due to more water, Lily is dying!
 INFO: Plants received water: 20 units.!
-INFO: Removing plant: 26
 INFO: (30% chance) pest activity
 INFO: No pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 12 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 96°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 13 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 62°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
 INFO: Morning! Day: 14 Garden Status Check!
-INFO: Planting Orange at Col: 4 Row: 5
+INFO: Today's weather: sunny
+INFO: Temperature: 88°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 15 Garden Status Check!
+INFO: Today's weather: rainy
+INFO: Temperature: 52°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 9 units of rain recorded!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Lemon at (2, 3)! Health affected!
+SEVERE: Cutworms is attacking Rose at (4, 6)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 16 Garden Status Check!
+INFO: Today's weather: rainy
+INFO: Temperature: 53°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 7 units of rain recorded!
+SEVERE: Due to more water, Lemon is dying!
+SEVERE: More water, Tulip age is reduced by 20 units!
+SEVERE: Due to more water, Tulip is dying!
+SEVERE: More water, Tulip age is reduced by 20 units!
+SEVERE: Due to more water, Tulip is dying!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+INFO: Removing plant: 23
+INFO: Removing plant: 01
+INFO: Removing plant: 17
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Lemon at (3, 6)! Health affected!
+SEVERE: Cutworms is attacking Rose at (4, 6)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 17 Garden Status Check!
+INFO: Planting Apple at Col: 7 Row: 3
+INFO: Planting Sunflower at Col: 5 Row: 3
+INFO: Planting Rose at Col: 0 Row: 1
+INFO: Today's weather: sunny
+INFO: Temperature: 95°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+SEVERE: More water, Lemon age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: Plants received water: 34 units.!
+INFO: Removing plant: 46
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 18 Garden Status Check!
+INFO: Planting Lily at Col: 2 Row: 4
+INFO: Today's weather: cloudy
+INFO: Temperature: 74°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 36
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 19 Garden Status Check!
+INFO: Planting Sunflower at Col: 7 Row: 4
+INFO: Today's weather: rainy
+INFO: Temperature: 46°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+WARN: Current Temperature is below MINIMUM safe temperature!
+INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
+INFO: 9 units of rain recorded!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Apple at (3, 7)! Health affected!
+SEVERE: Cutworms is attacking Sunflower at (3, 5)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (3, 7)! Health affected!
+SEVERE: Plant Apple died due to pest attack!
+INFO: Removing plant: 37
+WARN: Pesticide is washed away due to rain.
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 20 Garden Status Check!
+INFO: Planting Rose at Col: 1 Row: 2
+INFO: Today's weather: rainy
+INFO: Temperature: 51°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 21 units of rain recorded!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+INFO: Removing plant: 10
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Sunflower at (3, 5)! Health affected!
+SEVERE: Cutworms is attacking Sunflower at (3, 5)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 21 Garden Status Check!
+INFO: Planting Lily at Col: 1 Row: 4
+INFO: Today's weather: sunny
+INFO: Temperature: 99°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+SEVERE: More water, Lily age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Lily age is reduced by 20 units!
+INFO: Plants received water: 55 units.!
+INFO: (30% chance) pest activity
+INFO: No pest activity!
+INFO: Morning! Day: 22 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 82°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: (30% chance) pest activity
+INFO: No pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 23 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 104°F
+INFO: Sunny Weather simulation
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 42
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+WARN: Current Temperature is above MAXIMUM safe temperature!
+INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
+INFO: Removing plant: 42
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 42
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 24 Garden Status Check!
+INFO: Planting Apple at Col: 2 Row: 2
+INFO: Today's weather: sunny
+INFO: Temperature: 92°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Removing plant: 35
+INFO: Removing plant: 21
+SEVERE: Due to more water, Sunflower is dying!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
+SEVERE: More water, Lily age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: Plants received water: 52 units.!
+INFO: Removing plant: 35
+INFO: Removing plant: 21
+INFO: Removing plant: 41
+INFO: Pesticide in effect, no pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 25 Garden Status Check!
+INFO: Planting Tulip at Col: 0 Row: 5
+INFO: Planting Rose at Col: 4 Row: 4
+INFO: Planting Apple at Col: 7 Row: 2
+INFO: Today's weather: sunny
+INFO: Temperature: 99°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 47
+INFO: Pesticide in effect, no pest activity!
+INFO: Planting Tomato at Col: 1 Row: 1
+INFO: Planting Tomato at Col: 2 Row: 1
+INFO: Planting Tulip at Col: 3 Row: 1
+INFO: Planting Rose at Col: 3 Row: 2
+INFO: Planting Apple at Col: 3 Row: 3
+INFO: Planting Lemon at Col: 2 Row: 3
+INFO: Morning! Day: 26 Garden Status Check!
 INFO: Today's weather: cloudy
 INFO: Temperature: 70°F
 INFO: Cloudy Weather simulation
 INFO: No rain today despite cloudy weather.
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: Plants received water: 16 units.!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 27 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 98°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
 INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: (40% chance) pest activity
-INFO: No pest activity!
+INFO: Pesticide in effect, no pest activity!
+INFO: Pesticide thread is running
 INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 15 Garden Status Check!
+INFO: Morning! Day: 28 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 73°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 29 Garden Status Check!
 INFO: Today's weather: sunny
 INFO: Temperature: 86°F
 INFO: Sunny Weather simulation
 INFO: OPTIMUM Temperature! No need to turn on the regulator!
 INFO: Sufficient water in the garden already! No need sprinklers!
 INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 16 Garden Status Check!
-INFO: Today's weather: rainy
-INFO: Temperature: 48°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 9 units of rain recorded!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 43
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (3, 1)! Health affected!
-SEVERE: Plant Apple died due to pest attack!
-INFO: Removing plant: 31
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 17 Garden Status Check!
-INFO: Planting Apple at Col: 7 Row: 3
-INFO: Planting Rose at Col: 1 Row: 2
-INFO: Today's weather: sunny
-INFO: Temperature: 90°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Removing plant: 33
-SEVERE: Due to more water, Tulip is dying!
-INFO: Plants received water: 15 units.!
-INFO: Removing plant: 33
-INFO: (30% chance) pest activity
-INFO: No pest activity!
-INFO: Morning! Day: 18 Garden Status Check!
-INFO: Planting Lily at Col: 5 Row: 4
-INFO: Today's weather: rainy
-INFO: Temperature: 52°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 19 units of rain recorded!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: Due to more water, Tomato is dying!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: More water, Rose age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 17
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Orange at (5, 4)! Health affected!
-SEVERE: Cutworms is attacking Rose at (2, 1)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (3, 7)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 19 Garden Status Check!
-INFO: Planting Sunflower at Col: 0 Row: 0
+INFO: Morning! Day: 30 Garden Status Check!
 INFO: Today's weather: cloudy
-INFO: Temperature: 65°F
+INFO: Temperature: 62°F
 INFO: Cloudy Weather simulation
 INFO: No rain today despite cloudy weather.
 INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: (40% chance) pest activity
-INFO: No pest activity!
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 20 Garden Status Check!
-INFO: Today's weather: rainy
-INFO: Temperature: 54°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 12 units of rain recorded!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: More water, Rose age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 54
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (3, 7)! Health affected!
-SEVERE: Cutworms is attacking Rose at (2, 1)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (3, 7)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 21 Garden Status Check!
-INFO: Planting Rose at Col: 6 Row: 1
-INFO: Today's weather: sunny
-INFO: Temperature: 98°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: Due to more water, Apple is dying!
-SEVERE: More water, Rose age is reduced by 20 units!
-SEVERE: Due to more water, Rose is dying!
-SEVERE: More water, Lily age is reduced by 20 units!
-SEVERE: More water, Rose age is reduced by 20 units!
-INFO: Plants received water: 35 units.!
-INFO: Removing plant: 37
-INFO: Removing plant: 21
-INFO: (30% chance) pest activity
-WARN: Today's weather attracts [Beetles, HornWorms, SpiderMites]
-SEVERE: Beetles is attacking Lily at (4, 5)! Health affected!
-SEVERE: SpiderMites is attacking Lily at (4, 5)! Health affected!
-INFO: Morning! Day: 22 Garden Status Check!
-INFO: Planting Orange at Col: 5 Row: 2
-INFO: Planting Sunflower at Col: 2 Row: 4
-INFO: Today's weather: rainy
-INFO: Temperature: 47°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-INFO: Removing plant: 45
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 19 units of rain recorded!
-SEVERE: More water, Lily age is reduced by 20 units!
-SEVERE: Due to more water, Lily is dying!
-SEVERE: More water, Rose age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 45
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (0, 0)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (0, 0)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 23 Garden Status Check!
-INFO: Planting Sunflower at Col: 4 Row: 0
-INFO: Today's weather: rainy
-INFO: Temperature: 46°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-INFO: Removing plant: 16
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 8 units of rain recorded!
-SEVERE: More water, Rose age is reduced by 20 units!
-SEVERE: Due to more water, Rose is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 16
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (0, 0)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (0, 0)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 24 Garden Status Check!
-INFO: Planting Lemon at Col: 5 Row: 0
-INFO: Today's weather: rainy
-INFO: Temperature: 45°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-INFO: Removing plant: 25
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 8 units of rain recorded!
-SEVERE: Due to more water, Orange is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 00
-INFO: Removing plant: 25
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (4, 2)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (4, 2)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 25 Garden Status Check!
-INFO: Planting Orange at Col: 5 Row: 3
-INFO: Planting Orange at Col: 1 Row: 4
-INFO: Today's weather: rainy
-INFO: Temperature: 53°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 17 units of rain recorded!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (4, 2)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (4, 2)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 26 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 92°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: More water, Orange age is reduced by 20 units!
-INFO: Plants received water: 51 units.!
-INFO: (30% chance) pest activity
-INFO: No pest activity!
-INFO: Morning! Day: 27 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 100°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: (30% chance) pest activity
-INFO: No pest activity!
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 28 Garden Status Check!
-INFO: Today's weather: sunny
-INFO: Temperature: 84°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: Removing plant: 42
 INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 29 Garden Status Check!
-INFO: Planting Tomato at Col: 0 Row: 2
-INFO: Today's weather: rainy
-INFO: Temperature: 50°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 12 units of rain recorded!
-SEVERE: More water, Lemon age is reduced by 20 units!
-SEVERE: Due to more water, Lemon is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: More water, Orange age is reduced by 20 units!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 05
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Sunflower at (0, 4)! Health affected!
-SEVERE: Cutworms is attacking Sunflower at (0, 4)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 30 Garden Status Check!
-INFO: Planting Apple at Col: 2 Row: 0
-INFO: Today's weather: sunny
-INFO: Temperature: 81°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: (30% chance) pest activity
-INFO: No pest activity!
+INFO: Pesticide thread is running
 INFO: Spraying pesticide to garden!
 INFO: Morning! Day: 31 Garden Status Check!
-INFO: Today's weather: rainy
-INFO: Temperature: 53°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 9 units of rain recorded!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 04
-INFO: Removing plant: 35
-INFO: Removing plant: 41
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Tomato at (2, 0)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (0, 2)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 32 Garden Status Check!
-INFO: Planting Apple at Col: 6 Row: 3
-INFO: Planting Tomato at Col: 4 Row: 3
-INFO: Planting Orange at Col: 0 Row: 1
 INFO: Today's weather: cloudy
-INFO: Temperature: 66°F
+INFO: Temperature: 68°F
 INFO: Cloudy Weather simulation
-INFO: 5 units of rain recorded!
-SEVERE: Rain washed the pesticide away!
-SEVERE: More water, Tomato age is reduced by 20 units!
+INFO: No rain today despite cloudy weather.
 INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: (40% chance) pest activity
-INFO: No pest activity!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 32 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 71°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 22
+INFO: Pesticide in effect, no pest activity!
+INFO: Pesticide thread is running
 INFO: Spraying pesticide to garden!
 INFO: Morning! Day: 33 Garden Status Check!
 INFO: Today's weather: rainy
@@ -544,118 +424,68 @@ INFO: Temperature: 48°F
 INFO: Rainy Weather simulation
 INFO: Rain is expected throughout the day.
 SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 50
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 WARN: Current Temperature is below MINIMUM safe temperature!
 INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 20 units of rain recorded!
-SEVERE: More water, Tomato age is reduced by 20 units!
+INFO: 13 units of rain recorded!
+SEVERE: Due to more water, Tulip is dying!
 INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 20
+INFO: Removing plant: 50
+INFO: Removing plant: 44
+INFO: Removing plant: 27
+INFO: Removing plant: 33
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (0, 2)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (0, 2)! Health affected!
+SEVERE: Aphids is attacking Tomato at (1, 1)! Health affected!
+SEVERE: Cutworms is attacking Rose at (2, 3)! Health affected!
 WARN: Pesticide is washed away due to rain.
 INFO: Morning! Day: 34 Garden Status Check!
-INFO: Planting Orange at Col: 2 Row: 3
 INFO: Today's weather: rainy
-INFO: Temperature: 47°F
+INFO: Temperature: 53°F
 INFO: Rainy Weather simulation
 INFO: Rain is expected throughout the day.
-INFO: Removing plant: 02
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-INFO: Removing plant: 02
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 18 units of rain recorded!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: Due to more water, Apple is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 02
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Apple at (3, 6)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (3, 6)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 35 Garden Status Check!
-INFO: Planting Lemon at Col: 7 Row: 5
-INFO: Today's weather: rainy
-INFO: Temperature: 52°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-INFO: Removing plant: 36
 INFO: OPTIMUM Temperature! No need to turn on the regulator!
-INFO: 18 units of rain recorded!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: Due to more water, Apple is dying!
-SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: Due to more water, Tomato is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-SEVERE: More water, Orange age is reduced by 20 units!
+INFO: 9 units of rain recorded!
+SEVERE: Due to more water, Rose is dying!
 INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 36
-INFO: Removing plant: 34
-INFO: Removing plant: 10
-WARN: Increased pest activity due to high humid Rainy weather!!
-WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Orange at (3, 2)! Health affected!
-WARN: Pesticide is washed away due to rain.
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 36 Garden Status Check!
-INFO: Planting Orange at Col: 0 Row: 4
-INFO: Planting Apple at Col: 6 Row: 5
-INFO: Planting Tulip at Col: 5 Row: 1
-INFO: Today's weather: cloudy
-INFO: Temperature: 61°F
-INFO: Cloudy Weather simulation
-INFO: No rain today despite cloudy weather.
-INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: Pesticide in effect, no pest activity!
-INFO: Morning! Day: 37 Garden Status Check!
-INFO: Today's weather: rainy
-INFO: Temperature: 46°F
-INFO: Rainy Weather simulation
-INFO: Rain is expected throughout the day.
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-SEVERE: Untolerable temperature! Affected plant health by 20 units
-WARN: Current Temperature is below MINIMUM safe temperature!
-INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 17 units of rain recorded!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: Due to more water, Orange is dying!
-INFO: There are no plants in the garden!
-SEVERE: Rain washed the pesticide away!
+INFO: Removing plant: 11
+INFO: Removing plant: 23
 INFO: Removing plant: 32
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Lemon at (5, 7)! Health affected!
-SEVERE: Caterpillars is attacking Apple at (5, 6)! Health affected!
+SEVERE: Aphids is attacking Tomato at (1, 2)! Health affected!
 WARN: Pesticide is washed away due to rain.
-INFO: Morning! Day: 38 Garden Status Check!
-INFO: Planting Tulip at Col: 1 Row: 5
-INFO: Today's weather: sunny
-INFO: Temperature: 92°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Morning! Day: 35 Garden Status Check!
+INFO: Planting Rose at Col: 5 Row: 5
+INFO: Planting Lily at Col: 0 Row: 3
+INFO: Planting Rose at Col: 4 Row: 3
+INFO: Today's weather: cloudy
+INFO: Temperature: 71°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+SEVERE: More water, Tomato age is reduced by 20 units!
+SEVERE: Due to more water, Tomato is dying!
+SEVERE: More water, Tulip age is reduced by 20 units!
+SEVERE: Due to more water, Tulip is dying!
 INFO: Plants received water: 18 units.!
-INFO: (30% chance) pest activity
+INFO: Removing plant: 12
+INFO: Removing plant: 13
+INFO: (40% chance) pest activity
 INFO: No pest activity!
-INFO: Spraying pesticide to garden!
-INFO: Morning! Day: 39 Garden Status Check!
+INFO: Pesticide thread is running
+INFO: Morning! Day: 36 Garden Status Check!
+INFO: Planting Apple at Col: 2 Row: 0
+INFO: Planting Orange at Col: 3 Row: 4
 INFO: Today's weather: rainy
 INFO: Temperature: 49°F
 INFO: Rainy Weather simulation
@@ -667,56 +497,290 @@ SEVERE: Untolerable temperature! Affected plant health by 20 units
 SEVERE: Untolerable temperature! Affected plant health by 20 units
 WARN: Current Temperature is below MINIMUM safe temperature!
 INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
-INFO: 16 units of rain recorded!
-SEVERE: Due to more water, Lemon is dying!
+INFO: 13 units of rain recorded!
 INFO: There are no plants in the garden!
 SEVERE: Rain washed the pesticide away!
-INFO: Removing plant: 57
 WARN: Increased pest activity due to high humid Rainy weather!!
 WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
-SEVERE: Aphids is attacking Orange at (4, 0)! Health affected!
-SEVERE: Plant Orange died due to pest attack!
-INFO: Removing plant: 40
-SEVERE: Caterpillars is attacking Apple at (5, 6)! Health affected!
-SEVERE: Plant Apple died due to pest attack!
-INFO: Removing plant: 56
+SEVERE: Aphids is attacking Rose at (5, 5)! Health affected!
+SEVERE: Cutworms is attacking Rose at (5, 5)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (0, 2)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 37 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 99°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: Plants received water: 18 units.!
+INFO: (30% chance) pest activity
+INFO: No pest activity!
+INFO: Morning! Day: 38 Garden Status Check!
+INFO: Today's weather: cloudy
+INFO: Temperature: 67°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 55
+INFO: (40% chance) pest activity
+INFO: No pest activity!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Planting Apple at Col: 2 Row: 1
+INFO: Planting Tomato at Col: 2 Row: 2
+INFO: Planting Apple at Col: 2 Row: 3
+INFO: Planting Rose at Col: 2 Row: 4
+INFO: Planting Orange at Col: 2 Row: 5
+INFO: Planting Lily at Col: 0 Row: 1
+INFO: Planting Sunflower at Col: 0 Row: 0
+INFO: Planting Rose at Col: 1 Row: 1
+INFO: Planting Lily at Col: 1 Row: 0
+INFO: Morning! Day: 39 Garden Status Check!
+INFO: Today's weather: rainy
+INFO: Temperature: 50°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 8 units of rain recorded!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+INFO: Removing plant: 34
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Lily at (3, 0)! Health affected!
+SEVERE: Cutworms is attacking Rose at (4, 2)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (0, 2)! Health affected!
 WARN: Pesticide is washed away due to rain.
 INFO: Morning! Day: 40 Garden Status Check!
-INFO: Planting Apple at Col: 1 Row: 1
-INFO: Planting Lemon at Col: 3 Row: 0
-INFO: Planting Orange at Col: 7 Row: 4
 INFO: Today's weather: sunny
-INFO: Temperature: 89°F
+INFO: Temperature: 93°F
 INFO: Sunny Weather simulation
 INFO: OPTIMUM Temperature! No need to turn on the regulator!
-SEVERE: More water, Tulip age is reduced by 20 units!
-SEVERE: Due to more water, Tulip is dying!
-SEVERE: More water, Tulip age is reduced by 20 units!
-INFO: Plants received water: 18 units.!
-INFO: Removing plant: 15
+INFO: Removing plant: 02
+SEVERE: More water, Lily age is reduced by 20 units!
+SEVERE: Due to more water, Lily is dying!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: Due to more water, Apple is dying!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Tomato age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: Plants received water: 25 units.!
+INFO: Removing plant: 30
+INFO: Removing plant: 02
+INFO: Removing plant: 43
 INFO: (30% chance) pest activity
-INFO: No pest activity!
+WARN: Today's weather attracts [Beetles, HornWorms, SpiderMites]
+SEVERE: Beetles is attacking Rose at (4, 2)! Health affected!
+SEVERE: HornWorms is attacking Tomato at (2, 2)! Health affected!
+SEVERE: SpiderMites is attacking Lily at (1, 0)! Health affected!
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
 INFO: Morning! Day: 41 Garden Status Check!
-INFO: Planting Lily at Col: 4 Row: 1
-INFO: Today's weather: sunny
-INFO: Temperature: 81°F
-INFO: Sunny Weather simulation
-INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: Today's weather: cloudy
+INFO: Temperature: 74°F
+INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
 INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 42 Garden Status Check!
+INFO: Today's weather: rainy
+INFO: Temperature: 51°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 9 units of rain recorded!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Tomato age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Apple at (1, 2)! Health affected!
+SEVERE: Cutworms is attacking Rose at (4, 2)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (1, 2)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 43 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 102°F
+INFO: Sunny Weather simulation
+INFO: Removing plant: 42
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 22
+INFO: Removing plant: 42
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 42
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 11
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+WARN: Current Temperature is above MAXIMUM safe temperature!
+INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
+INFO: Removing plant: 22
+INFO: Removing plant: 42
+INFO: Removing plant: 11
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Removing plant: 12
+INFO: Removing plant: 22
+INFO: Removing plant: 42
+INFO: Removing plant: 11
 INFO: (30% chance) pest activity
 INFO: No pest activity!
-INFO: Morning! Day: 42 Garden Status Check!
+INFO: Pesticide thread is running
+INFO: Morning! Day: 44 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 80°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: Due to more water, Apple is dying!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: Due to more water, Orange is dying!
+SEVERE: More water, Lily age is reduced by 20 units!
+SEVERE: Due to more water, Lily is dying!
+SEVERE: More water, Lily age is reduced by 20 units!
+SEVERE: Due to more water, Lily is dying!
+INFO: Plants received water: 38 units.!
+INFO: Removing plant: 32
+INFO: Removing plant: 52
+INFO: Removing plant: 10
+INFO: Removing plant: 01
+INFO: (30% chance) pest activity
+WARN: Today's weather attracts [Beetles, HornWorms, SpiderMites]
+SEVERE: Beetles is attacking Sunflower at (0, 0)! Health affected!
+INFO: Morning! Day: 45 Garden Status Check!
+INFO: Planting Orange at Col: 1 Row: 5
+INFO: Planting Apple at Col: 5 Row: 0
+INFO: Planting Rose at Col: 3 Row: 0
+INFO: Planting Apple at Col: 7 Row: 0
+INFO: Today's weather: sunny
+INFO: Temperature: 101°F
+INFO: Sunny Weather simulation
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 00
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+WARN: Current Temperature is above MAXIMUM safe temperature!
+INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
+INFO: Removing plant: 00
+SEVERE: Due to more water, Sunflower is dying!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: Plants received water: 32 units.!
+INFO: Removing plant: 00
+INFO: (30% chance) pest activity
+INFO: No pest activity!
+INFO: Morning! Day: 46 Garden Status Check!
+INFO: Planting Rose at Col: 4 Row: 2
+INFO: Today's weather: rainy
+INFO: Temperature: 53°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 10 units of rain recorded!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Orange at (5, 1)! Health affected!
+SEVERE: Cutworms is attacking Rose at (0, 3)! Health affected!
+SEVERE: Caterpillars is attacking Apple at (0, 5)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 47 Garden Status Check!
 INFO: Today's weather: cloudy
 INFO: Temperature: 66°F
 INFO: Cloudy Weather simulation
+INFO: No rain today despite cloudy weather.
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 48 Garden Status Check!
+INFO: Today's weather: rainy
+INFO: Temperature: 49°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 05
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+INFO: Removing plant: 07
+SEVERE: Untolerable temperature! Affected plant health by 20 units
+WARN: Current Temperature is below MINIMUM safe temperature!
+INFO: Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)
+INFO: 19 units of rain recorded!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: Due to more water, Orange is dying!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: Due to more water, Apple is dying!
+SEVERE: More water, Rose age is reduced by 20 units!
+SEVERE: Due to more water, Rose is dying!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: Due to more water, Apple is dying!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+INFO: Removing plant: 51
+INFO: Removing plant: 05
+INFO: Removing plant: 03
+INFO: Removing plant: 07
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Rose at (2, 4)! Health affected!
+SEVERE: Cutworms is attacking Rose at (2, 4)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Pesticide thread is running
+INFO: Spraying pesticide to garden!
+INFO: Morning! Day: 49 Garden Status Check!
+INFO: Planting Sunflower at Col: 5 Row: 4
+INFO: Planting Orange at Col: 4 Row: 1
+INFO: Planting Orange at Col: 5 Row: 1
+INFO: Planting Apple at Col: 3 Row: 5
+INFO: Today's weather: rainy
+INFO: Temperature: 53°F
+INFO: Rainy Weather simulation
+INFO: Rain is expected throughout the day.
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+INFO: 11 units of rain recorded!
+SEVERE: More water, Rose age is reduced by 20 units!
+INFO: There are no plants in the garden!
+SEVERE: Rain washed the pesticide away!
+WARN: Increased pest activity due to high humid Rainy weather!!
+WARN: Today's weather attracts [Aphids, Cutworms, Caterpillars]
+SEVERE: Aphids is attacking Rose at (2, 4)! Health affected!
+SEVERE: Cutworms is attacking Rose at (2, 4)! Health affected!
+SEVERE: Plant Rose died due to pest attack!
+INFO: Removing plant: 24
+SEVERE: Caterpillars is attacking Apple at (5, 3)! Health affected!
+WARN: Pesticide is washed away due to rain.
+INFO: Morning! Day: 50 Garden Status Check!
+INFO: Planting Sunflower at Col: 6 Row: 0
+INFO: Today's weather: cloudy
+INFO: Temperature: 60°F
+INFO: Cloudy Weather simulation
 INFO: 5 units of rain recorded!
 SEVERE: Rain washed the pesticide away!
-SEVERE: More water, Tulip age is reduced by 20 units!
-SEVERE: Due to more water, Tulip is dying!
-INFO: Sufficient water in the garden already! No need sprinklers!
-INFO: Removing plant: 51
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Orange age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+INFO: Plants received water: 49 units.!
 INFO: (40% chance) pest activity
 WARN: Today's weather attracts [BulbFly, CodlingMoth, Whiteflies, LeafMiner]
-SEVERE: CodlingMoth is attacking Apple at (1, 1)! Health affected!
-SEVERE: Whiteflies is attacking Orange at (4, 7)! Health affected!
-SEVERE: LeafMiner is attacking Lemon at (0, 3)! Health affected!
+SEVERE: CodlingMoth is attacking Apple at (5, 3)! Health affected!
+SEVERE: Whiteflies is attacking Orange at (1, 4)! Health affected!

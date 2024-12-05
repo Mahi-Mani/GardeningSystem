@@ -1,5 +1,6 @@
 package com.gardensimulation.Plant;
 
+import com.almasb.fxgl.core.View;
 import com.gardensimulation.LifeController;
 import com.gardensimulation.Pests.Pest;
 import com.gardensimulation.SprinklerController;
@@ -243,6 +244,8 @@ public class Plants {
         this.water_level = this.water_level - amount;
         if (this.water_level < this.water_requirement) {
             log.warning("Today's temperature caused reduction in " + this.getName() + " water level! Age reduced by 5 units");
+            ViewController.addLogMessage("Today's temperature caused reduction in " + this.getName() + " water level! Age reduced by 5 units", "warn");
+            ViewController.appendLogToFile("Today's temperature caused reduction in " + this.getName() + " water level! Age reduced by 5 units", "warn");
             if (this.age > 0) {
                 this.age = this.age - 5;
             }
@@ -257,9 +260,9 @@ public class Plants {
     public void temperatureChange(int temperature) {
         dryThePlant(15);
         if ((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
-            log.severe("Untolerable temperature! Affected plant health by 20 units");
-            ViewController.addLogMessage("Untolerable temperature! Affected plant health by 20 units", "severe");
-            ViewController.appendLogToFile("Untolerable temperature! Affected plant health by 20 units", "severe");
+            log.severe("Untolerable temperature! Affected " + this.getName() + " health by 20 units");
+            ViewController.addLogMessage("Untolerable temperature! Affected " + this.getName() + " health by 20 units", "severe");
+            ViewController.appendLogToFile("Untolerable temperature! Affected " + this.getName() + " health by 20 units", "severe");
             if (this.age > 0) {
                 this.setAge(this.getAge() - 20);
             }
@@ -278,6 +281,8 @@ public class Plants {
 
         if (tempDiff < 10) {
             log.warning("Today's temperature affected aging of " + this.getName() + " by 5 units!");
+            ViewController.appendLogToFile("Today's temperature affected aging of " + this.getName() + " by 5 units!", "warn");
+            ViewController.addLogMessage("Today's temperature affected aging of " + this.getName() + " by 5 units!", "warn");
             if (this.age > 0) {
                 this.setAge(this.getAge() - 5);
             }
