@@ -43,7 +43,7 @@ public class ViewController {
     static BorderPane root3 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 10; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
     private int currentPlantCount = 0;
     private static Set<String> occupiedCells = new HashSet<>();
     private static int numRows;
@@ -107,7 +107,6 @@ public class ViewController {
         header.getChildren().addAll(icon, new Label(" Garden Status "), butterfly);
         logViewer.getChildren().add(header);
         logViewer.getChildren().add(logView);
-        clearLogFile();
         return logViewer;
     }
 

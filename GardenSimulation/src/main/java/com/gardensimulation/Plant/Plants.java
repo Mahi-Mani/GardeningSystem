@@ -209,7 +209,7 @@ public class Plants {
 //        System.out.println("FROM INSIDE DIE METHOD IN PLANT");
         this.setAlive(false);
         this.age = 0;
-        log.severe(this.getName() + "at Row: " + this.getRow() + "Col: " + this.getCol() + " is Dead!");
+        log.severe(this.getName() + " at Row: " + this.getRow() + " Col: " + this.getCol() + " is Dead!");
         life.removePlantFromGrid(this.getRow(), this.getCol());
 //        synchronized (plantsList) {
 //            plantsList.removeIf(plant -> plant.equals(this));
@@ -219,17 +219,21 @@ public class Plants {
     public void waterThePlant(int amount) {
         this.water_level = this.water_level + amount;
         if (this.water_level > this.water_requirement * 2) {
+            log.severe("More water, " + this.getName() + " age is reduced by 20 units!");
+            ViewController.addLogMessage("More water, " + this.getName() + " age is reduced by 20 units!", "severe");
+            ViewController.appendLogToFile("More water, " + this.getName() + " age is reduced by 20 units!", "severe");
             if (this.age > 0) {
                 this.age = this.age - 20;
             }
         } else if (water_level > water_requirement) {
             if (this.age > 0) {
-                this.age = this.age - 10;
+                this.age = this.age - 5;
             }
         }
         if (this.age <= 0) {
             log.severe("Due to more water, " + this.getName() + " is dying!");
             ViewController.addLogMessage("Due to more water, " + this.getName() + " is dying!", "severe");
+            ViewController.appendLogToFile("Due to more water, " + this.getName() + " is dying!", "severe");
             this.isAlive = false;
             this.setAge(0);
         }
@@ -238,14 +242,13 @@ public class Plants {
     public void dryThePlant(int amount) {
         this.water_level = this.water_level - amount;
         if (this.water_level < this.water_requirement) {
-            log.warning("Today's temperature caused reduction in " + this.getName() + " water level!");
+            log.warning("Today's temperature caused reduction in " + this.getName() + " water level! Age reduced by 5 units");
             if (this.age > 0) {
                 this.age = this.age - 5;
             }
 //            sprinklerController.activateSprinklers(Plants.plantsList);
         }
         if (this.age <= 0) {
-            System.out.println("Plant dying due to prolonged change in the water level @@@@@@@@@@@@@@@@@@@@@");
 //            ViewController.addLogMessage("Plant " + this.getName() + " dying due to prolonged change in the water level !", "severe");
             this.die();
         }
@@ -254,10 +257,17 @@ public class Plants {
     public void temperatureChange(int temperature) {
         dryThePlant(15);
         if ((temperature > MaxTemp_level) || (temperature < MinTemp_level)) {
-            log.severe("Untolerable temperature!");
-            System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
-            ViewController.addLogMessage("Plant " + this.getName() + " died due to untolerable temperature!", "severe");
-            this.die();
+            log.severe("Untolerable temperature! Affected plant health by 20 units");
+            ViewController.addLogMessage("Untolerable temperature! Affected plant health by 20 units", "severe");
+            ViewController.appendLogToFile("Untolerable temperature! Affected plant health by 20 units", "severe");
+            if (this.age > 0) {
+                this.setAge(this.getAge() - 20);
+            }
+
+            if (this.age <= 0) {
+                ViewController.addLogMessage("Plant " + this.getName() + " died due to untolerable temperature!", "severe");
+                this.die();
+            }
         }
     }
 
@@ -267,7 +277,7 @@ public class Plants {
         int tempDiff = Math.min(diff1, diff2);
 
         if (tempDiff < 10) {
-            log.warning("Today's temperature affected aging of " + this.getName() + " !");
+            log.warning("Today's temperature affected aging of " + this.getName() + " by 5 units!");
             if (this.age > 0) {
                 this.setAge(this.getAge() - 5);
             }

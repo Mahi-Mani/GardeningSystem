@@ -21,6 +21,7 @@ public class LifeController implements Runnable {
     WeatherController weatherController = new WeatherController();
     PestController pestController = new PestController();
     private ViewController viewController;
+    private final int LIFEOFPLANT = 5;
 
     public LifeController() {
 
@@ -52,7 +53,7 @@ public class LifeController implements Runnable {
                     plant = iterator.next();
                     if (plant.isAlive()) {
 //                        With each passing day, reduce the age of plant by 5
-                        plant.setAge(plant.getAge() - 5);
+                        plant.setAge(plant.getAge() - LIFEOFPLANT);
                     }
                     if (plant.getAge() <= 0) {
                         plant.setAge(0);
@@ -84,6 +85,7 @@ public class LifeController implements Runnable {
         String morningMsg = "Morning! Day: 1 Garden Status Check!";
         log.info(morningMsg);
         ViewController.addLogMessage(morningMsg, "info");
+        ViewController.clearLogFile();
         ViewController.appendLogToFile(morningMsg, "info");
         Platform.runLater(() -> {
             ViewController.autoPlacePlant();
@@ -105,7 +107,7 @@ public class LifeController implements Runnable {
 
     public void removePlantFromGrid(int row, int col) {
         log.info("Removing plant: " + row + col);
-        ViewController.addLogMessage("Removing plant: " + row + col, "info");
+        ViewController.appendLogToFile("Removing plant: " + row + col, "info");
         String cellKey = row + "," + col;
         // Iterate over all children in the GridPane
         for (Node node : LifeController.grid.getChildren()) {

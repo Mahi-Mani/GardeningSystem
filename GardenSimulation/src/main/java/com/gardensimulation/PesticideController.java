@@ -2,7 +2,10 @@ package com.gardensimulation;
 
 import com.almasb.fxgl.core.View;
 import com.gardensimulation.Plant.*;
+import javafx.application.Platform;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
 
 public class PesticideController implements Runnable {
@@ -61,10 +64,11 @@ public class PesticideController implements Runnable {
     }
 
     public void run() {
+//        isRunning = true;
         while (isRunning) {
             try {
                 log.info("PESTICIDE thread is running!");
-                ViewController.appendLogToFile("Pesticide thread is running", "info");
+//                ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                System.out.println(this.weatherController.getCurrentWeather());
                 // Scan plants for pests
                 for (Plants plant : Plants.plantsList) {
@@ -75,12 +79,14 @@ public class PesticideController implements Runnable {
                     }
                 }
                 if (isPesticideApplied) {
-                    ViewController.addLogMessage("Spraying pesticide to garden!", "info");
-                    ViewController.appendLogToFile("Spraying pesticide to garden!", "info");
+                    Platform.runLater(() -> {
+                        ViewController.addLogMessage("Spraying pesticide to garden!", "info");
+                        ViewController.appendLogToFile("Spraying pesticide to garden!", "info");
+                    });
                     // Log the treatment action
                     log.info("Spraying pesticide to garden!");
                 }
-
+//                isRunning = false;
                 // Wait for cooldown time before the next pesticide application
                 Thread.sleep(40000);
             } catch (InterruptedException e) {

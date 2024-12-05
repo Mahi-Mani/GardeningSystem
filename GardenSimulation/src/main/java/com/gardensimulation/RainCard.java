@@ -42,6 +42,5 @@ public class RainCard extends VBox {
 
         // Update the weather text
         rainTextLabel.setText("Raining!");
-        System.out.println("Inisde updaterainUI update rain");
     }
 }

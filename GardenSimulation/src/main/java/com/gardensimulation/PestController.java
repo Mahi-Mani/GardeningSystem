@@ -109,10 +109,10 @@ public class PestController {
 
                     if (plant.getParasites().contains(pest) && plant.getAge() > 0) {
                         int severity = randomSeverity.nextInt(pest.getSeverity() + 1);
-                        plant.setAge(plant.getAge() - severity * 7);  // Reduce health based on pest severity
+                        plant.setAge(plant.getAge() - severity);  // Reduce health based on pest severity
                         log.warning(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!");
-                        ViewController.addLogMessage(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!", "severe");
-                        ViewController.appendLogToFile(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")!", "severe");
+                        ViewController.addLogMessage(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")! Health affected!", "severe");
+                        ViewController.appendLogToFile(pest.getName() + " is attacking " + plant.getName() + " at (" + plant.getRow() + ", " + plant.getCol() + ")! Health affected!", "severe");
                         plant.addPest(pest.getName());
 
                         if (plant instanceof Apple) {
