@@ -43,7 +43,7 @@ public class ViewController {
     static BorderPane root3 = new BorderPane();
     StackPane weatherPane;
     static WeatherCard weatherCard;
-    private static final int MIN_PLANTS_THRESHOLD = 5; // Minimum allowed plants
+    private static final int MIN_PLANTS_THRESHOLD = 7; // Minimum allowed plants
     private int currentPlantCount = 0;
     private static Set<String> occupiedCells = new HashSet<>();
     private static int numRows;
@@ -415,7 +415,7 @@ public class ViewController {
 //                cell.setStroke(Color.BROWN);
                 // Create a Pane for each cell
                 Pane cell = new Pane();
-                cell.setPrefSize(100, 100);
+                cell.setPrefSize(80, 80);
 
                 // Set the soil background image for the cell
                 BackgroundImage soilBackground = new BackgroundImage(
