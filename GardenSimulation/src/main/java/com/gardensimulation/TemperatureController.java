@@ -2,6 +2,7 @@ package com.gardensimulation;
 
 import com.gardensimulation.Plant.Plants;
 
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 public class TemperatureController implements Runnable {

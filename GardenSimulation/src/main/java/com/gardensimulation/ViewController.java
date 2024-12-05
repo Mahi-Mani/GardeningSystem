@@ -4,6 +4,7 @@ package com.gardensimulation;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 
 import javafx.scene.image.Image;
@@ -46,6 +47,9 @@ public class ViewController {
     private static int numCols;
     private com.gardensimulation.ViewController viewController;
     public static Label plantCountLabel;
+    // Fixed dimensions for cells
+    public final int cellWidth = 80;
+    public final int cellHeight = 80;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -61,14 +65,6 @@ public class ViewController {
 //        executor.submit(temperatureController);
         executor.submit(life);
         executor.submit(pesticideController);
-        weatherCard = new WeatherCard();
-
-//        weatherPane = new StackPane();
-//        weatherPane = new VBox(20);
-//        weatherPane.setPrefWidth(1);
-//        weatherPane.getChildren().add(weatherCard);
-        root.setTop(weatherCard);
-        root.setMaxWidth(100);
     }
 
     public ViewController getViewController() {
@@ -98,6 +94,111 @@ public class ViewController {
 
 
     public StackPane createContent() {
+        // Create the root layout
+        StackPane stackPane = new StackPane();
+
+        // Set the background image for the garden
+        Image gardenBackgroundImage = new Image(
+                "https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0="
+        );
+        BackgroundImage backgroundImage = new BackgroundImage(
+                gardenBackgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
+        stackPane.setBackground(new Background(backgroundImage));
+
+        // Create the grid for the plants
+        grid = createGrid();
+
+        // Create radio buttons for plant selection
+        ToggleGroup plantGroup = new ToggleGroup();
+        String[] plants = { "Rose", "Sunflower", "Lily", "Tomato", "Tulip", "Lemon", "Orange", "Apple" };
+
+        GridPane plantSelectionPane = new GridPane();
+        plantSelectionPane.setHgap(20);
+        plantSelectionPane.setVgap(15);
+
+        for (int i = 0; i < plants.length; i++) {
+            RadioButton radioButton = new RadioButton(plants[i]);
+            radioButton.setToggleGroup(plantGroup);
+            radioButton.setStyle("-fx-font-size: 14px; -fx-padding: 5; -fx-cursor: hand;");
+            if (i == 0) radioButton.setSelected(true); // Default selection
+
+            // Add to grid (2 rows of 4 columns)
+            plantSelectionPane.add(radioButton, i % 4, i / 4);
+        }
+
+        // Update selectedPlant when the radio button selection changes
+        plantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (plantGroup.getSelectedToggle() != null) {
+                RadioButton selectedRadioButton = (RadioButton) plantGroup.getSelectedToggle();
+                selectedPlant = selectedRadioButton.getText().toLowerCase();
+            }
+        });
+
+        // Create text buttons
+        Button sprinklerButton = new Button("Activate Sprinklers");
+        sprinklerButton.setStyle("-fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;");
+        sprinklerButton.setOnAction(e -> {
+            if (sprinklerController != null) {
+                sprinklerController.activateSprinklers(Plants.plantsList);
+            }
+        });
+
+        Button rainButton = new Button("Generate Rain");
+        rainButton.setStyle("-fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;");
+        rainButton.setOnAction(e -> {
+            if (rainController != null) {
+                rainController.generateRainfall(Plants.plantsList);
+            }
+        });
+
+        // Create layout for buttons
+        GridPane buttonPane = new GridPane();
+        buttonPane.setHgap(20);
+        buttonPane.add(sprinklerButton, 0, 0);
+        buttonPane.add(rainButton, 1, 0);
+
+        // Label for plant count with background color
+        plantCountLabel = new Label("No. of Plants: 0");
+        plantCountLabel.setStyle("-fx-font-size: 16px; -fx-padding: 5; -fx-background-color: #FFD700; -fx-padding: 10;");
+
+        // Weather Card
+        weatherCard = new WeatherCard();
+        SprinklerCard sprinklerCard = sprinklerController.getSprinklerCard();
+
+        // Create the layout for plant count and weather card (Align to the right)
+        VBox rightPane = new VBox(20);
+        rightPane.setAlignment(Pos.CENTER_RIGHT); // Align content to the right
+        rightPane.getChildren().addAll(plantCountLabel, weatherCard, sprinklerCard);
+
+        // Create the main layout for grid and right-aligned pane
+        HBox mainLayout = new HBox(20);  // Add space between grid and rightPane
+        mainLayout.setAlignment(Pos.CENTER); // Align at the top
+        mainLayout.getChildren().addAll(grid, rightPane);
+
+        // Create the layout for day simulator and other elements
+        VBox layout = new VBox(20);
+        Platform.runLater(() -> {
+            layout.getChildren().addAll(
+                    daySimulator.getDaySimulatorUI(), // Add day simulator UI
+                    plantSelectionPane,              // Add plant selection radio buttons
+                    buttonPane,                      // Add the sprinkler and rain buttons
+                    mainLayout                       // Add the grid + right-aligned pane
+            );
+        });
+        layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
+
+        // Add layout to stack pane
+        stackPane.getChildren().add(layout);
+
+        return stackPane;
+    }
+
+    public StackPane createContent2() {
         // Create the root layout
         StackPane stackPane = new StackPane();
         Image gardenBackgroundImage = new Image("https://media.istockphoto.com/id/1368553162/photo/wooden-table-and-spring-forest-background.jpg?b=1&s=612x612&w=0&k=20&c=AbipVomBmZW0uaJsypwT_fJa06RlmktwjtDXzDWQkh0=");
@@ -257,28 +358,37 @@ public class ViewController {
 
     private GridPane createGrid() {
         grid = new GridPane();
-        cells = new ArrayList<Pane>();
+        grid.setAlignment(Pos.CENTER);
+        cells = new ArrayList<>();
         grid.setGridLinesVisible(false);
 
-        // Add cells with brown borders
         numRows = 6;
         numCols = 8;
+
+        // Set fixed row and column constraints
+        for (int i = 0; i < numCols; i++) {
+            ColumnConstraints colConstraints = new ColumnConstraints(cellWidth);
+            grid.getColumnConstraints().add(colConstraints);
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConstraints = new RowConstraints(cellHeight);
+            grid.getRowConstraints().add(rowConstraints);
+        }
+
+        // Create cells with fixed size and add them to the grid
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-//                Rectangle cell = new Rectangle(120, 120);
-//                cell.setFill(Color.TRANSPARENT);
-//                cell.setStroke(Color.BROWN);
-                // Create a Pane for each cell
                 Pane cell = new Pane();
-                cell.setPrefSize(120, 120);
+                cell.setPrefSize(cellWidth, cellHeight);
 
                 // Set the soil background image for the cell
                 BackgroundImage soilBackground = new BackgroundImage(
                         new Image("https://t3.ftcdn.net/jpg/02/57/58/20/360_F_257582025_LUf6zGRPA0x0OGaLFS1UJIgkRKrrZhAk.jpg"),
-                        BackgroundRepeat.NO_REPEAT, // Repeat for seamless soil texture
+                        BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
-                        new BackgroundSize(120, 120, true, true, false, true) // Scale the image dynamically
+                        new BackgroundSize(cellWidth, cellHeight, false, false, false, false)
                 );
                 cell.setBackground(new Background(soilBackground));
                 cell.setStyle("-fx-border-color: saddlebrown; -fx-border-width: 2px;");
@@ -287,6 +397,7 @@ public class ViewController {
                 final int cellRow = row;
                 final int cellCol = col;
                 cell.setOnMouseClicked(event -> placePlant(cellRow, cellCol));
+
                 cells.add(cell);
                 grid.add(cell, col, row);
             }
@@ -294,6 +405,7 @@ public class ViewController {
 
         return grid;
     }
+
 
     //    Function to automatically place plants
     public static void autoPlacePlant() {
