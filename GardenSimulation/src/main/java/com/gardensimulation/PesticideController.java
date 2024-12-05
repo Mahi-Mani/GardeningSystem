@@ -64,35 +64,39 @@ public class PesticideController implements Runnable {
     }
 
     public void run() {
+        System.out.println("Inside pesticide thread ....");
 //        isRunning = true;
         while (isRunning) {
-            try {
-                log.info("PESTICIDE thread is running!");
-                ViewController.appendLogToFile("Pesticide thread is running", "info");
+            if (Plants.plantsList.size() > 2) {
+                try {
+                    log.info("PESTICIDE thread is running!");
+                    ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                System.out.println(this.weatherController.getCurrentWeather());
-                // Scan plants for pests
-                for (Plants plant : Plants.plantsList) {
-                    System.out.println(plant.getPestAttack());
-                    if (!plant.getPestAttack().isEmpty()) {
-                        // Treat the plant and remove pests
-                        this.treatPlant(plant);
+                    // Scan plants for pests
+                    for (Plants plant : Plants.plantsList) {
+                        System.out.println(plant.getPestAttack());
+                        if (!plant.getPestAttack().isEmpty()) {
+                            // Treat the plant and remove pests
+                            this.treatPlant(plant);
+                        }
                     }
-                }
-                if (isPesticideApplied) {
-                    Platform.runLater(() -> {
+                    if (isPesticideApplied) {
+//                    Platform.runLater(() -> {
                         ViewController.addLogMessage("Spraying pesticide to garden!", "info");
                         ViewController.appendLogToFile("Spraying pesticide to garden!", "info");
-                    });
-                    // Log the treatment action
-                    log.info("Spraying pesticide to garden!");
-                }
+//                    });
+                        // Log the treatment action
+                        log.info("Spraying pesticide to garden!");
+                    }
 //                isRunning = false;
-                // Wait for cooldown time before the next pesticide application
-                Thread.sleep(40000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                isRunning = false;
+                    // Wait for cooldown time before the next pesticide application
+                    Thread.sleep(40000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    isRunning = false;
+                    log.info("<<<<<Pesticide thread interrupted>>>>.");
+                }
             }
         }
     }
