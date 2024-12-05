@@ -4,6 +4,7 @@ package com.gardensimulation;
 import com.gardensimulation.Pests.*;
 import com.gardensimulation.Plant.*;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 
 import javafx.scene.image.Image;
@@ -46,6 +47,9 @@ public class ViewController {
     private static int numCols;
     private com.gardensimulation.ViewController viewController;
     public static Label plantCountLabel;
+    // Fixed dimensions for cells
+    public final int cellWidth = 80;
+    public final int cellHeight = 80;
 
     public ViewController() {
         daySimulator = new DaySimulator();
@@ -257,28 +261,37 @@ public class ViewController {
 
     private GridPane createGrid() {
         grid = new GridPane();
-        cells = new ArrayList<Pane>();
+        grid.setAlignment(Pos.CENTER);
+        cells = new ArrayList<>();
         grid.setGridLinesVisible(false);
 
-        // Add cells with brown borders
         numRows = 6;
         numCols = 8;
+
+        // Set fixed row and column constraints
+        for (int i = 0; i < numCols; i++) {
+            ColumnConstraints colConstraints = new ColumnConstraints(cellWidth);
+            grid.getColumnConstraints().add(colConstraints);
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConstraints = new RowConstraints(cellHeight);
+            grid.getRowConstraints().add(rowConstraints);
+        }
+
+        // Create cells with fixed size and add them to the grid
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-//                Rectangle cell = new Rectangle(120, 120);
-//                cell.setFill(Color.TRANSPARENT);
-//                cell.setStroke(Color.BROWN);
-                // Create a Pane for each cell
                 Pane cell = new Pane();
-                cell.setPrefSize(120, 120);
+                cell.setPrefSize(cellWidth, cellHeight);
 
                 // Set the soil background image for the cell
                 BackgroundImage soilBackground = new BackgroundImage(
                         new Image("https://t3.ftcdn.net/jpg/02/57/58/20/360_F_257582025_LUf6zGRPA0x0OGaLFS1UJIgkRKrrZhAk.jpg"),
-                        BackgroundRepeat.NO_REPEAT, // Repeat for seamless soil texture
+                        BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
-                        new BackgroundSize(120, 120, true, true, false, true) // Scale the image dynamically
+                        new BackgroundSize(cellWidth, cellHeight, false, false, false, false)
                 );
                 cell.setBackground(new Background(soilBackground));
                 cell.setStyle("-fx-border-color: saddlebrown; -fx-border-width: 2px;");
@@ -287,6 +300,7 @@ public class ViewController {
                 final int cellRow = row;
                 final int cellCol = col;
                 cell.setOnMouseClicked(event -> placePlant(cellRow, cellCol));
+
                 cells.add(cell);
                 grid.add(cell, col, row);
             }
@@ -294,6 +308,7 @@ public class ViewController {
 
         return grid;
     }
+
 
     //    Function to automatically place plants
     public static void autoPlacePlant() {
