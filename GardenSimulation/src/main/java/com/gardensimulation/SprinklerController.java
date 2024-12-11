@@ -24,9 +24,10 @@ public class SprinklerController implements Runnable {
         ViewController.appendLogToFile("Current water level: " + avgWaterLevel, "info");
 
         if (plants.size() > 0 && !isRaining) {
+            int waterAmt = 0;
             if (avgWaterLevel < (avgWaterReq)) {
                 for (Plants plant : plants) {
-                    plant.waterThePlant(avgWaterReq);
+                    plant.waterThePlant(avgWaterReq-avgWaterLevel);
                 }
                 log.info("Sprinklers activated! Plants received an average of " + avgWaterReq + " units.");
                 ViewController.addLogMessage("Plants received water: " + avgWaterReq + " units.!", "info");
@@ -40,8 +41,6 @@ public class SprinklerController implements Runnable {
                 isSprinklerRunning = false;
             }
         } else {
-            log.info("There are no plants in the garden!");
-            ViewController.appendLogToFile("There are no plants in the garden!", "info");
             isSprinklerRunning = false;
         }
     }

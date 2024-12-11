@@ -1,5 +1,7 @@
 package com.gardensimulation;
 
+import com.gardensimulation.Plant.Plants;
+
 import java.util.logging.Logger;
 
 public class TemperatureRegulator {
@@ -11,5 +13,8 @@ public class TemperatureRegulator {
         log.info("Temperature Regulator activated! Setting current Temperature to OPTIMUM!");
         ViewController.addLogMessage("Temperature Regulator activated! Setting current Temperature to OPTIMUM!", "info");
         ViewController.appendLogToFile("Temperature Regulator activated! Setting current Temperature to OPTIMUM! (70)", "info");
+        for (Plants plant : Plants.plantsList) {
+            plant.setAge(plant.getAge() + 4);
+        }
     }
 }

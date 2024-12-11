@@ -21,7 +21,7 @@ public class LifeController implements Runnable {
     WeatherController weatherController = new WeatherController();
     PestController pestController = new PestController();
     private ViewController viewController;
-    private final int LIFEOFPLANT = 5;
+    private final int LIFEOFPLANT = 2;
 
     public LifeController() {
 

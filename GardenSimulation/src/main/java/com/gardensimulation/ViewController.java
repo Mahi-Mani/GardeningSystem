@@ -450,7 +450,7 @@ public class ViewController {
                 sunflowerPests.add(new Aphids());
                 sunflowerPests.add(new Beetles());
                 sunflowerPests.add(new Cutworms());
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 10, 98, 50, 20, sunflowerPests, true, row, col);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 20, 98, 50, 10, sunflowerPests, true, row, col);
                 grid.add(sunflower.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, sunflower.getPlantView());
                 life.setGrid(grid);
@@ -464,7 +464,7 @@ public class ViewController {
                 lilyPests.add(new Aphids());
                 lilyPests.add(new SpiderMites());
                 lilyPests.add(new Beetles());
-                Lily lily = new Lily("Lily", 100, 30, 95, 55, 25, lilyPests, true, row, col);
+                Lily lily = new Lily("Lily", 100, 25, 95, 55, 20, lilyPests, true, row, col);
                 grid.add(lily.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lily.getPlantView());
                 life.setGrid(grid);
@@ -505,7 +505,7 @@ public class ViewController {
                 ArrayList<Pest> lemonPests = new ArrayList<Pest>();
                 lemonPests.add(new Aphids());
                 lemonPests.add(new LeafMiner());
-                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 18, lemonPests, true, row, col);
+                Lemon lemon = new Lemon("Lemon", 100, 23, 104, 50, 18, lemonPests, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lemon.getPlantView());
                 life.setGrid(grid);
@@ -532,7 +532,7 @@ public class ViewController {
                 applePests.add(new Aphids());
                 applePests.add(new Caterpillars());
                 applePests.add(new CodlingMoth());
-                Apple apple = new Apple("Apple", 100, 15, 102, 50, 15, applePests, true, row, col);
+                Apple apple = new Apple("Apple", 100, 15, 102, 50, 10, applePests, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, apple.getPlantView());
                 life.setGrid(grid);
