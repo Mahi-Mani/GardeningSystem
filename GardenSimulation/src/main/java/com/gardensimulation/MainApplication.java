@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 
 import javafx.stage.Stage;
 
-public class         MainApplication extends Application {
+public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         ViewController controller = new ViewController();
