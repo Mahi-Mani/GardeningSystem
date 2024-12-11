@@ -49,7 +49,6 @@ public class LifeController implements Runnable {
                 Iterator<Plants> iterator = Plants.plantsList.iterator();
                 while (iterator.hasNext()) {
                     Plants plant;
-//                if (iterator.next() != null) {
                     plant = iterator.next();
                     if (plant.isAlive()) {
 //                        With each passing day, reduce the age of plant by 5
@@ -58,26 +57,10 @@ public class LifeController implements Runnable {
                     if (plant.getAge() <= 0) {
                         plant.setAge(0);
                         plant.die();
-//                    plant.setAlive(false);
-//                    log.severe(plant.getName() + " is Dead!");
-//                    removePlantFromGrid(plant.getRow(), plant.getCol());
                         iterator.remove();
                     }
-//                }
-
                 }
             }
-//            for (Plants plant : Plants.plantsList) {
-//                if (plant.isAlive()) {
-//                    plant.setAge(plant.getAge() - 1);
-//                }
-//                if (plant.getAge() <= 0) {
-//                    plant.setAlive(false);
-//                    log.severe(plant.getName() + " is Dead!");
-//                    removePlantFromGrid(plant.getRow(), plant.getCol());
-//                    Plants.plantsList.remove(plant);
-//                }
-//            }
         });
     }
 
@@ -92,8 +75,6 @@ public class LifeController implements Runnable {
         });
         weatherController.generateRandomWeather();
         weatherController.simulateDailyWeather();
-        System.out.println("***************WEATHER UPDATE FROM LIFE FOR DAY 1");
-        System.out.println(weatherController.getCurrentWeather());
         Platform.runLater(() -> {
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());
             ViewController.updatePesticideUI(PesticideController.isPesticideApplied, "https://www.autoimmuneinstitute.org/wp-content/uploads/2024/02/Pesticides-1.jpg");
@@ -122,30 +103,10 @@ public class LifeController implements Runnable {
             if (nodeRow == row && nodeCol == col) {
                 if (node instanceof ImageView) { // Check if the node is an ImageView
                     LifeController.grid.getChildren().remove(node);
-//                    ImageView imageView = (ImageView) node;
-//                    imageView.setImage(null); // Remove the image, but keep the ImageView node intact
-//                    Plants plantToRemove = findPlant(row, col);
-//                    if (plantToRemove != null) {
-//                        Plants.plantsList.remove(plantToRemove); // Remove the plant from the list
-//                    }
-
                     break; // Exit the loop once the image is removed
                 }
             }
         }
-//        viewController.setCurrentPlantCount(viewController.getCurrentPlantCount() - 1);
-//        viewController.getOccupiedCells().remove(cellKey);
-
-//        Rectangle emptyCell = new Rectangle(50, 50); // Set the size of the empty cell
-//        emptyCell.setStroke(Color.BLACK);            // Set the border color
-//        emptyCell.setFill(Color.TRANSPARENT);       // Make the cell transparent (empty)
-//
-//        // Set the position of the empty cell
-//        GridPane.setRowIndex(emptyCell, row);
-//        GridPane.setColumnIndex(emptyCell, col);
-//
-//        // Add the empty cell with borders to the grid
-//        grid.getChildren().add(emptyCell);
     }
 
     private Plants findPlant(int row, int col) {
@@ -158,7 +119,6 @@ public class LifeController implements Runnable {
     }
 
     public void adjustPlantHealth() {
-//        System.out.println("Inside adjust plant health");
 
         for (Plants plant : Plants.plantsList) {
             if (!plant.isAlive()) {
@@ -175,7 +135,6 @@ public class LifeController implements Runnable {
         ViewController.appendLogToFile("Lifecycle thread is running!", "info");
         this.initialize();
         while (isRunning) {
-//            this.adjustPlantHealth();
             try {
 //                Periodically check every 1 seconds
                 Thread.sleep(1000);
