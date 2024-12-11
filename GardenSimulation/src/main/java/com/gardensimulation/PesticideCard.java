@@ -11,9 +11,8 @@ import javafx.scene.text.Font;
 public class PesticideCard extends VBox {
     private ImageView pesticideIcon;  // Image for the weather icon
     private Label pesticideTextLabel; // Text label for weather condition
-//    private WeatherController weatherController = new WeatherController();
 
-    // Constructor for the WeatherCard
+    // Constructor for the PesticideCard
     public PesticideCard() {
         // Create the weather icon ImageView
         pesticideIcon = new ImageView();
@@ -31,7 +30,6 @@ public class PesticideCard extends VBox {
         // Set alignment and spacing within the card
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
-//        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
         setStyle("-fx-background-color: #d1fb96; -fx-padding: 5; -fx-border-color: black; -fx-border-width: 2;");
     }
 
