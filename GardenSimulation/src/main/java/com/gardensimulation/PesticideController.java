@@ -10,13 +10,11 @@ import java.util.logging.Logger;
 
 public class PesticideController implements Runnable {
     private boolean isRunning = true;
-    private WeatherController weatherController;
     private PestController pestController;
     public static boolean isPesticideApplied = false;
     private static final Logger log = Logger.getLogger(PesticideController.class.getName());
 
     public PesticideController(WeatherController weatherController) {
-//        this.weatherController = weatherController;
         pestController = new PestController();
     }
 
@@ -53,26 +51,15 @@ public class PesticideController implements Runnable {
         } else {
             plant.die();
         }
-//        Notify pest controller
-//        pestController.setPesticideApplied(true);
         isPesticideApplied = true;
-
-//        System.out.println(pestController.getPesticideApplied());
-
-        // Update the UI (remove pest overlays)
-//        viewController.updatePlantPestOverlay(plant);
     }
 
     public void run() {
-        System.out.println("Inside pesticide thread ....");
-//        isRunning = true;
         while (isRunning) {
             if (Plants.plantsList.size() > 2) {
                 try {
                     log.info("PESTICIDE thread is running!");
                     ViewController.appendLogToFile("Pesticide thread is running", "info");
-//                ViewController.appendLogToFile("Pesticide thread is running", "info");
-//                System.out.println(this.weatherController.getCurrentWeather());
                     // Scan plants for pests
                     if (!isPesticideApplied) {
                         for (Plants plant : Plants.plantsList) {
@@ -82,15 +69,12 @@ public class PesticideController implements Runnable {
                                 this.treatPlant(plant);
                             }
                         }
-//                        Platform.runLater(() -> {
                         ViewController.addLogMessage("Spraying pesticide to garden!", "info");
                         ViewController.appendLogToFile("Spraying pesticide to garden!", "info");
-//                    });
                         // Log the treatment action
                         log.info("Spraying pesticide to garden!");
                         isPesticideApplied = true;
                     }
-//                isRunning = false;
                     // Wait for cooldown time before the next pesticide application
                     Thread.sleep(40000);
                 } catch (InterruptedException e) {
