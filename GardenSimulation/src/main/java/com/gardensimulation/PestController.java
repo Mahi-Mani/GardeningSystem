@@ -52,10 +52,11 @@ public class PestController {
                 ViewController.addLogMessage("(30% chance) pest activity", "info");
                 ViewController.appendLogToFile("(30% chance) pest activity", "info");
                 if (random.nextInt(10) < 3) {
-                    System.out.println("Pest: Mild");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
                     attackPlants(selectedPests);
+                    ViewController.addLogMessage("Pest actvity: Mild", "warn");
+                    ViewController.appendLogToFile("Pest actvity: Mild", "warn");
                 } else {
                     log.info("No pest activity!");
                     ViewController.addLogMessage("No pest activity!", "info");
@@ -66,10 +67,11 @@ public class PestController {
                 ViewController.addLogMessage("(40% chance) pest activity", "info");
                 ViewController.appendLogToFile("(40% chance) pest activity", "info");
                 if (random.nextInt(10) < 4) {
-                    System.out.println("Pest: Moderate");
                     selectedPests = selectRandomPests(weather);
                     System.out.println(selectedPests);
                     attackPlants(selectedPests);
+                    ViewController.addLogMessage("Pest actvity: Moderate", "warn");
+                    ViewController.appendLogToFile("Pest actvity: Moderate", "warn");
                 } else {
                     System.out.println("No pest activity!");
                     log.info("No pest activity!");

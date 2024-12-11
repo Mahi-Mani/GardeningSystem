@@ -63,7 +63,6 @@ public class PesticideController implements Runnable {
                     // Scan plants for pests
                     if (!isPesticideApplied) {
                         for (Plants plant : Plants.plantsList) {
-                            System.out.println(plant.getPestAttack());
                             if (!plant.getPestAttack().isEmpty()) {
                                 // Treat the plant and remove pests
                                 this.treatPlant(plant);
