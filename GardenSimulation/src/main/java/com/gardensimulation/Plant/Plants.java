@@ -19,11 +19,6 @@ public class Plants {
     private int MinTemp_level;
     private int water_level;
     private int water_requirement;
-    private int fertilizer_level;
-    private int time_for_watering;
-    private int last_watering_time;
-    private int days_for_fertilizer;
-    private int last_fertilizer_day;
     private ArrayList<Pest> parasites;
     private ArrayList<Pest> currentPests1;
     private ArrayList<String> currentPests;
@@ -36,21 +31,16 @@ public class Plants {
     SprinklerController sprinklerController = new SprinklerController();
 
     //    Parameterized constructor
-    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int fertilizer_level, int water_level, int time_for_watering, int last_watering_time, int days_for_fertilizer, int last_fertilizer_day, ArrayList<Pest> parasites, boolean isAlive, int row, int col) {
+    public Plants(String name, int age, int water_requirement, int MaxTemp_level, int MinTemp_level, int water_level, ArrayList<Pest> parasites, boolean isAlive, int row, int col) {
         super();
-        this.days_for_fertilizer = days_for_fertilizer;
         this.name = name;
         this.age = age;
         this.MaxTemp_level = MaxTemp_level;
         this.MinTemp_level = MinTemp_level;
-        this.fertilizer_level = fertilizer_level;
         this.water_level = water_level;
-        this.time_for_watering = time_for_watering;
-        this.last_watering_time = last_watering_time;
-        this.last_fertilizer_day = last_fertilizer_day;
         this.water_requirement = water_requirement;
         this.current_age = 0;
-        this.isAlive = true;
+        this.isAlive = isAlive;
         this.row = row;
         this.col = col;
         this.parasites = parasites;
@@ -62,24 +52,9 @@ public class Plants {
     }
 
     //    Getters
-    public int getLast_fertilizer_day() {
-        return last_fertilizer_day;
-    }
 
     public int getWater_requirement() {
         return this.water_requirement;
-    }
-
-    public void setLast_fertilizer_day(int last_fertilizer_day) {
-        this.last_fertilizer_day = last_fertilizer_day;
-    }
-
-    public int getDays_for_fertilizer() {
-        return days_for_fertilizer;
-    }
-
-    public void setDays_for_fertilizer(int days_for_fertilizer) {
-        this.days_for_fertilizer = days_for_fertilizer;
     }
 
     public void setName(String name) {
@@ -148,38 +123,12 @@ public class Plants {
         this.water_requirement = water_requirement;
     }
 
-    public int getFertilizer_level() {
-        return fertilizer_level;
-    }
-
-    public void setFertilizer_level(int fertilizer_level) {
-        //myLogger.log(Level.FINE, "Fertilizer given to plant " + this.name);
-        this.fertilizer_level = fertilizer_level;
-    }
-
     public int getWater_level() {
         return water_level;
     }
 
     public void setWater_level(int water_level) {
-        System.out.println("Current Water level " + this.name + " is " + getWater_level());
         this.water_level = water_level;
-    }
-
-    public int getTime_for_watering() {
-        return time_for_watering;
-    }
-
-    public void setTime_for_watering(int time_for_watering) {
-        this.time_for_watering = time_for_watering;
-    }
-
-    public int getLast_watering_time() {
-        return last_watering_time;
-    }
-
-    public void setLast_watering_time(int last_watering_time) {
-        this.last_watering_time = last_watering_time;
     }
 
     public int getRow() {
@@ -207,7 +156,6 @@ public class Plants {
     }
 
     public void die() {
-//        System.out.println("FROM INSIDE DIE METHOD IN PLANT");
         this.setAlive(false);
         this.age = 0;
         log.severe(this.getName() + " at Row: " + this.getRow() + " Col: " + this.getCol() + " is Dead!");
@@ -249,10 +197,8 @@ public class Plants {
             if (this.age > 0) {
                 this.age = this.age - 5;
             }
-//            sprinklerController.activateSprinklers(Plants.plantsList);
         }
         if (this.age <= 0) {
-//            ViewController.addLogMessage("Plant " + this.getName() + " dying due to prolonged change in the water level !", "severe");
             this.die();
         }
     }
@@ -288,8 +234,6 @@ public class Plants {
             }
         }
         if (this.age < 0) {
-            System.out.println("Plant dying due to temperature !!!!!!!!!!!!!!!!!");
-//            ViewController.addLogMessage("Plant died due to prolonged temperature change!", "severe");
             this.die();
         }
     }

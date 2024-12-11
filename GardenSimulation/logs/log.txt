@@ -1,39 +1,121 @@
 INFO: Morning! Day: 1 Garden Status Check!
-INFO: Today's weather: cloudy
-INFO: Temperature: 61°F
-INFO: Cloudy Weather simulation
-INFO: It's cloudy today. 30% chance of rain!
-INFO: No rain today despite cloudy weather.
+INFO: Today's weather: sunny
+INFO: Temperature: 92°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
 INFO: Water requirement: 0
 INFO: Current water level: 0
 INFO: There are no plants in the garden!
-INFO: Planting Orange at Col: 6 Row: 0
-INFO: Planting Apple at Col: 2 Row: 4
+INFO: Planting Sunflower at Col: 1 Row: 5
+INFO: Planting Tulip at Col: 6 Row: 2
+INFO: Planting Rose at Col: 5 Row: 2
 INFO: Pesticide thread is running
 INFO: Spraying pesticide to garden!
-INFO: Planting Sunflower at Col: 2 Row: 5
-INFO: Planting Tomato at Col: 4 Row: 5
-INFO: Planting Orange at Col: 1 Row: 0
-INFO: Planting Sunflower at Col: 1 Row: 3
-INFO: Planting Apple at Col: 5 Row: 4
-INFO: Planting Orange at Col: 7 Row: 3
-INFO: Planting Sunflower at Col: 5 Row: 0
-INFO: Planting Apple at Col: 7 Row: 0
+INFO: Planting Lemon at Col: 7 Row: 1
+INFO: Planting Lily at Col: 6 Row: 5
+INFO: Planting Sunflower at Col: 7 Row: 2
+INFO: Planting Apple at Col: 0 Row: 2
+INFO: Planting Sunflower at Col: 3 Row: 5
+INFO: Planting Apple at Col: 4 Row: 5
+INFO: Planting Orange at Col: 6 Row: 1
 INFO: Pesticide in effect, no pest activity!
+INFO: Planting Rose at Col: 2 Row: 2
+INFO: Planting Apple at Col: 3 Row: 2
+INFO: Planting Tomato at Col: 3 Row: 3
+INFO: Planting Orange at Col: 2 Row: 3
 INFO: Morning! Day: 2 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 92°F
+INFO: Sunny Weather simulation
+WARN: Today's temperature affected aging of Sunflower by 5 units!
+WARN: Today's temperature affected aging of Tulip by 5 units!
+WARN: Today's temperature affected aging of Rose by 5 units!
+WARN: Today's temperature affected aging of Lily by 5 units!
+WARN: Today's temperature affected aging of Sunflower by 5 units!
+WARN: Today's temperature affected aging of Sunflower by 5 units!
+WARN: Today's temperature affected aging of Rose by 5 units!
+WARN: Today's temperature affected aging of Tomato by 5 units!
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+WARN: Today's temperature caused reduction in Tulip water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lemon water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lily water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Tomato water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+INFO: Water requirement: 15
+INFO: Current water level: 8
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+INFO: Plants received water: 15 units.!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 3 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 87°F
+INFO: Sunny Weather simulation
+WARN: Today's temperature affected aging of Lily by 5 units!
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+WARN: Today's temperature caused reduction in Tulip water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lemon water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lily water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Tomato water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+INFO: Water requirement: 15
+INFO: Current water level: 18
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: Pesticide in effect, no pest activity!
+INFO: Pesticide thread is running
+INFO: Morning! Day: 4 Garden Status Check!
+INFO: Today's weather: sunny
+INFO: Temperature: 85°F
+INFO: Sunny Weather simulation
+INFO: OPTIMUM Temperature! No need to turn on the regulator!
+WARN: Today's temperature caused reduction in Tulip water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lemon water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Lily water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Rose water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Apple water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Tomato water level! Age reduced by 5 units
+WARN: Today's temperature caused reduction in Orange water level! Age reduced by 5 units
+INFO: Water requirement: 15
+INFO: Current water level: 13
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+INFO: Plants received water: 15 units.!
+INFO: Pesticide in effect, no pest activity!
+INFO: Morning! Day: 5 Garden Status Check!
 INFO: Today's weather: cloudy
-INFO: Temperature: 61°F
+INFO: Temperature: 66°F
 INFO: Cloudy Weather simulation
 INFO: It's cloudy today. 30% chance of rain!
-INFO: No rain today despite cloudy weather.
-INFO: Water requirement: 40
-INFO: Current water level: 14
-SEVERE: More water, Orange age is reduced by 20 units!
+INFO: 5 units of rain recorded!
+SEVERE: Rain washed the pesticide away!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
+SEVERE: More water, Sunflower age is reduced by 20 units!
+SEVERE: More water, Apple age is reduced by 20 units!
 SEVERE: More water, Apple age is reduced by 20 units!
 SEVERE: More water, Tomato age is reduced by 20 units!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: More water, Apple age is reduced by 20 units!
-SEVERE: More water, Orange age is reduced by 20 units!
-SEVERE: More water, Apple age is reduced by 20 units!
-INFO: Plants received water: 40 units.!
-INFO: Pesticide in effect, no pest activity!
+INFO: Water requirement: 15
+INFO: Current water level: 33
+INFO: Sufficient water in the garden already! No need sprinklers!
+INFO: (40% chance) pest activity
+WARN: Today's weather attracts [BulbFly, CodlingMoth, Whiteflies, LeafMiner]
+SEVERE: BulbFly is attacking Tulip at (2, 6)! Health affected by 15 units
+SEVERE: CodlingMoth is attacking Apple at (2, 0)! Health affected by 15 units
+SEVERE: Whiteflies is attacking Orange at (1, 6)! Health affected by 10 units
+SEVERE: LeafMiner is attacking Lemon at (1, 7)! Health affected by 15 units

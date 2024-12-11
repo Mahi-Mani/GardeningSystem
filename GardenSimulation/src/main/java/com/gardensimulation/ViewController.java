@@ -41,7 +41,6 @@ public class ViewController {
     static BorderPane root1 = new BorderPane();
     static BorderPane root2 = new BorderPane();
     static BorderPane root3 = new BorderPane();
-    StackPane weatherPane;
     static WeatherCard weatherCard;
     private static final int MIN_PLANTS_THRESHOLD = 7; // Minimum allowed plants
     private int currentPlantCount = 0;
@@ -65,10 +64,7 @@ public class ViewController {
 
         pestController = new PestController(this);
         life = new LifeController(daySimulator, gridNodeMap, this);
-//        weatherWidget = new WeatherWidget(life.weatherController.getCurrentWeather());
         pesticideController = new PesticideController(new WeatherController());
-//        executor.submit(sprinklerController);
-//        executor.submit(temperatureController);
         executor.submit(life);
         executor.submit(pesticideController);
         weatherCard = new WeatherCard();
@@ -77,11 +73,6 @@ public class ViewController {
         rainCard = new RainCard();
         cardLayout = new HBox(20);
         logView = new ListView<>();
-
-//        weatherPane = new StackPane();
-//        weatherPane = new VBox(20);
-//        weatherPane.setPrefWidth(1);
-//        weatherPane.getChildren().add(weatherCard);
         root.setTop(weatherCard);
         root.setMaxWidth(100);
         root1.setTop(pesticideCard);
@@ -92,6 +83,7 @@ public class ViewController {
         root3.setMaxWidth(100);
     }
 
+    //    Create log viewer in the UI
     public VBox createLogViewer() {
         logView.setPrefHeight(500);
         logView.setPrefWidth(500);
@@ -188,19 +180,22 @@ public class ViewController {
         return viewController;
     }
 
-    // Method to update the weather dynamically
+    // Method to update the weather card dynamically in the UI
     public static void updateWeather(String weatherCondition, String imageUrl) {
         weatherCard.updateWeather(weatherCondition, imageUrl);
     }
 
+    //    Method to update the pesticide card dynamically in the UI
     public static void updatePesticideUI(Boolean status, String imageUrl) {
         pesticideCard.updatePesticideCard(status, imageUrl);
     }
 
+    //    Method to update the sprinkler card dynamically in the UI
     public static void updateSprinklerUI(boolean status) {
         sprinklerCard.updateSprinkler(status);
     }
 
+    //    Method to update the rain card dynamically in the UI
     public static void updateRainUI(boolean status) {
         isRaining = status;
         rainCard.updateRain();
@@ -237,8 +232,6 @@ public class ViewController {
 
         // Set the background to the Pane
         stackPane.setBackground(new Background(backgroundImage));
-        // Set background color for the root layout
-//        stackPane.setStyle("-fx-background-color: #008631;");
 
         // Create the 8x6 grid
         grid = createGrid();
@@ -281,11 +274,6 @@ public class ViewController {
         lemonRadio.setStyle(stylePlantGroup);
         orangeRadio.setStyle(stylePlantGroup);
         appleRadio.setStyle(stylePlantGroup);
-//        rb5.setStyle(stylePlantGroup);
-//        rb6.setStyle(stylePlantGroup);
-//        rb7.setStyle(stylePlantGroup);
-//        rb8.setStyle(stylePlantGroup);
-
 
         // Update selectedPlant when radio button selection changes
         plantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
@@ -295,16 +283,6 @@ public class ViewController {
             }
         });
 
-        // Align grid to the bottom center
-//        StackPane.setAlignment(grid, Pos.BOTTOM_CENTER);
-//        stackPane.getChildren().add(grid);
-//
-//        // Resize the grid to the upper half of the scene
-//        stackPane.heightProperty().addListener((observable, oldValue, newValue) -> {
-//            double gridHeight = newValue.doubleValue() / 2;
-//            grid.setPrefHeight(gridHeight);
-//        });
-
         GridPane gridPane = new GridPane();
         gridPane.setHgap(20); // Horizontal gap between columns
         gridPane.setVgap(15);
@@ -312,14 +290,10 @@ public class ViewController {
         gridPane.add(sunflowerRadio, 1, 0); // Column 1, Row 0
         gridPane.add(lilyRadio, 2, 0); // Column 2, Row 0
         gridPane.add(tomatoRadio, 3, 0); // Column 3, Row 0
-
         gridPane.add(tulipRadio, 0, 1); // Column 0, Row 1
         gridPane.add(lemonRadio, 1, 1); // Column 1, Row 1
         gridPane.add(orangeRadio, 2, 1); // Column 2, Row 1
         gridPane.add(appleRadio, 3, 1);
-//        Platform.runLater(() -> {
-//        gridPane.add(weatherWidget, 3, 3);
-//        });
 
         Button sprinkerBtn = new Button();
         Button rainBtn = new Button();
@@ -356,14 +330,8 @@ public class ViewController {
         GridPane btnPane = new GridPane();
         btnPane.setHgap(20); // Horizontal gap between columns
         btnPane.setVgap(15);
-//        btnPane.add(sprinkerBtn, 0, 0);
-//        btnPane.add(rainBtn, 1, 0);
-
         VBox layout = new VBox(20);
         HBox gridLogLayout = new HBox(20);
-//        HBox cardLayout = new HBox(20);
-//        VBox weatherLayout = new VBox(1);
-//        weatherLayout.setAlignment(Pos.BASELINE_RIGHT);
         updateCardLayout(isRaining);
         Platform.runLater(() -> {
             layout.getChildren().clear();
@@ -371,21 +339,13 @@ public class ViewController {
             gridLogLayout.getChildren().addAll(grid, createLogViewer());
             layout.getChildren().addAll(daySimulator.getDaySimulatorUI(), gridLogLayout,
                     btnPane, cardLayout);
-
-//            cardLayout.getChildren().addAll(layout1);
-//            weatherLayout.getChildren().addAll(weatherPane);
         });
         layout.setStyle("-fx-padding: 20; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;");
-//        weatherLayout.setPrefWidth(1);
-//        weatherLayout.setStyle("-fx-padding: 500; -fx-border-color: #ccc; -fx-border-width: 10; -fx-border-radius: 5;");
-//        layout.setAlignment(Pos.TOP_CENTER);
-
         stackPane.getChildren().addAll(layout);
-//        stackPane.getChildren().add(weatherLayout);
-
         return stackPane;
     }
 
+    //    Show or hide raining card layout
     public static void updateCardLayout(boolean isRaining) {
         Platform.runLater(() -> {
             cardLayout.getChildren().clear();
@@ -394,9 +354,6 @@ public class ViewController {
             } else {
                 cardLayout.getChildren().addAll(root, root1, root2);
             }
-
-//            cardLayout.getChildren().addAll(layout1);
-//            weatherLayout.getChildren().addAll(weatherPane);
         });
     }
 
@@ -410,9 +367,6 @@ public class ViewController {
         numCols = 8;
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-//                Rectangle cell = new Rectangle(120, 120);
-//                cell.setFill(Color.TRANSPARENT);
-//                cell.setStroke(Color.BROWN);
                 // Create a Pane for each cell
                 Pane cell = new Pane();
                 cell.setPrefSize(80, 80);
@@ -436,7 +390,6 @@ public class ViewController {
                 grid.add(cell, col, row);
             }
         }
-
         return grid;
     }
 
@@ -459,14 +412,6 @@ public class ViewController {
 
     //    Function to place a plant
     private static void placePlant(int row, int col) {
-        // Check if there's already a plant in this cell
-//        for (javafx.scene.Node node : grid.getChildren()) {
-//            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && !(node instanceof Rectangle)) {
-//                System.out.println("Garden is full!");
-//                return; // Exit if the cell already has a plant
-//            }
-//        }
-
         for (javafx.scene.Node node : grid.getChildren()) {
             if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
                 if (node instanceof Pane && ((Pane) node).getChildren().isEmpty()) {
@@ -491,7 +436,7 @@ public class ViewController {
                 rosePests.add(new Aphids());
                 rosePests.add(new Beetles());
                 rosePests.add(new Cutworms());
-                Rose rose = new Rose("Rose", 100, 15, 100, 60, 80, 10, 10, 0, 2, 0, rosePests, true, row, col);
+                Rose rose = new Rose("Rose", 100, 15, 100, 60, 10, rosePests, true, row, col);
                 grid.add(rose.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, rose.getPlantView());
                 life.setGrid(grid);
@@ -505,7 +450,7 @@ public class ViewController {
                 sunflowerPests.add(new Aphids());
                 sunflowerPests.add(new Beetles());
                 sunflowerPests.add(new Cutworms());
-                Sunflower sunflower = new Sunflower("Sunflower", 100, 100, 50, 25, 80, 20, 10, 0, 2, 0, sunflowerPests, true, row, col);
+                Sunflower sunflower = new Sunflower("Sunflower", 100, 10, 98, 50, 20, sunflowerPests, true, row, col);
                 grid.add(sunflower.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, sunflower.getPlantView());
                 life.setGrid(grid);
@@ -519,7 +464,7 @@ public class ViewController {
                 lilyPests.add(new Aphids());
                 lilyPests.add(new SpiderMites());
                 lilyPests.add(new Beetles());
-                Lily lily = new Lily("Lily", 100, 30, 95, 55, 60, 25, 8, 0, 3, 0, lilyPests, true, row, col);
+                Lily lily = new Lily("Lily", 100, 30, 95, 55, 25, lilyPests, true, row, col);
                 grid.add(lily.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lily.getPlantView());
                 life.setGrid(grid);
@@ -533,7 +478,7 @@ public class ViewController {
                 tomatoPests.add(new Aphids());
                 tomatoPests.add(new Whiteflies());
                 tomatoPests.add(new HornWorms());
-                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 70, 8, 14, 0, 7, 0, tomatoPests, true, row, col);
+                Tomato tomato = new Tomato("Tomato", 100, 12, 98, 60, 8, tomatoPests, true, row, col);
                 grid.add(tomato.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, tomato.getPlantView());
                 life.setGrid(grid);
@@ -547,7 +492,7 @@ public class ViewController {
                 tulipPests.add(new Aphids());
                 tulipPests.add(new SpiderMites());
                 tulipPests.add(new BulbFly());
-                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 60, 14, 8, 0, 3, 0, tulipPests, true, row, col);
+                Tulip tulip = new Tulip("Tulip", 100, 18, 100, 56, 14, tulipPests, true, row, col);
                 grid.add(tulip.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, tulip.getPlantView());
                 life.setGrid(grid);
@@ -560,7 +505,7 @@ public class ViewController {
                 ArrayList<Pest> lemonPests = new ArrayList<Pest>();
                 lemonPests.add(new Aphids());
                 lemonPests.add(new LeafMiner());
-                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 90, 18, 18, 0, 4, 0, lemonPests, true, row, col);
+                Lemon lemon = new Lemon("Lemon", 100, 25, 104, 50, 18, lemonPests, true, row, col);
                 grid.add(lemon.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, lemon.getPlantView());
                 life.setGrid(grid);
@@ -573,7 +518,7 @@ public class ViewController {
                 ArrayList<Pest> orangePests = new ArrayList<Pest>();
                 orangePests.add(new Aphids());
                 orangePests.add(new Whiteflies());
-                Orange orange = new Orange("Orange", 100, 15, 105, 53, 40, 10, 5, 0, 5, 0, orangePests, true, row, col);
+                Orange orange = new Orange("Orange", 100, 15, 105, 53, 10, orangePests, true, row, col);
                 grid.add(orange.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, orange.getPlantView());
                 life.setGrid(grid);
@@ -587,7 +532,7 @@ public class ViewController {
                 applePests.add(new Aphids());
                 applePests.add(new Caterpillars());
                 applePests.add(new CodlingMoth());
-                Apple apple = new Apple("Apple", 100, 15, 102, 50, 50, 15, 20, 0, 6, 0, applePests, true, row, col);
+                Apple apple = new Apple("Apple", 100, 15, 102, 50, 15, applePests, true, row, col);
                 grid.add(apple.getPlantView(), col, row);
                 gridNodeMap.put(row + "," + col, apple.getPlantView());
                 life.setGrid(grid);
@@ -597,54 +542,5 @@ public class ViewController {
                 appendLogToFile("Planting Apple at Col: " + col + " Row: " + row, "info");
                 break;
         }
-    }
-
-    //    Overlay Pest
-    public void overlayPest(int row, int col) {
-        System.out.println("Inside  overlay");
-        String pestImagePath = "https://uwm.edu/field-station/wp-content/uploads/sites/380/2016/12/357x500-11.jpg";
-//        ImageView pestImage = new ImageView(new Image(pestImagePath));
-//        pestImage.setFitWidth(20);
-//        pestImage.setFitHeight(20);
-//        grid.add(pestImage, col, row);
-//        grid.add(new ImageView(new Image("https://uwm.edu/field-station/wp-content/uploads/sites/380/2016/12/357x500-11.jpg")), col, row);
-
-        String key = row + "," + col;
-        if (gridNodeMap.containsKey(key)) {
-            System.out.println("Inside if loop");
-            StackPane cell = (StackPane) gridNodeMap.get(key);
-
-            // Add pest's image to the StackPane
-            ImageView pestImage = new ImageView(new Image(pestImagePath));
-            pestImage.setFitWidth(20);
-            pestImage.setFitHeight(20);
-            pestImage.setTranslateX(15); // Offset for positioning
-            pestImage.setTranslateY(-15);
-
-            cell.getChildren().add(pestImage);
-            //        for (Node node : grid.getChildren()) {
-//            Integer nodeRow = GridPane.getRowIndex(node);
-//            Integer nodeCol = GridPane.getColumnIndex(node);
-//
-//            if (Objects.equals(nodeRow, row) && Objects.equals(nodeCol, col)) {
-//                System.out.println("Inside if loop of overlay");
-////                StackPane cell = (StackPane) node;
-//
-//                // Add pest image
-//                ImageView pestImage = new ImageView(new Image(pestImagePath));
-//                pestImage.setFitWidth(20);
-//                pestImage.setFitHeight(20);
-//                pestImage.setTranslateX(15); // Offset pest position
-//                pestImage.setTranslateY(-15);
-//
-//                grid.add(pestImage, col, row);
-//                break;
-//            }
-//        }
-
-
-        }
-
-
     }
 }
