@@ -33,13 +33,11 @@ public class SprinklerController implements Runnable {
                 ViewController.appendLogToFile("Plants received water: " + avgWaterReq + " units.!", "info");
                 isSprinklerRunning = true;
                 TemperatureController.setCurrentTemperature(TemperatureController.getCurrentTemperature() - 5);
-//                ViewController.updateSprinklerUI("ON", "https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
             } else {
                 log.info("Sufficient water in the garden already! No need sprinklers!");
                 ViewController.addLogMessage("Sufficient water in the garden already! No need sprinklers!", "info");
                 ViewController.appendLogToFile("Sufficient water in the garden already! No need sprinklers!", "info");
                 isSprinklerRunning = false;
-//                ViewController.updateSprinklerUI("OFF", "https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp");
             }
         } else {
             log.info("There are no plants in the garden!");
@@ -49,6 +47,7 @@ public class SprinklerController implements Runnable {
     }
 
 
+    //    Calculate actual water requirement for the garden
     private int calculateWaterForGarden(List<Plants> plants) {
         int total = 0;
         int average = 0;
@@ -63,6 +62,7 @@ public class SprinklerController implements Runnable {
         return average;
     }
 
+    //    Calculate current water level in the garden
     private int calculateCurrentWaterLevel(List<Plants> plants) {
         int total = 0;
         int average = 0;
@@ -77,6 +77,7 @@ public class SprinklerController implements Runnable {
         return average;
     }
 
+    //    Water level is reduced when temperature is high
     public void reduceWaterLevel() {
         int reduceAmt = 0;
         int temperature = TemperatureController.getCurrentTemperature();
