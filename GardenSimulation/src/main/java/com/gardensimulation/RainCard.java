@@ -11,9 +11,8 @@ import javafx.scene.text.Font;
 public class RainCard extends VBox {
     private ImageView rainIcon;  // Image for the weather icon
     private Label rainTextLabel; // Text label for weather condition
-//    private WeatherController weatherController = new WeatherController();
 
-    // Constructor for the WeatherCard
+    // Constructor for the RainCard
     public RainCard() {
         // Create the weather icon ImageView
         rainIcon = new ImageView();
@@ -31,16 +30,15 @@ public class RainCard extends VBox {
         // Set alignment and spacing within the card
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
-//        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
         setStyle("-fx-background-color: #d1fb96; -fx-padding: 5; -fx-border-color: black; -fx-border-width: 2;");
     }
 
-    // Method to update the weather card
+    // Method to update the rain card
     public void updateRain() {
-        // Update the weather icon
+        // Update the rain icon
         rainIcon.setImage(new Image("https://i.pinimg.com/originals/b1/f3/f1/b1f3f164e96c1b8b203fd7d34640eb57.gif"));
 
-        // Update the weather text
+        // Update the rain text
         rainTextLabel.setText("Raining!");
     }
 }

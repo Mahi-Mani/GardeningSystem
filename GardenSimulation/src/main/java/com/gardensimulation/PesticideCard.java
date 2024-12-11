@@ -14,12 +14,12 @@ public class PesticideCard extends VBox {
 
     // Constructor for the PesticideCard
     public PesticideCard() {
-        // Create the weather icon ImageView
+        // Create the pesticide icon ImageView
         pesticideIcon = new ImageView();
         pesticideIcon.setFitWidth(150);
         pesticideIcon.setFitHeight(150);
 
-        // Create the weather text Label
+        // Create the pesticide text Label
         pesticideTextLabel = new Label("");
         pesticideTextLabel.setFont(new Font("Arial", 12));
         pesticideTextLabel.setTextFill(Color.BLACK);
@@ -33,9 +33,9 @@ public class PesticideCard extends VBox {
         setStyle("-fx-background-color: #d1fb96; -fx-padding: 5; -fx-border-color: black; -fx-border-width: 2;");
     }
 
-    // Method to update the weather card
+    // Method to update the pesticide card
     public void updatePesticideCard(Boolean status, String imageUrl) {
-        // Update the weather icon
+        // Update the pesticide icon
         pesticideIcon.setImage(new Image(imageUrl));
 
         // Update the pesticide text
