@@ -14,12 +14,12 @@ public class SprinklerCard extends VBox {
 
     // Constructor for the SprinklerCard
     public SprinklerCard() {
-        // Create the weather icon ImageView
+        // Create the sprinkler icon ImageView
         sprinklerIcon = new ImageView();
         sprinklerIcon.setFitWidth(150);
         sprinklerIcon.setFitHeight(150);
 
-        // Create the weather text Label
+        // Create the sprinkler text Label
         sprinklerTextLabel = new Label("OFF");
         sprinklerTextLabel.setFont(new Font("Arial", 20));
         sprinklerTextLabel.setTextFill(Color.BLACK);
@@ -34,16 +34,16 @@ public class SprinklerCard extends VBox {
         setStyle("-fx-background-color: #d1fb96; -fx-padding: 5; -fx-border-color: black; -fx-border-width: 3;");
     }
 
-    // Method to update the weather card
+    // Method to update the sprinkler card
     public void updateSprinkler(Boolean status) {
-        // Update the weather icon
+        // Update the sprinkler icon
         if (status) {
             sprinklerIcon.setImage(new Image("https://media1.giphy.com/media/7Xp6WZXFADXkkP7z9X/giphy.gif?cid=6c09b9529330fin1czs6t2w4xu0tkphyk6eibycol4nbqegs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"));
             sprinklerTextLabel.setText("ON");
         } else {
 
             sprinklerIcon.setImage(new Image("https://www.groundsguys.com/us/en-us/grounds-guys/_assets/expert-tips/sprinkler-system.webp"));
-            // Update the weather text
+            // Update the sprinkler text
             sprinklerTextLabel.setText("OFF");
         }
     }
