@@ -154,6 +154,7 @@ public class WeatherController {
         String noRainMsg = "No rain today despite cloudy weather.";
         System.out.println(cloudyMsg);
         ViewController.addLogMessage(cloudyMsg, "info");
+        ViewController.appendLogToFile(cloudyMsg, "info");
         if (random.nextInt(10) < 3) { // 30% chance of rain
             ViewController.addLogMessage("5 units of rain recorded!", "info");
             ViewController.appendLogToFile("5 units of rain recorded!", "info");

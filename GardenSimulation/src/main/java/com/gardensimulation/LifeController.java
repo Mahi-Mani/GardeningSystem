@@ -37,7 +37,7 @@ public class LifeController implements Runnable {
             log.info("Morning! Day: " + day + " Garden Status Check!");
             ViewController.addLogMessage("Morning! Day: " + day + " Garden Status Check!", "info");
             ViewController.appendLogToFile("Morning! Day: " + day + " Garden Status Check!", "info");
-            viewController.autoPlacePlant();
+            ViewController.autoPlacePlant();
             weatherController.generateRandomWeather();
             weatherController.simulateDailyWeather();
             ViewController.updateWeather(weatherController.getCurrentWeather().substring(0, 1).toUpperCase().concat(weatherController.getCurrentWeather().substring(1)), weatherController.getWeatherWidget());

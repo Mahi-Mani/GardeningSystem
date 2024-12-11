@@ -31,7 +31,7 @@ public class SprinklerCard extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
 //        this.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-border-radius: 10; -fx-background-radius: 10;");
-        setStyle("-fx-background-color: #d1fb96; -fx-padding: 10; -fx-border-color: black; -fx-border-width: 3;");
+        setStyle("-fx-background-color: #d1fb96; -fx-padding: 5; -fx-border-color: black; -fx-border-width: 3;");
     }
 
     // Method to update the weather card

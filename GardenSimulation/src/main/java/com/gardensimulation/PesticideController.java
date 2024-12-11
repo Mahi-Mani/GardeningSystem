@@ -74,20 +74,21 @@ public class PesticideController implements Runnable {
 //                ViewController.appendLogToFile("Pesticide thread is running", "info");
 //                System.out.println(this.weatherController.getCurrentWeather());
                     // Scan plants for pests
-                    for (Plants plant : Plants.plantsList) {
-                        System.out.println(plant.getPestAttack());
-                        if (!plant.getPestAttack().isEmpty()) {
-                            // Treat the plant and remove pests
-                            this.treatPlant(plant);
+                    if (!isPesticideApplied) {
+                        for (Plants plant : Plants.plantsList) {
+                            System.out.println(plant.getPestAttack());
+                            if (!plant.getPestAttack().isEmpty()) {
+                                // Treat the plant and remove pests
+                                this.treatPlant(plant);
+                            }
                         }
-                    }
-                    if (isPesticideApplied) {
-//                    Platform.runLater(() -> {
+//                        Platform.runLater(() -> {
                         ViewController.addLogMessage("Spraying pesticide to garden!", "info");
                         ViewController.appendLogToFile("Spraying pesticide to garden!", "info");
 //                    });
                         // Log the treatment action
                         log.info("Spraying pesticide to garden!");
+                        isPesticideApplied = true;
                     }
 //                isRunning = false;
                     // Wait for cooldown time before the next pesticide application

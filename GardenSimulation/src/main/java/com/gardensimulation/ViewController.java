@@ -442,12 +442,12 @@ public class ViewController {
 
     //    Function to automatically place plants
     public static void autoPlacePlant() {
-        if (Plants.plantsList.size() >= MIN_PLANTS_THRESHOLD) {
+        if (Plants.plantsList.size() >= (MIN_PLANTS_THRESHOLD + 3)) {
             return; // No need to add plants if the count is above the threshold
         }
 
         Random random = new Random();
-        while (Plants.plantsList.size() < MIN_PLANTS_THRESHOLD) {
+        while (Plants.plantsList.size() < (MIN_PLANTS_THRESHOLD + 3)) {
             int row = random.nextInt(numRows);
             int col = random.nextInt(numCols);
 
