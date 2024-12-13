@@ -53,6 +53,7 @@ public class LifeController implements Runnable {
                     if (plant.isAlive()) {
 //                        With each passing day, reduce the age of plant by 5
                         plant.setAge(plant.getAge() - LIFEOFPLANT);
+                        ViewController.appendLogToFile(plant.getName() + " is alive at Grid: (" + plant.getRow() + " " + plant.getCol() + ")", "info");
                     }
                     if (plant.getAge() <= 0) {
                         plant.setAge(0);
@@ -69,6 +70,7 @@ public class LifeController implements Runnable {
         log.info(morningMsg);
         ViewController.addLogMessage(morningMsg, "info");
         ViewController.clearLogFile();
+        ViewController.appendLogToFile("README.md has subsystem details and attributes of plants", "info");
         ViewController.appendLogToFile(morningMsg, "info");
         Platform.runLater(() -> {
             ViewController.autoPlacePlant();

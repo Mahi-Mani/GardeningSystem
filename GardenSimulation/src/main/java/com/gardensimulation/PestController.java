@@ -46,6 +46,7 @@ public class PestController {
         if (PesticideController.isPesticideApplied) {
             log.info("Pesticide in effect, no pest activity!");
             ViewController.appendLogToFile("Pesticide in effect, no pest activity!", "info");
+            ViewController.addLogMessage("Pesticide in effect, no pest activity!", "info");
         } else {
             if (weather == "sunny") {
                 log.info("(30% chance) pest activity due to Sunny weather.");
