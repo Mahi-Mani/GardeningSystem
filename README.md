@@ -1,5 +1,7 @@
 # GardeningSystem
 
+A multithreaded Java application simulating an automated gardening system with subsystems for plant management, weather simulation, pest control, sprinkler activation, and temperature regulation. Implemented inter-subsystem communication for real-time updates using object-oriented principles. Integrated JavaFX for an interactive UI and utilized design patterns like Singleton and Observer to ensure modularity and scalability.
+
 # Initial Status:
 
 ## Rose:
