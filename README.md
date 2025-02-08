@@ -74,6 +74,10 @@
 - **Pests**: Aphids, Caterpillars, Codling Moth  
 - **isAlive**: true
 
+# Application
+
+![Application](app.png)
+
 # Plant Health
 
 ## Life:
